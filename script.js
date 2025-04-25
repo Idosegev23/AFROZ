@@ -82,30 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Gallery randomization
-function shuffleGallery() {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return; // Exit if gallery doesn't exist
-    
-    const images = Array.from(gallery.getElementsByTagName('img'));
-    
-    // Remove all images
-    images.forEach(img => img.remove());
-    
-    // Shuffle array
-    for (let i = images.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [images[i], images[j]] = [images[j], images[i]];
-    }
-    
-    // Add back in shuffled order
-    images.forEach(img => gallery.appendChild(img));
-}
+// Gallery functionality - בטל את הערבוב כדי לאפשר לאנימציות לעבוד כראוי
+// הקוד המקורי של shuffleGallery() הוסר מכיוון שכעת אנחנו משתמשים באנימציות ספציפיות
 
-// Shuffle gallery once on page load - no more interval shuffle
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    shuffleGallery();
-    
     // Fix for iOS initial scroll position
     setTimeout(() => {
         window.scrollTo(0, 0);

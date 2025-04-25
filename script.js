@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Smooth scroll for anchor links in navbar
-    document.querySelectorAll('#navbar a[href^="#"]').forEach(anchor => {
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -178,5 +178,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     */
+
+    // Program Timeline
+    function showFullProgram() {
+        const fullProgram = document.getElementById('fullProgram');
+        if (fullProgram.style.display === 'none') {
+            fullProgram.style.display = 'block';
+        } else {
+            fullProgram.style.display = 'none';
+        }
+    }
+
+    // Program Accordion
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            accordionItems.forEach(accItem => {
+                accItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
 
 }); 

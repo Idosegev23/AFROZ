@@ -418,74 +418,42 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0; /* התחל עם כל התמונות מוסתרות */
 }
 
-@keyframes moveHorizontal {
-  to {
-    object-position: 100% 0;
-  }
-}
-
-@keyframes moveVertical {
-  to {
-    object-position: 0 100%;
-  }
-}
-
-@keyframes shrinkVertical {
-  to {
-    height: 0;
-  }
-}
-
-@keyframes shrinkHorizontal {
-  to {
-    width: 0;
-  }
-}
-
-@keyframes growHorizontal {
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes growHorizontal2 {
-  to {
-    width: 70%;
-  }
-}
-
-@keyframes growVertical {
-  to {
-    height: 100%;
-  }
-}
-
-@keyframes growAll {
-  to {
-    width: 100%;
-    height: 100%;
-  }
-}
-
+/* מציג רק את התמונה הראשונה בתחילת האנימציה */
 .gallery img:nth-child(1) {
+  opacity: 1;
   grid-column: 1;
   grid-row: 1;
   justify-self: end;
   animation: 
-    moveHorizontal 8.5s 0.5s infinite,
-    shrinkHorizontal 2s 9s ease-in infinite;
-  animation-fill-mode: forwards;
+    imgCycle1 60s infinite; /* מחזור של 60 שניות שמכיל את כל האנימציות */
+}
+
+.gallery img:nth-child(2),
+.gallery img:nth-child(3),
+.gallery img:nth-child(4),
+.gallery img:nth-child(5),
+.gallery img:nth-child(6),
+.gallery img:nth-child(7),
+.gallery img:nth-child(8),
+.gallery img:nth-child(9),
+.gallery img:nth-child(10),
+.gallery img:nth-child(11),
+.gallery img:nth-child(12),
+.gallery img:nth-child(13),
+.gallery img:nth-child(14),
+.gallery img:nth-child(15) {
+  animation: 
+    imgCycle1 60s infinite; /* כולם משתמשים באותה אנימציה אבל בדילוג שונה */
 }
 
 .gallery img:nth-child(2) {
   grid-column: 2;
   grid-row: 1;
   justify-self: end;
-  animation: 
-    shrinkHorizontal 2s 11s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -54s; /* מראה את התמונה השנייה בזמן המתאים */
 }
 
 .gallery img:nth-child(3) {
@@ -493,150 +461,108 @@ img {
   grid-column: 1 / 3;
   align-self: end;
   object-position: 0 0;
-  animation:
-    moveVertical 5s 1s infinite,
-    shrinkVertical 3s 5s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -48s;
 }
 
 .gallery img:nth-child(4) {
   grid-column: 1 / 3;
   grid-row: 1;
-  width: 0;
   justify-self: center;
   align-self: start;
-  animation: 
-    growHorizontal 2.25s 11s infinite,
-    moveHorizontal 4s 14s infinite,
-    shrinkVertical 2s 18s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -42s;
 }
 
 .gallery img:nth-child(5) {
   grid-column: 1;
   grid-row: 2;
-  width: 0;
   justify-self: start;
   align-self: end;
-  animation: 
-    growHorizontal 2.5s 7.5s infinite,
-    moveVertical 4s 12.5s infinite,
-    shrinkHorizontal 2s 17s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -36s;
 }
 
 .gallery img:nth-child(6) {
   grid-column: 2;
   grid-row: 2;
-  width: 0;
   justify-self: end;
   align-self: end;
-  animation: 
-    growHorizontal 2s 8s infinite,
-    shrinkHorizontal 2s 17s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -30s;
 }
 
 .gallery img:nth-child(7) {
   grid-column: 1/3;
   grid-row: 1/3;
-  width: 0;
   justify-self: end;
   align-self: end;
   object-position: 0 0;
-  animation: 
-    growHorizontal 2s 20s infinite,
-    moveHorizontal 16s 21.5s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -24s;
 }
 
 .gallery img:nth-child(8) {
   grid-column: 1/3;
   grid-row: 1;
-  width: 0;
-  height: 0;
   justify-self: center;
   align-self: center;
-  animation: 
-    growAll 3s 36s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -18s;
 }
 
 .gallery img:nth-child(9) {
   grid-column: 1;
   grid-row: 1/3;
-  width: 0;
   justify-self: start;
   align-self: start;
-  animation: 
-    growHorizontal 2s 39s infinite,
-    moveVertical 5s 41s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -12s;
 }
 
 .gallery img:nth-child(10) {
   grid-column: 2;
   grid-row: 1;
-  width: 0;
   justify-self: center;
   align-self: start;
-  animation: 
-    growHorizontal2 2s 44s infinite,
-    moveHorizontal 3s 46s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -6s;
 }
 
+/* התמונות האחרונות מוצגות לפרק זמן קצר יותר */
 .gallery img:nth-child(11) {
   grid-column: 1/3;
   grid-row: 2;
-  width: 0;
   justify-self: center;
   align-self: end;
-  animation: 
-    growHorizontal 2s 48s infinite,
-    shrinkHorizontal 2s 53s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -5s;
 }
 
 .gallery img:nth-child(12) {
   grid-column: 1;
   grid-row: 1;
-  opacity: 0;
-  animation: 
-    fadeIn 2s 54s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -4s;
 }
 
 .gallery img:nth-child(13) {
   grid-column: 2;
   grid-row: 2;
-  opacity: 0;
-  animation: 
-    fadeIn 2s 54s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -3s;
 }
 
 .gallery img:nth-child(14) {
   grid-column: 1;
   grid-row: 2;
-  opacity: 0;
-  animation: 
-    fadeIn 2s 54s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -2s;
 }
 
 .gallery img:nth-child(15) {
   grid-column: 2;
   grid-row: 1;
-  opacity: 0;
-  animation: 
-    fadeIn 2s 54s infinite;
-  animation-fill-mode: forwards;
+  animation-delay: -1s;
 }
 
-@keyframes fadeIn {
-  to {
+/* אנימציה אחת שמכילה את כל מחזור התמונות */
+@keyframes imgCycle1 {
+  0%, 8%, 100% {
     opacity: 1;
+    transform: scale(1);
+  }
+  9%, 99% {
+    opacity: 0;
+    transform: scale(0.95);
   }
 }
 

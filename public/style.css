@@ -58,12 +58,33 @@ img {
     padding: 0.5rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 #logo {
     max-height: 110px; /* Increased again from 90px */
     margin: 0;
     transition: max-height 0.3s ease; /* Smooth transition if size changes dynamically */
+}
+
+/* Hamburger Menu Button */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #005f73;
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
 #navbar ul {
@@ -376,14 +397,14 @@ img {
 
 /* Gallery */
 .gallery {
-    --size: min(80vw, 800px);
+    --size: 100%;
     position: relative;
-    margin: 4rem auto;
+    margin: 2rem auto;
     box-shadow: 
         0 0 10px #0002,
         0 20px 40px -20px #0004;
     width: var(--size);
-    height: var(--size);
+    height: calc(var(--size) * 0.8);
     background: #fff;
     border: 6px solid #fff;
     display: grid;
@@ -531,8 +552,9 @@ img {
 
 @media (max-width: 768px) {
     .gallery {
-        --size: 90vw;
-        margin: 2rem auto;
+        width: 100%;
+        height: 80vw;
+        margin: 1.5rem auto;
     }
 }
 
@@ -678,56 +700,204 @@ img {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Hamburger Menu */
+    .hamburger-btn {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 15px;
+    }
+    
+    /* Animated hamburger button when menu is open */
+    .hamburger-btn.active .hamburger-bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    
+    .hamburger-btn.active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-btn.active .hamburger-bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -8px);
+    }
+    
     #navbar {
+        padding: 0.5rem 1rem;
         flex-direction: column;
-        padding: 1rem;
+        align-items: flex-start;
     }
-
-    #navbar ul {
-        margin-top: 1rem;
-        flex-wrap: wrap; /* Allow nav items to wrap */
-        justify-content: center;
+    
+    #logo {
+        max-height: 70px;
+        margin: 0.5rem 0;
+        align-self: center;
     }
-
+    
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(240, 248, 255, 0.98);
+        padding: 80px 2rem 2rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+        overflow-y: auto;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+    
+    #nav-links.active {
+        display: flex;
+    }
+    
     #navbar ul li {
-        margin: 0.3rem 0.5rem;
+        margin: 0.8rem 0;
+        width: 100%;
+        text-align: right;
+    }
+    
+    #navbar ul li a {
+        display: block;
+        padding: 0.7rem 0;
+        font-size: 1.2rem;
     }
 
+    /* Hero Section */
+    #hero {
+        height: 80vh;
+    }
+    
     .hero-content h1 {
         font-size: 2rem;
+        margin-bottom: 15px;
     }
 
     .hero-content p {
         font-size: 1rem;
+        margin-bottom: 20px;
     }
-
+    
+    /* Buttons */
+    .cta-button, .cta-button-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Content Sections */
     .content-section {
-        padding: 3rem 1rem;
+        padding: 2.5rem 1rem;
         margin: 1rem auto;
+        border-radius: 15px;
     }
 
     .content-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1.4rem;
+    }
+    
+    .content-section p {
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
     .section-image {
-        max-width: 80%;
+        max-width: 100%;
+        margin: 1.5rem auto;
     }
-
+    
+    /* FAQ Section */
+    #faq .faq-question {
+        font-size: 1.1rem;
+        padding-right: 20px;
+    }
+    
+    #faq .faq-answer {
+        font-size: 0.95rem;
+    }
+    
+    /* Gallery */
+    .gallery {
+        margin: 1rem auto;
+        grid-gap: 3px;
+        border: 3px solid #fff;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .snip1533 {
+        margin: 2rem auto 0;
+        width: 90%;
+        min-width: auto;
+    }
+    
+    .snip1533 blockquote p {
+        font-size: 0.9rem;
+    }
+    
+    /* Popup */
     .popup-content {
         width: 90%;
         margin: 20% auto;
         padding: 1.5rem;
+        border-radius: 15px;
     }
-
-    .social-links a {
+    
+    .popup-content h2 {
         font-size: 1.5rem;
     }
-
+    
+    .popup-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .popup-content p, .popup-content li {
+        font-size: 0.95rem;
+    }
+    
+    /* Footer */
     #contact {
         padding: 2rem 1rem;
     }
-
+    
+    .footer-top-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-logo {
+        max-height: 80px;
+        order: 1;
+    }
+    
+    .social-links {
+        order: 2;
+        margin-top: 0.5rem;
+    }
+    
+    .social-links a {
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+    }
 }
 
 /* Program Section */
@@ -1183,5 +1353,83 @@ img {
     
     .accordion-item.active .accordion-content {
         padding: 1rem 1.5rem 1.5rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    #navbar ul li a,
+    .cta-button,
+    .cta-button-secondary {
+        padding: 10px 15px; /* Larger touch targets */
+    }
+    
+    .accordion-header,
+    .faq-question {
+        min-height: 44px; /* Apple's recommended min touch area */
+    }
+    
+    .social-links a {
+        padding: 10px;
+        margin: 0 5px;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    #logo {
+        max-height: 60px;
+    }
+    
+    #hero {
+        height: 70vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.7rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    .cta-button, .cta-button-secondary {
+        padding: 0.7rem 1.3rem;
+        font-size: 0.85rem;
+    }
+    
+    .content-section {
+        padding: 2rem 0.8rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .accordion-header h3 {
+        font-size: 1rem;
+    }
+    
+    .snip1533 {
+        margin: 2rem auto 0;
+        width: 100%;
+    }
+    
+    #nav-links {
+        width: 80%;
+    }
+    
+    .popup-content {
+        width: 95%;
+        padding: 1.2rem;
+    }
+    
+    /* Fix for very small screens */
+    .gallery {
+        height: 120vw;
     }
 } 

@@ -1,18 +1,31 @@
+// Mobile Menu Toggle
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+if (mobileMenuToggle && navLinks) {
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        // Prevent scrolling when menu is open
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    });
+    
+    // Close menu when clicking on a nav link
+    const menuLinks = navLinks.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+}
+
 // Event listeners for scrolling to accommodation section
 document.getElementById('open-pricing-popup-hero').addEventListener('click', () => scrollToAccommodation());
 document.getElementById('open-pricing-popup-program').addEventListener('click', () => scrollToAccommodation());
 document.getElementById('open-pricing-popup-location').addEventListener('click', () => scrollToAccommodation());
 document.getElementById('open-pricing-popup-testimonials').addEventListener('click', () => scrollToAccommodation());
-
-// Event listener for opening popup (registration button)
-document.getElementById('open-pricing-popup-accommodation').addEventListener('click', () => openPopup(pricingPopup));
-
-// Close popup buttons
-document.getElementById('close-pricing').addEventListener('click', () => closePopup(pricingPopup));
-document.getElementById('close-contact').addEventListener('click', () => closePopup(contactPopup));
-
-// Event listener for contact popup
-document.getElementById('open-contact-popup').addEventListener('click', () => openPopup(contactPopup));
 
 // Function to scroll to accommodation section
 function scrollToAccommodation() {
@@ -34,11 +47,53 @@ function closePopup(popup) {
     document.body.style.overflow = 'auto';
 }
 
+// Event listener for opening popups
+const accommodationButton = document.getElementById('open-pricing-popup-accommodation');
+if (accommodationButton) {
+    accommodationButton.addEventListener('click', function(e) {
+        // אם זה לחצן שצריך לגלול לחלק של accommodation, אל תפתח פופאפ
+        if (accommodationButton.getAttribute('href')) {
+            // אם יש לו href, תן לו להתנהג כקישור רגיל
+            return;
+        }
+        
+        e.preventDefault();
+        openPopup(pricingPopup);
+    });
+}
+
+// Close popup buttons
+document.getElementById('close-pricing').addEventListener('click', () => closePopup(pricingPopup));
+document.getElementById('close-contact').addEventListener('click', () => closePopup(contactPopup));
+
+// Event listener for contact popup
+document.getElementById('open-contact-popup').addEventListener('click', () => openPopup(contactPopup));
+
 // Close popup when clicking outside
 window.addEventListener('click', (e) => {
     if (e.target.classList.contains('popup')) {
         closePopup(e.target);
     }
+});
+
+// Initialize FAQ accordions
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+    
+    // Initialize program accordions
+    const programItems = document.querySelectorAll('.accordion-item');
+    programItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
 });
 
 // Gallery randomization
@@ -65,4 +120,9 @@ function shuffleGallery() {
 document.addEventListener('DOMContentLoaded', () => {
     shuffleGallery();
     setInterval(shuffleGallery, 38000);
+    
+    // Fix for iOS initial scroll position
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 100);
 }); 

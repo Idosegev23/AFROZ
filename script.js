@@ -129,81 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Automatic Image Carousel in Gallery
-    const carouselSlides = document.querySelector('.carousel-slides');
-    if (carouselSlides) {
-        const slides = document.querySelectorAll('.carousel-slide');
-        const slideCount = slides.length;
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        let currentIndex = 0;
-        const intervalTime = 4000; // Time in ms (4 seconds)
-        let autoPlayInterval = null; // To store the interval ID
-
-        // Set width of the slides container
-        carouselSlides.style.width = `${slideCount * 100}%`;
-
-        function goToSlide(index) {
-            currentIndex = (index + slideCount) % slideCount; // Handle negative index and wrap around
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            const offset = -currentIndex * (100 / slideCount);
-            carouselSlides.style.transform = `translateX(${offset}%)`;
-        }
-
-        function startAutoPlay() {
-            stopAutoPlay(); // Clear existing interval before starting a new one
-            autoPlayInterval = setInterval(() => {
-                goToSlide(currentIndex + 1);
-            }, intervalTime);
-        }
-
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-
-        // Event Listeners for buttons
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                goToSlide(currentIndex + 1);
-                startAutoPlay(); // Restart timer after manual click
-            });
-        }
-
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                goToSlide(currentIndex - 1);
-                startAutoPlay(); // Restart timer after manual click
-            });
-        }
-
-        // Initial start
-        startAutoPlay();
-
-        // Optional: Pause autoplay on hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-            carouselContainer.addEventListener('mouseleave', startAutoPlay);
-        }
-    }
-    // Placeholder for Gallery effects (to be implemented) - removed, replaced by carousel
-    // console.log('Gallery effects need implementation.');
-
     // FAQ Toggle Functionality
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         if (question) {
             question.addEventListener('click', () => {
-                // Optional: Close other open items
-                // faqItems.forEach(otherItem => {
-                //     if (otherItem !== item) {
-                //         otherItem.classList.remove('active');
-                //     }
-                // });
                 item.classList.toggle('active');
             });
         }
@@ -212,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dynamic Hero Effect on Scroll
     const heroSection = document.getElementById('hero');
     const bgVideo = document.getElementById('bg-video');
-    const initialBrightness = 0.6; // Must match the initial brightness in CSS
-    const initialBlur = 1; // Must match the initial blur in CSS
+    const initialBrightness = 0.6;
+    const initialBlur = 1;
 
     window.addEventListener('scroll', () => {
         if (!heroSection || !bgVideo) return;
@@ -221,18 +152,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = window.pageYOffset;
         const heroHeight = heroSection.offsetHeight;
 
-        // Calculate scroll percentage within the hero section (0 to 1)
         let scrollPercent = scrollPosition / heroHeight;
-        scrollPercent = Math.min(1, Math.max(0, scrollPercent)); // Clamp between 0 and 1
+        scrollPercent = Math.min(1, Math.max(0, scrollPercent));
 
-        // Adjust brightness subtly based on scroll (e.g., slightly darker as you scroll down)
-        const newBrightness = initialBrightness - (scrollPercent * 0.15); // Decrease brightness by up to 0.15
-
-        // Adjust blur subtly (optional - can make it slightly less blurry)
-        // const newBlur = initialBlur - (scrollPercent * 0.5); // Decrease blur by up to 0.5px
+        const newBrightness = initialBrightness - (scrollPercent * 0.15);
 
         bgVideo.style.filter = `brightness(${newBrightness.toFixed(2)}) blur(${initialBlur}px)`;
-        // Or include blur change: bgVideo.style.filter = `brightness(${newBrightness.toFixed(2)}) blur(${newBlur.toFixed(2)}px)`;
     });
 
     // Placeholder for dynamic hero effect (to be implemented) - Removing placeholder comment

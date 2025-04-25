@@ -89,47 +89,57 @@ img {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    overflow: hidden; /* Hide video overflow */
+    overflow: hidden;
+    background: #333;
 }
 
-#bg-video {
+#hero video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-    background-color: #ade8f4; /* Fallback color if video fails */
-    object-fit: cover; /* Ensure video covers the area while maintaining aspect ratio */
-    /* Adjust filter for lower resolution: slightly darker and minimal blur */
-    filter: brightness(0.6) blur(1px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.7);
 }
 
 .hero-content {
-    z-index: 1;
-    background-color: rgba(0, 95, 115, 0.5); /* Semi-transparent overlay for text readability */
-    padding: 2rem;
-    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    color: white;
 }
 
 .hero-content h1 {
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-size: 5rem;
+    margin: 0 0 20px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-weight: 700;
+    letter-spacing: 2px;
 }
 
 .hero-content p {
-    color: #e0fbfc;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.4rem;
+    }
 }
 
 /* Buttons */
@@ -296,77 +306,169 @@ img {
     font-weight: bold;
 }
 
-/* Gallery - Carousel */
-.carousel-container {
-    max-width: 80%; /* Adjust width as needed */
-    margin: 2rem auto;
-    overflow: hidden; /* Crucial for hiding non-visible slides */
+/* Gallery */
+.gallery {
+    --size: min(90vw, 900px);
     position: relative;
-    border-radius: 15px; /* Match other rounded corners */
-    box-shadow: 0 5px 15px rgba(0, 95, 115, 0.1);
-    min-height: 300px; /* Temporary: to ensure container has height */
-    background-color: #eee; /* Temporary: to see the container */
+    margin: 4rem auto;
+    box-shadow: 
+        0 0 10px #0002,
+        0 20px 40px -20px #0004;
+    width: var(--size);
+    height: var(--size);
+    background: #fff;
+    border: 6px solid #fff;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    gap: 6px;
 }
 
-.carousel-slides {
-    display: flex;
-    transition: transform 0.7s ease-in-out; /* Smooth transition */
-    /* Width will be calculated by JS based on slide count */
-}
-
-.carousel-slide {
-    flex: 0 0 100%; /* Each slide takes full container width */
-    box-sizing: border-box;
-}
-
-.carousel-slide img {
+.gallery img {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    max-height: 500px; /* Limit max height if needed */
-    object-fit: cover; /* Cover the slide area */
-    display: block;
-    border-radius: 0; /* Remove border-radius from image if container has it */
-    margin: 0; /* Reset image margin */
-    box-shadow: none; /* Remove individual image shadow */
-    transition: none; /* Remove hover effect from individual images */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
 }
 
-/* Carousel Navigation Buttons */
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 95, 115, 0.4); /* Semi-transparent teal */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-    display: flex; /* Center icon */
-    justify-content: center;
-    align-items: center;
+@keyframes moveHorizontal {
+    to {
+        object-position: 100% 0;
+    }
 }
 
-.carousel-button:hover {
-    background-color: rgba(0, 95, 115, 0.7);
+@keyframes moveVertical {
+    to {
+        object-position: 0 100%;
+    }
 }
 
-.carousel-button.prev {
-    right: 10px; /* Changed from left for RTL */
-    left: auto;
+@keyframes shrinkVertical {
+    to {
+        height: 0;
+    }
 }
 
-.carousel-button.next {
-    left: 10px; /* Changed from right for RTL */
-    right: auto;
+@keyframes shrinkHorizontal {
+    to {
+        width: 0;
+    }
 }
 
-/* Remove hover effect from container too if not desired */
-/* #gallery .gallery-container img:hover removed */
+@keyframes growHorizontal {
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes growHorizontal2 {
+    to {
+        width: 70%;
+    }
+}
+
+@keyframes growVertical {
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes growAll {
+    to {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.gallery img:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    animation: 
+        moveHorizontal 8.5s 0.5s 1,
+        shrinkHorizontal 2s 9s ease-in 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    animation: 
+        shrinkHorizontal 2s 11s 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(3) {
+    grid-row: 2;
+    grid-column: 1 / 3;
+    align-self: end;
+    object-position: 0 0;
+    animation:
+        moveVertical 5s 1s 1,
+        shrinkVertical 3s 5s 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(4) {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    width: 0;
+    justify-self: center;
+    align-self: start;
+    animation: 
+        growHorizontal 2.25s 11s 1,
+        moveHorizontal 4s 14s 1,
+        shrinkVertical 2s 18s 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(5) {
+    grid-column: 1;
+    grid-row: 2;
+    width: 0;
+    justify-self: start;
+    align-self: end;
+    animation: 
+        growHorizontal 2.5s 7.5s 1,
+        moveVertical 4s 12.5s 1,
+        shrinkHorizontal 2s 17s 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(6) {
+    grid-column: 2;
+    grid-row: 2;
+    width: 0;
+    justify-self: end;
+    align-self: end;
+    animation: 
+        growHorizontal 2s 8s 1,
+        shrinkHorizontal 2s 17s 1;
+    animation-fill-mode: forwards;
+}
+
+.gallery img:nth-child(7) {
+    grid-column: 1/3;
+    grid-row: 1/3;
+    width: 0;
+    justify-self: end;
+    align-self: end;
+    object-position: 0 0;
+    animation: 
+        growHorizontal 2s 20s 1,
+        moveHorizontal 16s 21.5s 1;
+    animation-fill-mode: forwards;
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        --size: 90vw;
+        margin: 2rem auto;
+        height: 90vw;
+    }
+}
 
 /* Footer */
 #contact {

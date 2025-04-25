@@ -48,19 +48,10 @@ function closePopup(popup) {
 }
 
 // Event listener for opening popups
-const accommodationButton = document.getElementById('open-pricing-popup-accommodation');
-if (accommodationButton) {
-    accommodationButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // אם הכפתור הוא קישור חיצוני, נעבור לאותו קישור
-        if (accommodationButton.getAttribute('href')) {
-            window.open(accommodationButton.getAttribute('href'), '_blank');
-        } else {
-            // אחרת נפתח את הפופאפ
-            openPopup(pricingPopup);
-        }
-    });
+const externalPurchaseLink = document.getElementById('external-purchase-link');
+if (externalPurchaseLink) {
+    // לא צריך להוסיף אירוע לחיצה מיוחד כי הקישור יעבוד כרגיל כקישור חיצוני
+    // הכפתור המקורי הוסר
 }
 
 // Close popup buttons

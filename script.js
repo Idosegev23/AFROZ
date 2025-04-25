@@ -26,6 +26,7 @@ document.getElementById('open-pricing-popup-hero').addEventListener('click', () 
 document.getElementById('open-pricing-popup-program').addEventListener('click', () => openPopup(pricingPopup));
 document.getElementById('open-pricing-popup-location').addEventListener('click', () => openPopup(pricingPopup));
 document.getElementById('open-pricing-popup-testimonials').addEventListener('click', () => openPopup(pricingPopup));
+document.getElementById('open-pricing-popup-accommodation').addEventListener('click', () => openPopup(pricingPopup));
 
 // Function to scroll to accommodation section
 function scrollToAccommodation() {
@@ -45,13 +46,6 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.style.display = 'none';
     document.body.style.overflow = 'auto';
-}
-
-// Event listener for opening popups
-const externalPurchaseLink = document.getElementById('external-purchase-link');
-if (externalPurchaseLink) {
-    // לא צריך להוסיף אירוע לחיצה מיוחד כי הקישור יעבוד כרגיל כקישור חיצוני
-    // הכפתור המקורי הוסר
 }
 
 // Close popup buttons

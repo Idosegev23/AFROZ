@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFaqAccordion();
     initProgramAccordion();
     initPopups();
-    initCarousel();
+    // initCarousel(); // Removed as the new gallery is CSS only
     fixIosScroll();
 });
 
@@ -112,9 +112,6 @@ function initPopups() {
     const contactPopup = document.getElementById('contact-popup');
 
     // Popup opener buttons
-    // Note: The original code scrolled to accommodation for most buttons, 
-    // but later changes likely intended to open pricing popup instead.
-    // Adjusting to open pricing popup for consistency, except for the dedicated contact button.
     if (heroButton) heroButton.addEventListener('click', () => openPopup(pricingPopup)); 
     if (programButton) programButton.addEventListener('click', () => openPopup(pricingPopup));
     if (locationButton) locationButton.addEventListener('click', () => openPopup(pricingPopup));
@@ -144,6 +141,7 @@ function fixIosScroll() {
     }, 100);
 }
 
+/* Removed initCarousel function as the new gallery is CSS only
 function initCarousel() {
     console.log('Initializing Carousel');
     const container = document.querySelector('.carousel-container');
@@ -153,8 +151,8 @@ function initCarousel() {
     }
 
     const images = container.querySelectorAll('.carousel-image');
-    const prevBtn = container.querySelector('.carousel-button.prev'); // More specific
-    const nextBtn = container.querySelector('.carousel-button.next'); // More specific
+    const prevBtn = container.querySelector('.carousel-button.prev'); 
+    const nextBtn = container.querySelector('.carousel-button.next'); 
     const dots = container.querySelectorAll('.dot');
 
     console.log(`Found ${images.length} images in carousel`);
@@ -172,7 +170,6 @@ function initCarousel() {
     let interval;
 
     function showImage(index) {
-        // console.log(`Carousel: Showing image ${index}`);
         images.forEach(img => img.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
@@ -212,7 +209,6 @@ function initCarousel() {
     });
 
     function startAutoPlay() {
-        // console.log('Carousel starting autoplay');
         clearInterval(interval);
         interval = setInterval(() => {
             showImage(currentIndex + 1);
@@ -220,7 +216,6 @@ function initCarousel() {
     }
 
     function resetAutoPlay() {
-        // console.log('Carousel resetting autoplay');
         clearInterval(interval);
         startAutoPlay();
     }
@@ -229,22 +224,11 @@ function initCarousel() {
     startAutoPlay();
 
     container.addEventListener('mouseenter', () => {
-        // console.log('Carousel mouse enter - pausing');
         clearInterval(interval);
     });
     container.addEventListener('mouseleave', () => {
-        // console.log('Carousel mouse leave - resuming');
         startAutoPlay();
     });
-}
-
-// Function to scroll to accommodation section (Removed as popup logic seems to cover CTAs)
-/*
-function scrollToAccommodation() {
-    const accommodationSection = document.getElementById('accommodation');
-    if (accommodationSection) {
-      accommodationSection.scrollIntoView({ behavior: 'smooth' });
-    }
 }
 */
 

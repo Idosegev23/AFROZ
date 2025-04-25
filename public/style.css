@@ -5,7 +5,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
-    background-color: #f0f8ff; /* AliceBlue - soft blue */
+    background-color: #eee;
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scroll */
     scroll-behavior: smooth; /* Smooth scrolling for anchor links */
@@ -391,16 +391,17 @@ img {
     font-weight: bold;
 }
 
-/* Gallery */
+/* Gallery (New Animated Version) */
 .gallery {
-  --size: min(70vw, 900px);
-  position: relative;
-  margin: 2rem auto;
+  --size: min(70vw, 600px); /* Adjusted size based on original and user request */
+  position: relative; /* Changed from absolute for better flow */
+  margin: 2rem auto; /* Keep centering */
+  /* Removed top/left/transform centering, rely on margin auto */
   box-shadow: 
     0 0 10px #0002,
     0 20px 40px -20px #0004;
   width: var(--size);
-  height: calc(var(--size) * 0.8);
+  height: var(--size);
   background: #fff;
   border: 6px solid #fff;
   display: grid;
@@ -414,42 +415,75 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0; /* התחל עם כל התמונות מוסתרות */
+  /* Ensure images are visible initially if needed, although animations handle it */
 }
 
-/* מציג רק את התמונה הראשונה בתחילת האנימציה */
+@keyframes moveHorizontal {
+  to {
+    object-position: 100% 0;
+  }
+}
+
+@keyframes moveVertical {
+  to {
+    object-position: 0 100%;
+  }
+}
+
+@keyframes shrinkVertical {
+  to {
+    height: 0;
+  }
+}
+
+@keyframes shrinkHorizontal {
+  to {
+    width: 0;
+  }
+}
+
+
+@keyframes growHorizontal {
+  to {
+    width: 100%;
+  }
+}
+/* Removed growHorizontal2 as it wasn't used in the animation definitions */
+
+@keyframes growVertical {
+  to {
+    height: 100%;
+  }
+}
+
+
+@keyframes growAll {
+  to {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* NOTE: Only using first 7 images based on provided animations */
 .gallery img:nth-child(1) {
-  opacity: 1;
   grid-column: 1;
   grid-row: 1;
   justify-self: end;
   animation: 
-    imgCycle1 60s infinite; /* מחזור של 60 שניות שמכיל את כל האנימציות */
-}
-
-.gallery img:nth-child(2),
-.gallery img:nth-child(3),
-.gallery img:nth-child(4),
-.gallery img:nth-child(5),
-.gallery img:nth-child(6),
-.gallery img:nth-child(7),
-.gallery img:nth-child(8),
-.gallery img:nth-child(9),
-.gallery img:nth-child(10),
-.gallery img:nth-child(11),
-.gallery img:nth-child(12),
-.gallery img:nth-child(13),
-.gallery img:nth-child(14),
-.gallery img:nth-child(15) {
-  animation: 
-    imgCycle1 60s infinite; /* כולם משתמשים באותה אנימציה אבל בדילוג שונה */
+    moveHorizontal 8.5s 0.5s 1,
+    shrinkHorizontal 2s 9s ease-in 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(2) {
   grid-column: 2;
   grid-row: 1;
   justify-self: end;
-  animation-delay: -54s; /* מראה את התמונה השנייה בזמן המתאים */
+  animation: 
+    shrinkHorizontal 2s 11s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(3) {
@@ -457,117 +491,189 @@ img {
   grid-column: 1 / 3;
   align-self: end;
   object-position: 0 0;
-  animation-delay: -48s;
+  animation:
+    moveVertical 5s 1s 1,
+    shrinkVertical 3s 5s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(4) {
   grid-column: 1 / 3;
   grid-row: 1;
+  width: 0;
   justify-self: center;
   align-self: start;
-  animation-delay: -42s;
+  animation: 
+    growHorizontal 2.25s 11s 1,
+    moveHorizontal 4s 14s 1,
+    shrinkVertical 2s 18s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(5) {
   grid-column: 1;
   grid-row: 2;
+  width: 0;
   justify-self: start;
   align-self: end;
-  animation-delay: -36s;
+  animation: 
+    growHorizontal 2.5s 7.5s 1,
+    moveVertical 4s 12.5s 1,
+    shrinkHorizontal 2s 17s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(6) {
   grid-column: 2;
   grid-row: 2;
+  width: 0;
   justify-self: end;
   align-self: end;
-  animation-delay: -30s;
+  animation: 
+    growHorizontal 2s 8s 1,
+    shrinkHorizontal 2s 17s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
 .gallery img:nth-child(7) {
   grid-column: 1/3;
   grid-row: 1/3;
+  width: 0;
   justify-self: end;
   align-self: end;
   object-position: 0 0;
-  animation-delay: -24s;
+  animation: 
+    growHorizontal 2s 20s 1,
+    moveHorizontal 16s 21.5s 1;
+  animation-fill-mode: forwards;
+  opacity: 1; /* Make sure it's visible */
 }
 
+/* Animations for images 8-15 (Continuing the sequence) */
+/* These timings are estimations to create a continuous flow */
+
 .gallery img:nth-child(8) {
-  grid-column: 1/3;
+  grid-column: 1;
   grid-row: 1;
-  justify-self: center;
-  align-self: center;
-  animation-delay: -18s;
+  height: 0;
+  align-self: start;
+  animation: 
+    growVertical 2s 24s 1, /* Start after img 7 starts moving */
+    moveHorizontal 6s 26s 1,
+    shrinkHorizontal 2s 32s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(9) {
-  grid-column: 1;
-  grid-row: 1/3;
-  justify-self: start;
+  grid-column: 2;
+  grid-row: 1;
+  height: 0;
   align-self: start;
-  animation-delay: -12s;
+  animation: 
+    growVertical 2s 25s 1,
+    shrinkVertical 2s 30s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(10) {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: center;
-  align-self: start;
-  animation-delay: -6s;
+  grid-column: 1;
+  grid-row: 2;
+  height: 0;
+  align-self: end;
+  animation: 
+    growVertical 2s 26s 1,
+    moveHorizontal 5s 28s 1,
+    shrinkHorizontal 2s 33s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
-/* התמונות האחרונות מוצגות לפרק זמן קצר יותר */
 .gallery img:nth-child(11) {
-  grid-column: 1/3;
+  grid-column: 2;
   grid-row: 2;
-  justify-self: center;
+  height: 0;
   align-self: end;
-  animation-delay: -5s;
+   animation: 
+    growVertical 2s 27s 1,
+    shrinkVertical 2s 31s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(12) {
-  grid-column: 1;
-  grid-row: 1;
-  animation-delay: -4s;
+  grid-column: 1/3;
+  grid-row: 1/3;
+  width: 0;
+  height: 0;
+  align-self: center;
+  justify-self: center;
+  animation: 
+    growAll 2s 34s 1, /* Start after some previous ones finish */
+    shrinkVertical 2s 38s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(13) {
-  grid-column: 2;
-  grid-row: 2;
-  animation-delay: -3s;
+  grid-column: 1;
+  grid-row: 1;
+  width: 0;
+  justify-self: start;
+   animation: 
+    growHorizontal 2s 36s 1,
+    shrinkHorizontal 2s 40s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(14) {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 2;
-  animation-delay: -2s;
+  height: 0;
+  align-self: end;
+  animation: 
+    growVertical 2s 37s 1,
+    shrinkVertical 2s 41s 1;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 .gallery img:nth-child(15) {
-  grid-column: 2;
-  grid-row: 1;
-  animation-delay: -1s;
+  /* Simple fade in/out at the end */
+  grid-column: 1/3;
+  grid-row: 1/3;
+  opacity: 0;
+  animation: fadeInOut 4s 42s 1; 
+  animation-fill-mode: forwards;
 }
 
-/* אנימציה אחת שמכילה את כל מחזור התמונות */
-@keyframes imgCycle1 {
-  0%, 8%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  9%, 99% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  25%, 75% { opacity: 1; }
 }
 
+/* Media Queries for Gallery Responsiveness */
 @media (max-width: 768px) {
   .gallery {
-    width: 100%;
-    height: 80vw;
-    margin: 1.5rem auto;
+    --size: min(80vw, 500px); /* Adjust size for tablets */
+    gap: 4px;
+    border-width: 4px;
   }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    --size: 90vw; /* Adjust size for mobile */
+    gap: 3px;
+    border-width: 3px;
+  }
+  /* Optionally hide some animations on very small screens if they feel too busy */
 }
 
 /* Footer */
@@ -1458,169 +1564,5 @@ img {
     /* Fix for very small screens */
     .gallery {
         height: 120vw;
-    }
-}
-
-/* Gallery Grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 15px;
-    margin: 2rem auto;
-    max-width: 1000px;
-}
-
-.gallery-grid img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-grid img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .gallery-grid img {
-        height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-    }
-    
-    .gallery-grid img {
-        height: 220px;
-    }
-}
-
-/* Carousel Styles */
-.carousel-container {
-    position: relative;
-    width: 80%;
-    max-width: 800px;
-    margin: 2rem auto;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 95, 115, 0.1);
-}
-
-.carousel-slide {
-    position: relative;
-    width: 100%;
-    height: 450px;
-    background-color: #f5f5f5;
-}
-
-.carousel-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.carousel-image.active {
-    opacity: 1;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    background-color: rgba(0, 95, 115, 0.4);
-    border: none;
-    cursor: pointer;
-    padding: 15px;
-    font-size: 1.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
-    z-index: 10;
-}
-
-.carousel-button:hover {
-    background-color: rgba(0, 95, 115, 0.8);
-}
-
-.carousel-button.prev {
-    left: 15px;
-}
-
-.carousel-button.next {
-    right: 15px;
-}
-
-.carousel-dots {
-    position: absolute;
-    bottom: 15px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.dot.active {
-    background-color: #94d2bd;
-}
-
-@media (max-width: 768px) {
-    .carousel-container {
-        width: 95%;
-    }
-    
-    .carousel-slide {
-        height: 300px;
-    }
-    
-    .carousel-button {
-        padding: 10px;
-        font-size: 1.2rem;
-        min-width: 40px;
-        min-height: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-slide {
-        height: 250px;
-    }
-    
-    .carousel-button {
-        padding: 8px;
-        font-size: 1rem;
-        min-width: 36px;
-        min-height: 36px;
-    }
-    
-    .dot {
-        width: 10px;
-        height: 10px;
     }
 } 

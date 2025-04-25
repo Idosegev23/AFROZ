@@ -35,21 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Initialize program accordions
-    const programItems = document.querySelectorAll('.accordion-item');
-    programItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        if (header) {
-            header.addEventListener('click', () => {
-                programItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
+    const programSection = document.getElementById('program');
+    if (programSection) {
+        const programItems = programSection.querySelectorAll('.accordion-item');
+        programItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            if (header) {
+                header.addEventListener('click', () => {
+                    // Close other open items in this specific accordion
+                    programItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle the clicked item
+                    item.classList.toggle('active');
+                    console.log('Program Accordion clicked:', item);
                 });
-                item.classList.toggle('active');
-                console.log('Accordion clicked:', item);
-            });
-        }
-    });
+            }
+        });
+    }
 
     // Initialize carousel
     initCarousel();

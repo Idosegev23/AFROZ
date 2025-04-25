@@ -1340,13 +1340,13 @@ img {
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
     background: #fff;
     padding: 0 2rem;
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 500px;
+    max-height: 600px;
     padding: 1rem 2rem 2rem;
 }
 

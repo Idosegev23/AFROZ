@@ -40,20 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = item.querySelector('.accordion-header');
         if (header) {
             header.addEventListener('click', () => {
+                programItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
                 item.classList.toggle('active');
                 console.log('Accordion clicked:', item);
             });
         }
     });
 
+    // Initialize carousel
+    initCarousel();
+    
     // Fix for iOS initial scroll position
     setTimeout(() => {
         window.scrollTo(0, 0);
     }, 100);
-});
-
-// Event listeners for scrolling to accommodation section
-document.addEventListener('DOMContentLoaded', () => {
+    
+    // Pricing and contact popup functionality
     const heroButton = document.getElementById('open-pricing-popup-hero');
     const programButton = document.getElementById('open-pricing-popup-program');
     const locationButton = document.getElementById('open-pricing-popup-location');
@@ -84,6 +90,86 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Function to initialize carousel
+function initCarousel() {
+    const container = document.querySelector('.carousel-container');
+    if (!container) return; // Exit if carousel container doesn't exist
+    
+    const images = container.querySelectorAll('.carousel-image');
+    const prevBtn = container.querySelector('.prev');
+    const nextBtn = container.querySelector('.next');
+    const dots = container.querySelectorAll('.dot');
+    
+    let currentIndex = 0;
+    let interval;
+    
+    // Function to show specific image
+    function showImage(index) {
+        // Remove active class from all images and dots
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Make sure index is within bounds
+        currentIndex = (index + images.length) % images.length;
+        
+        // Add active class to current image and dot
+        images[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+    }
+    
+    // Event listener for previous button
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            showImage(currentIndex - 1);
+            resetAutoPlay();
+        });
+    }
+    
+    // Event listener for next button
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            showImage(currentIndex + 1);
+            resetAutoPlay();
+        });
+    }
+    
+    // Event listeners for dots
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'));
+            showImage(index);
+            resetAutoPlay();
+        });
+    });
+    
+    // Start auto-play
+    function startAutoPlay() {
+        interval = setInterval(() => {
+            showImage(currentIndex + 1);
+        }, 5000); // Change image every 5 seconds
+    }
+    
+    // Reset auto-play - call after user interaction
+    function resetAutoPlay() {
+        clearInterval(interval);
+        startAutoPlay();
+    }
+    
+    // Show first image and start auto-play
+    showImage(0);
+    startAutoPlay();
+    
+    // Pause auto-play when user hovers over carousel
+    container.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+    });
+    
+    // Resume auto-play when user leaves carousel
+    container.addEventListener('mouseleave', () => {
+        startAutoPlay();
+    });
+}
 
 // Function to scroll to accommodation section
 function scrollToAccommodation() {

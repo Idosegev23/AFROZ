@@ -22,10 +22,10 @@ if (mobileMenuToggle && navLinks) {
 }
 
 // Event listeners for scrolling to accommodation section
-document.getElementById('open-pricing-popup-hero').addEventListener('click', () => scrollToAccommodation());
-document.getElementById('open-pricing-popup-program').addEventListener('click', () => scrollToAccommodation());
-document.getElementById('open-pricing-popup-location').addEventListener('click', () => scrollToAccommodation());
-document.getElementById('open-pricing-popup-testimonials').addEventListener('click', () => scrollToAccommodation());
+document.getElementById('open-pricing-popup-hero').addEventListener('click', () => openPopup(pricingPopup));
+document.getElementById('open-pricing-popup-program').addEventListener('click', () => openPopup(pricingPopup));
+document.getElementById('open-pricing-popup-location').addEventListener('click', () => openPopup(pricingPopup));
+document.getElementById('open-pricing-popup-testimonials').addEventListener('click', () => openPopup(pricingPopup));
 
 // Function to scroll to accommodation section
 function scrollToAccommodation() {
@@ -51,14 +51,15 @@ function closePopup(popup) {
 const accommodationButton = document.getElementById('open-pricing-popup-accommodation');
 if (accommodationButton) {
     accommodationButton.addEventListener('click', function(e) {
-        // אם זה לחצן שצריך לגלול לחלק של accommodation, אל תפתח פופאפ
-        if (accommodationButton.getAttribute('href')) {
-            // אם יש לו href, תן לו להתנהג כקישור רגיל
-            return;
-        }
-        
         e.preventDefault();
-        openPopup(pricingPopup);
+        
+        // אם הכפתור הוא קישור חיצוני, נעבור לאותו קישור
+        if (accommodationButton.getAttribute('href')) {
+            window.open(accommodationButton.getAttribute('href'), '_blank');
+        } else {
+            // אחרת נפתח את הפופאפ
+            openPopup(pricingPopup);
+        }
     });
 }
 
@@ -116,10 +117,9 @@ function shuffleGallery() {
     images.forEach(img => gallery.appendChild(img));
 }
 
-// Shuffle initially and every 38 seconds (full animation cycle)
+// Shuffle gallery once on page load - no more interval shuffle
 document.addEventListener('DOMContentLoaded', () => {
     shuffleGallery();
-    setInterval(shuffleGallery, 38000);
     
     // Fix for iOS initial scroll position
     setTimeout(() => {

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
     initMobileMenu();
     initFaqAccordion();
     initProgramAccordion();
@@ -8,61 +9,100 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initMobileMenu() {
+    console.log('Initializing Mobile Menu');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.getElementById('nav-links');
 
     if (mobileMenuToggle && navLinks) {
         mobileMenuToggle.addEventListener('click', () => {
+            console.log('Mobile menu toggle clicked');
             mobileMenuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
+            console.log('Mobile menu classes toggled');
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
         });
 
         const menuLinks = navLinks.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
+                console.log('Nav link clicked, closing menu');
                 mobileMenuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
         });
+    } else {
+        console.error('Mobile menu elements not found');
     }
 }
 
 function initFaqAccordion() {
-    const faqItems = document.querySelectorAll('#faq .faq-item'); // Specific selector
-    faqItems.forEach(item => {
+    console.log('Initializing FAQ Accordion');
+    const faqItems = document.querySelectorAll('#faq .faq-item');
+    console.log(`Found ${faqItems.length} FAQ items`);
+    faqItems.forEach((item, index) => {
         const question = item.querySelector('.faq-question');
         if (question) {
             question.addEventListener('click', () => {
+                console.log(`FAQ Question ${index + 1} clicked`);
+                const isActiveBefore = item.classList.contains('active');
                 item.classList.toggle('active');
+                const isActiveAfter = item.classList.contains('active');
+                console.log(`FAQ Item ${index + 1} active state changed from ${isActiveBefore} to ${isActiveAfter}`);
             });
+        } else {
+             console.error(`FAQ Question not found for item ${index + 1}`);
         }
     });
 }
 
 function initProgramAccordion() {
+    console.log('Initializing Program Accordion');
     const programSection = document.getElementById('program');
     if (programSection) {
         const programItems = programSection.querySelectorAll('.accordion-item');
-        programItems.forEach(item => {
+        console.log(`Found ${programItems.length} Program items`);
+        programItems.forEach((item, index) => {
             const header = item.querySelector('.accordion-header');
             if (header) {
                 header.addEventListener('click', () => {
+                    console.log(`Program Accordion Header ${index + 1} clicked`);
+                    const isActiveBefore = item.classList.contains('active');
+                    
+                    // Close others first
+                    let otherWasClosed = false;
                     programItems.forEach(otherItem => {
                         if (otherItem !== item && otherItem.classList.contains('active')) {
                             otherItem.classList.remove('active');
+                            otherWasClosed = true;
+                            console.log(`Closed another active program item.`);
                         }
                     });
-                    item.classList.toggle('active');
-                    console.log('Program Accordion clicked:', item);
+
+                    // Toggle the clicked item
+                    // If another item was closed, this click should only open the current one
+                    if (!isActiveBefore || otherWasClosed) { 
+                      item.classList.add('active'); 
+                    } else {
+                      item.classList.remove('active');
+                    }
+                    // We are simplifying the toggle logic slightly above for clarity in logging
+                    // Let's retain the original simpler toggle but log states:
+                    // item.classList.toggle('active'); // Original toggle
+                    const isActiveAfter = item.classList.contains('active');
+                    console.log(`Program Item ${index + 1} active state changed from ${isActiveBefore} to ${isActiveAfter}`);
                 });
+            } else {
+                console.error(`Program Accordion header not found for item ${index + 1}`);
             }
         });
+    } else {
+        console.error('Program section not found');
     }
 }
 
 function initPopups() {
+    console.log('Initializing Popups');
     const heroButton = document.getElementById('open-pricing-popup-hero');
     const programButton = document.getElementById('open-pricing-popup-program');
     const locationButton = document.getElementById('open-pricing-popup-location');
@@ -92,15 +132,20 @@ function initPopups() {
             closePopup(e.target);
         }
     });
+    // Basic check if popups exist
+    if (!pricingPopup) console.error("Pricing popup not found");
+    if (!contactPopup) console.error("Contact popup not found");
 }
 
 function fixIosScroll() {
+    console.log('Applying iOS scroll fix');
     setTimeout(() => {
         window.scrollTo(0, 0);
     }, 100);
 }
 
 function initCarousel() {
+    console.log('Initializing Carousel');
     const container = document.querySelector('.carousel-container');
     if (!container) {
         console.log('Carousel container not found'); 
@@ -112,36 +157,36 @@ function initCarousel() {
     const nextBtn = container.querySelector('.carousel-button.next'); // More specific
     const dots = container.querySelectorAll('.dot');
     
+    console.log(`Found ${images.length} images in carousel`);
     if (images.length === 0) {
-        console.log('No images found in carousel');
         return;
     }
     if (!prevBtn || !nextBtn) {
         console.log('Carousel buttons not found');
-        // Continue without buttons if needed, or return
     }
     if (dots.length !== images.length) {
-        console.log('Mismatch between dots and images');
-        // Consider disabling dots or handling the mismatch
+        console.log(`Warning: Mismatch between dots (${dots.length}) and images (${images.length})`);
     }
 
     let currentIndex = 0;
     let interval;
 
     function showImage(index) {
+        // console.log(`Carousel: Showing image ${index}`);
         images.forEach(img => img.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
         
         currentIndex = (index + images.length) % images.length;
         
         images[currentIndex].classList.add('active');
-        if (dots[currentIndex]) { // Check if dot exists
+        if (dots[currentIndex]) { 
             dots[currentIndex].classList.add('active');
         }
     }
     
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
+            console.log('Carousel Previous button clicked');
             showImage(currentIndex - 1);
             resetAutoPlay();
         });
@@ -149,6 +194,7 @@ function initCarousel() {
     
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
+            console.log('Carousel Next button clicked');
             showImage(currentIndex + 1);
             resetAutoPlay();
         });
@@ -157,6 +203,7 @@ function initCarousel() {
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
+             console.log(`Carousel Dot ${index} clicked`);
             if (!isNaN(index)) {
                 showImage(index);
                 resetAutoPlay();
@@ -165,13 +212,15 @@ function initCarousel() {
     });
     
     function startAutoPlay() {
-        clearInterval(interval); // Clear existing interval before starting new one
+        // console.log('Carousel starting autoplay');
+        clearInterval(interval); 
         interval = setInterval(() => {
             showImage(currentIndex + 1);
         }, 5000);
     }
     
     function resetAutoPlay() {
+        // console.log('Carousel resetting autoplay');
         clearInterval(interval);
         startAutoPlay();
     }
@@ -179,8 +228,14 @@ function initCarousel() {
     showImage(0);
     startAutoPlay();
     
-    container.addEventListener('mouseenter', () => clearInterval(interval));
-    container.addEventListener('mouseleave', startAutoPlay); // Use function ref
+    container.addEventListener('mouseenter', () => {
+        // console.log('Carousel mouse enter - pausing');
+        clearInterval(interval);
+    });
+    container.addEventListener('mouseleave', () => {
+        // console.log('Carousel mouse leave - resuming');
+        startAutoPlay();
+    });
 }
 
 // Function to scroll to accommodation section
@@ -194,6 +249,7 @@ function scrollToAccommodation() {
 // Popup functionality
 function openPopup(popup) {
     if (popup) {
+        console.log('Opening popup:', popup.id);
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
@@ -201,6 +257,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
     if (popup) {
+        console.log('Closing popup:', popup.id);
         popup.style.display = 'none';
         document.body.style.overflow = 'auto';
     }

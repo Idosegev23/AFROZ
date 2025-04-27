@@ -536,49 +536,203 @@ img {
 }
 
 .footer-content {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: right;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-column-large {
+    flex: 2;
+    min-width: 320px;
+}
+
+.footer-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    color: #e67e22; /* צבע בסגנון האתר - כתום */
+}
+
+.footer-logo {
+    max-width: 120px;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links li a:hover {
+    color: #e67e22; /* צבע בסגנון האתר - כתום */
+    transform: translateX(-5px);
+}
+
+.footer-links li i {
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-about {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.contact-form-footer {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.contact-form-footer .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form-footer .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-form-footer .form-group input,
+.contact-form-footer .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 5px;
+    font-family: 'Heebo', sans-serif;
+}
+
+.contact-form-footer .form-group input:focus,
+.contact-form-footer .form-group textarea:focus {
+    outline: none;
+    border-color: #e67e22;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+}
+
+.contact-form-footer button.submit-form {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Heebo', sans-serif;
+}
+
+.contact-form-footer button.submit-form:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+}
+
+.contact-form-footer #contact-success-message {
+    display: none;
+    background-color: rgba(39, 174, 96, 0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border-radius: 5px;
     text-align: center;
 }
 
-#contact p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 400;
-    text-shadow: none;
 }
 
-.contact-message {
-    margin: 2rem 0;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 8px;
-}
-
-.contact-message p {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-}
-
-.contact-message a {
-    color: #D9A443;
-    font-weight: bold;
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
     transition: all 0.3s ease;
-    text-decoration: underline;
+    font-size: 1.2rem;
 }
 
-.contact-message a:hover {
-    color: #BF8136;
+.footer-social a:hover {
+    background: #e67e22;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.closing-message {
-    font-size: 1.3rem !important;
-    color: rgba(255, 255, 255, 0.95) !important;
-    margin: 2rem 0 1rem;
-    font-weight: 500 !important;
+.footer-bottom p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        flex-direction: column;
+    }
+    
+    .footer-column,
+    .footer-column-large {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links li a:hover {
+        transform: none;
+    }
+    
+    .footer-social {
+        flex-wrap: wrap;
+    }
+    
+    .footer-social a {
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 1rem;
+    }
 }
 
 /* הוספת עיצוב לשורת הלוגו והאייקונים */

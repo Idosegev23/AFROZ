@@ -425,24 +425,52 @@
     <footer id="contact">
         <div class="footer-content">
             <!-- מבנה הפוטר החדש -->
-            <div class="footer-main">
-                <!-- עמודה ימנית - לוגו ומידע -->
-                <div class="footer-right-column">
+            <div class="footer-grid">
+                <!-- עמודה 1 - לוגו ומידע -->
+                <div class="footer-column">
+                    <div class="footer-heading">מידע כללי</div>
                     <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo">
-                    <div class="contact-message">
-                        <p>רוצים לשאול משהו? התקשרו אלינו או שלחו מייל ל-<a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a></p>
-                    </div>
+                    <p class="footer-about">ריטריט מדיטציה ייחודי באי יווני קסום – מסע עומק לגוף ולנפש | 25.8–1.9</p>
                     <a href="https://wa.me/972547882715" class="whatsapp-button" target="_blank" title="שלחו הודעה בוואטסאפ">
                         <i class="fab fa-whatsapp"></i> דברו איתנו בוואטסאפ
                     </a>
-                    <button id="open-contact-popup" class="cta-button-secondary">פרטי קשר נוספים</button>
-                    <p class="closing-message">נשמח לראות אותך איתנו בריטריט! - ז'יוואני והצוות ❤️</p>
                 </div>
                 
-                <!-- עמודה שמאלית - טופס יצירת קשר -->
-                <div class="footer-left-column">
-                    <div class="contact-form-container">
-                        <h3>השאירו פרטים ונחזור אליכם</h3>
+                <!-- עמודה 2 - ניווט מהיר -->
+                <div class="footer-column">
+                    <div class="footer-heading">ניווט מהיר</div>
+                    <ul class="footer-links">
+                        <li><a href="#about">אודות הריטריט</a></li>
+                        <li><a href="#what-awaits">מה מחכה לכם</a></li>
+                        <li><a href="#program">תכנית הריטריט</a></li>
+                        <li><a href="#location">על המקום</a></li>
+                        <li><a href="#facilitators">על המנחים</a></li>
+                        <li><a href="#accommodation">לינה וכרטיסים</a></li>
+                        <li><a href="#testimonials">המלצות</a></li>
+                        <li><a href="#faq">שאלות נפוצות</a></li>
+                    </ul>
+                </div>
+                
+                <!-- עמודה 3 - פרטי התקשרות -->
+                <div class="footer-column">
+                    <div class="footer-heading">פרטי התקשרות</div>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> טלפון: <a href="tel:+972547882715">054-7882715</a></li>
+                        <li><i class="fas fa-envelope"></i> אימייל: <a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a></li>
+                        <li><i class="fas fa-globe"></i> אתר: <a href="https://nataraj.co.il/" target="_blank">nataraj.co.il</a></li>
+                    </ul>
+                    <div class="footer-heading" style="margin-top: 1.5rem;">קישורים נוספים</div>
+                    <ul class="footer-links">
+                        <li><a href="#" id="open-contact-popup">פרטי קשר נוספים</a></li>
+                        <li><a href="#" id="open-pricing-popup-footer">מידע על מחירים</a></li>
+                    </ul>
+                </div>
+                
+                <!-- עמודה 4 - טופס יצירת קשר -->
+                <div class="footer-column-large">
+                    <div class="footer-heading">השאירו פרטים ונחזור אליכם</div>
+                    <p class="footer-about">נשמח לענות על כל שאלה שיש לכם בנוגע לריטריט או לסייע בתהליך ההרשמה.</p>
+                    <div class="contact-form-footer">
                         <form id="local-contact-form" class="local-contact-form">
                             <div class="form-group">
                                 <label for="name">שם מלא</label>
@@ -469,15 +497,16 @@
                 </div>
             </div>
             
-            <!-- אייקונים חברתיים ממורכזים -->
-            <div class="footer-center">
-                <div class="social-links">
+            <!-- חלק תחתון של הפוטר עם אייקונים חברתיים וזכויות יוצרים -->
+            <div class="footer-bottom">
+                <div class="footer-social">
                     <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם - Be Meditation"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק - Be Meditation"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
                     <a href="mailto:bemeditation.info@gmail.com" aria-label="Email" title="שלחו אימייל עם שאלות"><i class="fas fa-envelope"></i></a>
                     <a href="https://nataraj.co.il/" aria-label="Home" target="_blank" title="בקרו באתר הבית שלנו"><i class="fas fa-home"></i></a>
                 </div>
+                <p>נשמח לראות אותך איתנו בריטריט! - ז'יוואני והצוות ❤️</p>
                 <p>&copy; 2024 כל הזכויות שמורות ל Be meditation</p>
             </div>
             
@@ -525,5 +554,41 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // התאמה לכפתור המחירים בפוטר
+        document.addEventListener('DOMContentLoaded', function() {
+            // קישור לפופאפ המחירים מהפוטר
+            const pricingButtonFooter = document.getElementById('open-pricing-popup-footer');
+            if (pricingButtonFooter) {
+                pricingButtonFooter.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('pricing-popup').style.display = 'flex';
+                });
+            }
+
+            // טיפול בטופס יצירת קשר בפוטר
+            const contactForm = document.getElementById('local-contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // כאן בעתיד ניתן להוסיף קוד לשליחת הטופס לשרת
+                    
+                    // הצגת הודעת הצלחה
+                    const successMessage = document.getElementById('contact-success-message');
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                        
+                        // איפוס הטופס
+                        contactForm.reset();
+                        
+                        // הסתרת ההודעה אחרי 5 שניות
+                        setTimeout(function() {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html> 

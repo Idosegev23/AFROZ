@@ -3,5 +3,3 @@ node_modules/
 *.env
 *.zip
 .vscode/
-# Other large files
-public/re2022.zip 

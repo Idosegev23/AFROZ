@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPopups();
     // initCarousel(); // Removed as the new gallery is CSS only
     fixIosScroll();
+    createRandomDunes(); // Add random dunes to the page
 });
 
 function initMobileMenu() {
@@ -246,5 +247,48 @@ function closePopup(popup) {
         console.log('Closing popup:', popup.id);
         popup.style.display = 'none';
         document.body.style.overflow = 'auto';
+    }
+}
+
+// Create random dunes throughout the page
+function createRandomDunes() {
+    console.log('Creating random dunes');
+    const body = document.body;
+    const windowWidth = window.innerWidth;
+    const windowHeight = document.documentElement.scrollHeight;
+    
+    // Create between 10-15 dunes
+    const numDunes = Math.floor(Math.random() * 6) + 10;
+    
+    for (let i = 0; i < numDunes; i++) {
+        // Create dune element
+        const dune = document.createElement('div');
+        dune.classList.add('random-dune');
+        
+        // Random size (50-300px)
+        const size = Math.floor(Math.random() * 250) + 50;
+        dune.style.width = `${size}px`;
+        dune.style.height = `${size}px`;
+        
+        // Random position
+        const posX = Math.floor(Math.random() * (windowWidth - size));
+        const posY = Math.floor(Math.random() * (windowHeight - size));
+        dune.style.left = `${posX}px`;
+        dune.style.top = `${posY}px`;
+        
+        // Random animation delay
+        const delay = Math.random() * 10;
+        dune.style.animationDelay = `${delay}s`;
+        
+        // Random z-index (all negative to stay behind content)
+        const zIndex = -Math.floor(Math.random() * 10) - 1;
+        dune.style.zIndex = zIndex;
+        
+        // Random opacity (0.05-0.2)
+        const opacity = (Math.random() * 0.15) + 0.05;
+        dune.style.opacity = opacity;
+        
+        // Add to body
+        body.appendChild(dune);
     }
 } 

@@ -1682,4 +1682,39 @@ img {
     animation: heatHaze 5s ease-in-out infinite;
     opacity: 0.2;
     pointer-events: none;
+}
+
+/* Random Dunes Animation */
+.random-dune {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #D9A443, #BF8136);
+    opacity: 0.2;
+    z-index: -1;
+    transform: scale(1);
+    animation: dune-float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes dune-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(15px) scale(1.05);
+    }
+}
+
+/* Footer button specific styling */
+#contact .cta-button-secondary {
+    background-color: #D9A443; /* New color: desert-and-sea-3 */
+    color: #592202; /* New color: desert-and-sea-5 */
+    border: none;
+}
+
+#contact .cta-button-secondary:hover {
+    background-color: #BF8136; /* New color: desert-and-sea-4 */
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(89, 33, 1, 0.3); /* desert-and-sea-5 with transparency */
 } 

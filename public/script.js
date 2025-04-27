@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFaqAccordion();
     initProgramAccordion();
     initPopups();
-    // initCarousel(); // Removed as the new gallery is CSS only
+    initGalleryCarousel();
     fixIosScroll();
     createRandomDunes(); // Add random dunes to the page
 });
@@ -142,96 +142,95 @@ function fixIosScroll() {
     }, 100);
 }
 
-/* Removed initCarousel function as the new gallery is CSS only
-function initCarousel() {
-    console.log('Initializing Carousel');
-    const container = document.querySelector('.carousel-container');
-    if (!container) {
-        console.log('Carousel container not found');
+function initGalleryCarousel() {
+    const galleryContainer = document.querySelector('.gallery-container');
+    const galleryDots = document.querySelectorAll('.gallery-dot');
+    const prevButton = document.querySelector('.gallery-prev');
+    const nextButton = document.querySelector('.gallery-next');
+    
+    if (!galleryContainer || !galleryDots.length) {
+        console.log('Gallery elements not found');
         return;
     }
-
-    const images = container.querySelectorAll('.carousel-image');
-    const prevBtn = container.querySelector('.carousel-button.prev'); 
-    const nextBtn = container.querySelector('.carousel-button.next'); 
-    const dots = container.querySelectorAll('.dot');
-
-    console.log(`Found ${images.length} images in carousel`);
-    if (images.length === 0) {
-        return;
-    }
-    if (!prevBtn || !nextBtn) {
-        console.log('Carousel buttons not found');
-    }
-    if (dots.length !== images.length) {
-        console.log(`Warning: Mismatch between dots (${dots.length}) and images (${images.length})`);
-    }
-
+    
+    const slides = galleryContainer.querySelectorAll('img');
+    const slideCount = slides.length;
     let currentIndex = 0;
     let interval;
-
-    function showImage(index) {
-        images.forEach(img => img.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        currentIndex = (index + images.length) % images.length;
-
-        images[currentIndex].classList.add('active');
-        if (dots[currentIndex]) {
-            dots[currentIndex].classList.add('active');
+    
+    // התאמת רוחב המיכל לכמות התמונות
+    galleryContainer.style.width = `${slideCount * 100}%`;
+    
+    // פונקציה להצגת שקופית ספציפית
+    function showSlide(index) {
+        // וודא שהאינדקס בטווח תקין
+        if (index < 0) {
+            index = slideCount - 1;
+        } else if (index >= slideCount) {
+            index = 0;
         }
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            console.log('Carousel Previous button clicked');
-            showImage(currentIndex - 1);
-            resetAutoPlay();
+        
+        currentIndex = index;
+        
+        // עדכון המיקום של המיכל
+        galleryContainer.style.transform = `translateX(${index * -100 / slideCount}%)`;
+        
+        // עדכון הנקודות האקטיביות
+        galleryDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
         });
     }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            console.log('Carousel Next button clicked');
-            showImage(currentIndex + 1);
-            resetAutoPlay();
+    
+    // הפעלת האוטומציה
+    function startAutoSlide() {
+        clearInterval(interval);
+        interval = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000); // החלפה כל 5 שניות
+    }
+    
+    // טיפול בלחיצה על כפתורי ניווט
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
         });
     }
-
-    dots.forEach(dot => {
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
+        });
+    }
+    
+    // טיפול בלחיצה על נקודות ניווט
+    galleryDots.forEach((dot) => {
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
-             console.log(`Carousel Dot ${index} clicked`);
             if (!isNaN(index)) {
-                showImage(index);
-                resetAutoPlay();
+                showSlide(index);
+                startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
             }
         });
     });
-
-    function startAutoPlay() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            showImage(currentIndex + 1);
-        }, 5000);
+    
+    // הצגת השקופית הראשונה והפעלת האוטומציה
+    showSlide(0);
+    startAutoSlide();
+    
+    // עצירת האוטומציה כאשר המצביע מעל הגלריה
+    const gallery = document.querySelector('.gallery');
+    if (gallery) {
+        gallery.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+        });
+        
+        gallery.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
     }
-
-    function resetAutoPlay() {
-        clearInterval(interval);
-        startAutoPlay();
-    }
-
-    showImage(0);
-    startAutoPlay();
-
-    container.addEventListener('mouseenter', () => {
-        clearInterval(interval);
-    });
-    container.addEventListener('mouseleave', () => {
-        startAutoPlay();
-    });
 }
-*/
 
 // Popup functionality
 function openPopup(popup) {

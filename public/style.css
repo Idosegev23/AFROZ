@@ -99,9 +99,16 @@ img {
 }
 
 #navbar ul li a {
-    font-weight: 400;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
     padding: 0.5rem 0;
     transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+    color: #D9A443;
 }
 
 /* Hero Section */
@@ -138,19 +145,26 @@ img {
     font-size: 3.2rem;
     margin: 0 0 20px;
     line-height: 1.2;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     font-weight: 700;
     letter-spacing: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
 }
 
 .hero-content p {
     font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     line-height: 1.6;
     margin-bottom: 30px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
 }
 
 @media (max-width: 768px) {
@@ -322,29 +336,35 @@ img {
 
 /* FAQ */
 #faq .faq-item {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #8FB6D9; /* New color: desert-and-sea-2 */
-    padding-bottom: 1rem;
-    overflow: hidden; /* To contain the answer transition */
+    border: 1px solid #8FB6D9; /* New color: desert-and-sea-2 */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+#faq .faq-item:hover {
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.15); /* desert-and-sea-1 with transparency */
+    border-color: #D9A443; /* New color: desert-and-sea-3 */
 }
 
 #faq .faq-question {
-    color: #5684BF; /* New color: desert-and-sea-1 */
-    margin-bottom: 0.5rem;
-    text-align: right;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to left, rgba(148, 210, 189, 0.1), rgba(255, 255, 255, 0));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
     position: relative;
-    padding-right: 25px; /* Space for indicator */
-    transition: color 0.3s ease;
+    color: #005f73;
+    margin-bottom: 0;
 }
 
 #faq .faq-question::before {
     content: '+';
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5rem;
+    color: #94d2bd;
     transition: transform 0.3s ease;
 }
 
@@ -353,25 +373,22 @@ img {
 }
 
 #faq .faq-item.active .faq-question {
-    color: #BF8136; /* New color: desert-and-sea-4 */
+    color: #005f73;
 }
 
 #faq .faq-answer {
-    /* display: none; Hide by default */
     max-height: 0;
     opacity: 0;
-    overflow: hidden; /* Keep overflow hidden */
-    padding-right: 10px;
-    margin-top: 0; /* Start with no margin */
-    transition: max-height 0.5s ease-out, opacity 0.4s ease-out, margin-top 0.5s ease-out, padding 0.5s ease-out;
+    overflow: hidden;
+    background: #fff;
+    padding: 0 2rem; /* Remove vertical padding when closed */
+    transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, padding 0.6s ease-in-out;
 }
 
 #faq .faq-item.active .faq-answer {
-    /* display: block; Show when active */
-    max-height: 300px; /* Adjust if content is taller */
+    max-height: 500px; /* Adjust if content is significantly taller */
     opacity: 1;
-    margin-top: 1rem; /* Add margin back when open */
-    /* Padding is already set, ensure it transitions smoothly if needed */
+    padding: 1rem 2rem 2rem; /* Restore padding when open */
 }
 
 /* What Awaits List */
@@ -398,344 +415,157 @@ img {
     font-weight: bold;
 }
 
-/* Gallery (New Animated Version) */
+/* Gallery (Carousel Version) */
 .gallery {
-  --size: min(70vw, 600px); /* Adjusted size based on original and user request */
-  position: relative; /* Changed from absolute for better flow */
-  margin: 2rem auto; /* Keep centering */
-  /* Removed top/left/transform centering, rely on margin auto */
-  box-shadow: 
-    0 0 10px #0002,
-    0 20px 40px -20px #0004;
-  width: var(--size);
-  height: var(--size);
-  background: #fff;
-  border: 6px solid #fff;
-  display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin: 2rem auto;
+  height: 400px;
   overflow: hidden;
-  gap: 6px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
 }
 
 .gallery img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Ensure images are visible initially if needed, although animations handle it */
+  flex-shrink: 0;
 }
 
-@keyframes moveHorizontal {
-  to {
-    object-position: 100% 0;
-  }
+.gallery-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
 }
 
-@keyframes moveVertical {
-  to {
-    object-position: 0 100%;
-  }
+.gallery-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes shrinkVertical {
-  to {
-    height: 0;
-  }
+.gallery-dot.active {
+  background-color: white;
 }
 
-@keyframes shrinkHorizontal {
-  to {
-    width: 0;
-  }
+.gallery-prev, .gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+  z-index: 10;
+  transition: background-color 0.3s ease;
 }
 
-
-@keyframes growHorizontal {
-  to {
-    width: 100%;
-  }
-}
-/* Removed growHorizontal2 as it wasn't used in the animation definitions */
-
-@keyframes growVertical {
-  to {
-    height: 100%;
-  }
+.gallery-prev:hover, .gallery-next:hover {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
-
-@keyframes growAll {
-  to {
-    width: 100%;
-    height: 100%;
-  }
+.gallery-prev {
+  left: 10px;
 }
 
-/* NOTE: Only using first 7 images based on provided animations */
-.gallery img:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: end;
-  animation: 
-    moveHorizontal 8.5s 0.5s 1,
-    shrinkHorizontal 2s 9s ease-in 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
+.gallery-next {
+  right: 10px;
 }
 
-.gallery img:nth-child(2) {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  animation: 
-    shrinkHorizontal 2s 11s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-.gallery img:nth-child(3) {
-  grid-row: 2;
-  grid-column: 1 / 3;
-  align-self: end;
-  object-position: 0 0;
-  animation:
-    moveVertical 5s 1s 1,
-    shrinkVertical 3s 5s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-.gallery img:nth-child(4) {
-  grid-column: 1 / 3;
-  grid-row: 1;
-  width: 0;
-  justify-self: center;
-  align-self: start;
-  animation: 
-    growHorizontal 2.25s 11s 1,
-    moveHorizontal 4s 14s 1,
-    shrinkVertical 2s 18s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-.gallery img:nth-child(5) {
-  grid-column: 1;
-  grid-row: 2;
-  width: 0;
-  justify-self: start;
-  align-self: end;
-  animation: 
-    growHorizontal 2.5s 7.5s 1,
-    moveVertical 4s 12.5s 1,
-    shrinkHorizontal 2s 17s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-.gallery img:nth-child(6) {
-  grid-column: 2;
-  grid-row: 2;
-  width: 0;
-  justify-self: end;
-  align-self: end;
-  animation: 
-    growHorizontal 2s 8s 1,
-    shrinkHorizontal 2s 17s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-.gallery img:nth-child(7) {
-  grid-column: 1/3;
-  grid-row: 1/3;
-  width: 0;
-  justify-self: end;
-  align-self: end;
-  object-position: 0 0;
-  animation: 
-    growHorizontal 2s 20s 1,
-    moveHorizontal 16s 21.5s 1;
-  animation-fill-mode: forwards;
-  opacity: 1; /* Make sure it's visible */
-}
-
-/* Animations for images 8-15 (Continuing the sequence) */
-/* These timings are estimations to create a continuous flow */
-
-.gallery img:nth-child(8) {
-  grid-column: 1;
-  grid-row: 1;
-  height: 0;
-  align-self: start;
-  animation: 
-    growVertical 2s 24s 1, /* Start after img 7 starts moving */
-    moveHorizontal 6s 26s 1,
-    shrinkHorizontal 2s 32s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(9) {
-  grid-column: 2;
-  grid-row: 1;
-  height: 0;
-  align-self: start;
-  animation: 
-    growVertical 2s 25s 1,
-    shrinkVertical 2s 30s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(10) {
-  grid-column: 1;
-  grid-row: 2;
-  height: 0;
-  align-self: end;
-  animation: 
-    growVertical 2s 26s 1,
-    moveHorizontal 5s 28s 1,
-    shrinkHorizontal 2s 33s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(11) {
-  grid-column: 2;
-  grid-row: 2;
-  height: 0;
-  align-self: end;
-   animation: 
-    growVertical 2s 27s 1,
-    shrinkVertical 2s 31s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(12) {
-  grid-column: 1/3;
-  grid-row: 1/3;
-  width: 0;
-  height: 0;
-  align-self: center;
-  justify-self: center;
-  animation: 
-    growAll 2s 34s 1, /* Start after some previous ones finish */
-    shrinkVertical 2s 38s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(13) {
-  grid-column: 1;
-  grid-row: 1;
-  width: 0;
-  justify-self: start;
-   animation: 
-    growHorizontal 2s 36s 1,
-    shrinkHorizontal 2s 40s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(14) {
-  grid-column: 2;
-  grid-row: 2;
-  height: 0;
-  align-self: end;
-  animation: 
-    growVertical 2s 37s 1,
-    shrinkVertical 2s 41s 1;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-
-.gallery img:nth-child(15) {
-  /* Simple fade in/out at the end */
-  grid-column: 1/3;
-  grid-row: 1/3;
-  opacity: 0;
-  animation: fadeInOut 4s 42s 1; 
-  animation-fill-mode: forwards;
-}
-
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0; }
-  25%, 75% { opacity: 1; }
-}
-
-/* Media Queries for Gallery Responsiveness */
 @media (max-width: 768px) {
   .gallery {
-    --size: min(80vw, 500px); /* Adjust size for tablets */
-    gap: 4px;
-    border-width: 4px;
+    height: 300px;
+    width: 90%;
+  }
+  
+  .gallery-prev, .gallery-next {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .gallery {
-    --size: 90vw; /* Adjust size for mobile */
-    gap: 3px;
-    border-width: 3px;
+    height: 250px;
+    width: 100%;
   }
-  /* Optionally hide some animations on very small screens if they feel too busy */
 }
 
 /* Footer */
 #contact {
-    background-color: #5684BF; /* New color: desert-and-sea-1 */
+    background-color: #2c3e50;
     color: white;
-    padding: 3rem 2rem;
-    text-align: center;
+    padding: 3rem 0;
 }
 
 .footer-content {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-}
-
-/* Footer Top Row (Logo + Icons) */
-.footer-top-row {
-    display: flex;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Align items vertically */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 1.5rem; /* Space between logo and icons block */
-    margin-bottom: 1.5rem; /* Space before the button */
-}
-
-/* Footer Logo */
-.footer-logo {
-    max-height: 100px; /* Significantly increased size */
-    margin: 0; /* Reset margin, handled by flex gap */
-    order: 1; /* Place logo first (right in RTL) */
-}
-
-.social-links {
-    order: 2; /* Place icons second (left in RTL) */
-    margin: 0; /* Reset margin */
-}
-
-.social-links a {
-    display: inline-block;
-    margin: 0 0.5rem;
-    color: white;
-    font-size: 1.5rem;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.social-links a:hover {
-    color: #D9A443; /* New color: desert-and-sea-3 */
-    transform: translateY(-3px);
+    padding: 0 2rem;
+    text-align: center;
 }
 
 #contact p {
-    margin-top: 0.5rem; /* Reduced margin top */
-    font-size: 0.9rem;
-    color: #0a9396;
-    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.contact-message {
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.contact-message p {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.contact-message a {
+    color: #D9A443;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+}
+
+.contact-message a:hover {
+    color: #BF8136;
+}
+
+.closing-message {
+    font-size: 1.2rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    margin: 2rem 0 1rem;
+    font-weight: 500 !important;
 }
 
 /* Popups */
@@ -1826,40 +1656,6 @@ h3 i {
     .benefit-item {
         min-width: auto;
     }
-}
-
-/* Contact Message in Footer */
-.contact-message {
-    margin: 1rem 0;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-}
-
-.contact-message p {
-    color: white;
-    margin: 0;
-    text-align: center;
-}
-
-.contact-message a {
-    color: white;
-    text-decoration: underline;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.contact-message a:hover {
-    color: #D9A443;
-}
-
-/* Closing Message */
-.closing-message {
-    font-size: 1.1rem !important;
-    font-weight: 500;
-    color: white !important;
-    margin: 1.5rem 0 0.5rem !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Back to Top Button */

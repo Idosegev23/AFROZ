@@ -166,9 +166,14 @@ function initGalleryCarousel() {
     // התאמת רוחב המיכל לכמות התמונות
     galleryContainer.style.width = `${slideCount * 100}%`;
     
+    // הגדרת רוחב כל תמונה באחוזים יחסית לכמות התמונות
+    slides.forEach(slide => {
+        slide.style.width = `${100 / slideCount}%`;
+    });
+    
     // פונקציה להצגת שקופית ספציפית
     function showSlide(index) {
-        // וודא שהאינדקס בטווח תקין
+        // וודא שהאינדקס בטווח תקין עם מחזוריות
         if (index < 0) {
             index = slideCount - 1;
         } else if (index >= slideCount) {
@@ -178,7 +183,7 @@ function initGalleryCarousel() {
         currentIndex = index;
         
         // עדכון המיקום של המיכל
-        galleryContainer.style.transform = `translateX(${index * -100 / slideCount}%)`;
+        galleryContainer.style.transform = `translateX(${-currentIndex * (100 / slideCount)}%)`;
         
         // עדכון הנקודות האקטיביות
         galleryDots.forEach((dot, i) => {
@@ -210,23 +215,44 @@ function initGalleryCarousel() {
     }
     
     // טיפול בלחיצה על נקודות ניווט
-    galleryDots.forEach((dot) => {
+    galleryDots.forEach((dot, i) => {
         dot.addEventListener('click', () => {
-            const index = parseInt(dot.getAttribute('data-index'));
-            if (!isNaN(index)) {
-                showSlide(index);
-                startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
-            }
+            showSlide(i);
+            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
         });
     });
     
-    // הצגת השקופית הראשונה והפעלת האוטומציה
-    showSlide(0);
-    startAutoSlide();
-    
-    // עצירת האוטומציה כאשר המצביע מעל הגלריה
+    // הוספת תמיכה במחוות מגע (swipe)
     const gallery = document.querySelector('.gallery');
     if (gallery) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        gallery.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(interval); // עצירת האוטומציה בזמן מגע
+        }, { passive: true });
+        
+        gallery.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoSlide(); // הפעלת האוטומציה מחדש לאחר המגע
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const minSwipeDistance = 50; // מרחק מינימלי להחשב כהחלקה
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (swipeDistance > minSwipeDistance) {
+                // החלקה ימינה - תמונה קודמת
+                showSlide(currentIndex - 1);
+            } else if (swipeDistance < -minSwipeDistance) {
+                // החלקה שמאלה - תמונה הבאה
+                showSlide(currentIndex + 1);
+            }
+        }
+        
+        // עצירת האוטומציה כאשר המצביע מעל הגלריה
         gallery.addEventListener('mouseenter', () => {
             clearInterval(interval);
         });
@@ -235,6 +261,10 @@ function initGalleryCarousel() {
             startAutoSlide();
         });
     }
+    
+    // הצגת השקופית הראשונה והפעלת האוטומציה
+    showSlide(0);
+    startAutoSlide();
 }
 
 // Popup functionality

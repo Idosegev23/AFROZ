@@ -1717,4 +1717,38 @@ img {
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(89, 33, 1, 0.3); /* desert-and-sea-5 with transparency */
+}
+
+/* Facilitators Images Layout */
+.facilitators-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.facilitators-images .section-image {
+    width: calc(50% - 10px);
+    max-width: 350px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.facilitators-images .section-image:hover {
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .facilitators-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .facilitators-images .section-image {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 15px;
+    }
 } 

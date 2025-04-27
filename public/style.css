@@ -142,16 +142,15 @@ img {
 }
 
 .hero-content h1 {
-    font-size: 3.2rem;
-    margin: 0 0 20px;
-    line-height: 1.2;
-    color: #ffffff;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 10px;
+    margin-bottom: 20px;
+    max-width: 860px;
+    line-height: 1.5;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
 }
 
 .hero-content p {
@@ -169,7 +168,8 @@ img {
 
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
     }
     
     .hero-content p {
@@ -217,7 +217,9 @@ img {
 /* CTA Button Centering Container */
 .cta-container {
     text-align: center;
-    margin-top: 2rem; /* Add some space above the button */
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
 }
 
 .popup-cta-container {
@@ -513,6 +515,10 @@ img {
     height: 250px;
     width: 100%;
   }
+  
+  .hero-content h1 {
+    font-size: 1.3rem;
+  }
 }
 
 /* Footer */
@@ -763,7 +769,7 @@ img {
     }
     
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.2rem;
         margin-bottom: 15px;
     }
 
@@ -1365,7 +1371,7 @@ img {
     }
     
     .hero-content h1 {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
     
     .hero-content p {
@@ -1743,4 +1749,9 @@ h3 i {
     .awaits-category h3 {
         font-size: 1.2rem;
     }
+}
+
+.hero-cta-container {
+    margin-top: 1.5rem;
+    text-align: center;
 } 

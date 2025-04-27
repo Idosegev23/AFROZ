@@ -537,39 +537,39 @@
     </section>
 
     <!-- Footer & Contact -->
-    <footer id="contact" style="background-color: #ffffff !important; color: #444 !important; border-top: 3px solid #3CAEA3 !important;">
+    <footer id="contact">
         <div class="footer-content">
             <!-- מבנה הפוטר החדש ומפושט -->
             <div class="footer-grid">
                 <!-- עמודה 1 - לוגו ומידע -->
                 <div class="footer-column">
-                    <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo" style="width: 130px; height: 130px; margin: 0 auto 1rem;">
+                    <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo">
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם" style="background: #3CAEA3 !important; color: white !important;"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק" style="background: #3CAEA3 !important; color: white !important;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ" style="background: #3CAEA3 !important; color: white !important;"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:bemeditation.info@gmail.com" aria-label="Email" title="שלחו אימייל" style="background: #3CAEA3 !important; color: white !important;"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:bemeditation.info@gmail.com" aria-label="Email" title="שלחו אימייל"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 
                 <!-- עמודה 2 - ניווט מהיר -->
                 <div class="footer-column">
-                    <div class="footer-heading" style="color: #333 !important;">ניווט מהיר</div>
+                    <div class="footer-heading">ניווט מהיר</div>
                     <ul class="footer-links">
-                        <li><a href="#about" style="color: #555 !important;">אודות הריטריט</a></li>
-                        <li><a href="#what-awaits" style="color: #555 !important;">מה מחכה לכם</a></li>
-                        <li><a href="#program" style="color: #555 !important;">תכנית הריטריט</a></li>
-                        <li><a href="#accommodation" style="color: #555 !important;">לינה וכרטיסים</a></li>
-                        <li><a href="#faq" style="color: #555 !important;">שאלות נפוצות</a></li>
+                        <li><a href="#about">אודות הריטריט</a></li>
+                        <li><a href="#what-awaits">מה מחכה לכם</a></li>
+                        <li><a href="#program">תכנית הריטריט</a></li>
+                        <li><a href="#accommodation">לינה וכרטיסים</a></li>
+                        <li><a href="#faq">שאלות נפוצות</a></li>
                     </ul>
                 </div>
                 
                 <!-- עמודה 3 - צור קשר -->
                 <div class="footer-column">
-                    <div class="footer-heading" style="color: #333 !important;">יצירת קשר</div>
+                    <div class="footer-heading">יצירת קשר</div>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone" style="color: #3CAEA3 !important;"></i> <a href="tel:+972547882715" style="color: #555 !important;">054-7882715</a></li>
-                        <li><i class="fas fa-envelope" style="color: #3CAEA3 !important;"></i> <a href="mailto:bemeditation.info@gmail.com" style="color: #555 !important;">bemeditation.info@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+972547882715">054-7882715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a></li>
                     </ul>
                     <button id="open-contact-popup" class="cta-button-secondary">מתעניינים? פנו אלינו</button>
                 </div>
@@ -577,7 +577,7 @@
             
             <!-- חלק תחתון של הפוטר עם זכויות יוצרים -->
             <div class="footer-bottom">
-                <p style="color: #777 !important;">&copy; 2024 כל הזכויות שמורות ל Be meditation</p>
+                <p>&copy; 2024 כל הזכויות שמורות ל Be meditation</p>
             </div>
             
             <a href="#hero" class="back-to-top" title="חזרה לראש הדף"><i class="fas fa-chevron-up"></i></a>
@@ -730,45 +730,58 @@
         /* עדכון צבע הפוטר וגודל הלוגו */
         #contact {
             background-color: #ffffff !important;
+            background-image: none !important;
             color: #444 !important;
             border-top: 3px solid #3CAEA3 !important;
         }
         
-        #contact * {
-            background-color: transparent !important;
+        #contact .footer-content {
+            background-color: #ffffff !important;
         }
         
-        .footer-heading {
+        #contact .footer-logo {
+            width: 130px !important;
+            height: 130px !important;
+            margin: 0 auto 1rem !important;
+        }
+        
+        #contact .footer-heading {
             color: #333 !important;
         }
         
-        .footer-heading:after {
+        #contact .footer-heading:after {
             background-color: #3CAEA3 !important;
         }
         
-        .footer-links li a {
+        #contact .footer-links li a {
             color: #555 !important;
         }
         
-        .footer-links li a:hover {
+        #contact .footer-links li a:hover {
             color: #3CAEA3 !important;
         }
         
-        .footer-links li i {
+        #contact .footer-links li i {
             color: #3CAEA3 !important;
         }
         
-        .footer-social a {
-            background: #3CAEA3 !important;
+        #contact .footer-social a {
+            background-color: #3CAEA3 !important;
             color: white !important;
         }
         
-        .footer-social a:hover {
-            background: #2C8C83 !important;
+        #contact .footer-social a:hover {
+            background-color: #2C8C83 !important;
         }
         
-        .footer-bottom p {
+        #contact .footer-bottom p {
             color: #777 !important;
+        }
+        
+        #contact .cta-button-secondary {
+            background-color: #3CAEA3 !important;
+            color: white !important;
+            border: none !important;
         }
         
         @media (max-width: 768px) {
@@ -777,7 +790,7 @@
                 max-width: 90px !important;
             }
             
-            .footer-logo {
+            #contact .footer-logo {
                 width: 100px !important;
                 height: 100px !important;
             }

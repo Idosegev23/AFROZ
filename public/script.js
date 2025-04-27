@@ -110,6 +110,8 @@ function initPopups() {
     const closePricingButton = document.getElementById('close-pricing');
     const closeContactButton = document.getElementById('close-contact');
     const contactButton = document.getElementById('open-contact-popup');
+    const contactButtonHero = document.getElementById('open-contact-popup-hero');
+    const contactButtonLocation = document.getElementById('open-contact-popup-location');
     const pricingPopup = document.getElementById('pricing-popup');
     const contactPopup = document.getElementById('contact-popup');
 
@@ -117,9 +119,11 @@ function initPopups() {
     if (heroButton) heroButton.addEventListener('click', () => openPopup(pricingPopup)); 
     if (programButton) programButton.addEventListener('click', () => openPopup(pricingPopup));
     if (locationButton) locationButton.addEventListener('click', () => openPopup(pricingPopup));
-    if (testimonialsButton) testimonialsButton.addEventListener('click', () => openPopup(pricingPopup));
+    if (testimonialsButton) testimonialsButton.addEventListener('click', () => openPopup(contactPopup));
     if (accommodationButton) accommodationButton.addEventListener('click', () => openPopup(pricingPopup));
     if (contactButton) contactButton.addEventListener('click', () => openPopup(contactPopup));
+    if (contactButtonHero) contactButtonHero.addEventListener('click', () => openPopup(contactPopup));
+    if (contactButtonLocation) contactButtonLocation.addEventListener('click', () => openPopup(contactPopup));
 
     // Close popup buttons
     if (closePricingButton) closePricingButton.addEventListener('click', () => closePopup(pricingPopup));

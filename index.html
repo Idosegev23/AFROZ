@@ -468,32 +468,14 @@
                 
                 <!-- עמודה 4 - טופס יצירת קשר -->
                 <div class="footer-column-large">
-                    <div class="footer-heading">השאירו פרטים ונחזור אליכם</div>
+                    <div class="footer-heading">צור קשר</div>
                     <p class="footer-about">נשמח לענות על כל שאלה שיש לכם בנוגע לריטריט או לסייע בתהליך ההרשמה.</p>
-                    <div class="contact-form-footer">
-                        <form id="local-contact-form" class="local-contact-form">
-                            <div class="form-group">
-                                <label for="name">שם מלא</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">טלפון</label>
-                                <input type="text" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">אימייל</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">הודעה</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-form">שליחה</button>
-                            <div id="contact-success-message" class="contact-success-message">
-                                תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
-                            </div>
-                        </form>
-                    </div>
+                    <p class="footer-about">
+                        <i class="fas fa-phone"></i> טלפון: <a href="tel:+972547882715">054-7882715</a><br>
+                        <i class="fas fa-envelope"></i> אימייל: <a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a><br>
+                        <i class="fas fa-globe"></i> אתר: <a href="https://nataraj.co.il/" target="_blank">nataraj.co.il</a>
+                    </p>
+                    <a href="#" id="open-contact-popup" class="cta-button-secondary">פתיחת טופס יצירת קשר</a>
                 </div>
             </div>
             
@@ -549,13 +531,38 @@
                 איריס: <a href="tel:+972547882715">054-7882715</a> (ניתן ללחוץ לחיוג)<br>
                 <a href="https://wa.me/972547882715" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: #25D366;"><i class="fab fa-whatsapp"></i> שליחת הודעה בוואטסאפ</a>
             </p>
-            <!-- Contact form removed -->
+            
+            <!-- טופס יצירת קשר בפופאפ -->
+            <div class="contact-form-container">
+                <h3>השאירו פרטים ונחזור אליכם</h3>
+                <form id="local-contact-form" class="local-contact-form">
+                    <div class="form-group">
+                        <label for="name">שם מלא</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">טלפון</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">אימייל</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">הודעה</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-form">שליחה</button>
+                    <div id="contact-success-message" class="contact-success-message">
+                        תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // התאמה לכפתור המחירים בפוטר
         document.addEventListener('DOMContentLoaded', function() {
             // קישור לפופאפ המחירים מהפוטר
             const pricingButtonFooter = document.getElementById('open-pricing-popup-footer');
@@ -566,7 +573,7 @@
                 });
             }
 
-            // טיפול בטופס יצירת קשר בפוטר
+            // טיפול בטופס יצירת קשר בפופאפ
             const contactForm = document.getElementById('local-contact-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
@@ -585,6 +592,31 @@
                         setTimeout(function() {
                             successMessage.style.display = 'none';
                         }, 5000);
+                    }
+                });
+            }
+            
+            // פופאפ לטופס יצירת קשר
+            const contactPopupBtn = document.getElementById('open-contact-popup');
+            const contactPopup = document.getElementById('contact-popup');
+            const closeContactBtn = document.getElementById('close-contact');
+            
+            if (contactPopupBtn && contactPopup) {
+                contactPopupBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    contactPopup.style.display = 'flex';
+                });
+                
+                if (closeContactBtn) {
+                    closeContactBtn.addEventListener('click', function() {
+                        contactPopup.style.display = 'none';
+                    });
+                }
+                
+                // סגירת הפופאפ בלחיצה מחוץ לתוכן
+                contactPopup.addEventListener('click', function(e) {
+                    if (e.target === contactPopup) {
+                        contactPopup.style.display = 'none';
                     }
                 });
             }

@@ -162,109 +162,166 @@ function initGalleryCarousel() {
     const slideCount = slides.length;
     let currentIndex = 0;
     let interval;
+    let allImagesLoaded = false;
     
-    // התאמת רוחב המיכל לכמות התמונות
-    galleryContainer.style.width = `${slideCount * 100}%`;
+    // מונה תמונות שנטענו
+    let loadedImagesCount = 0;
     
-    // הגדרת רוחב כל תמונה באחוזים יחסית לכמות התמונות
-    slides.forEach(slide => {
-        slide.style.width = `${100 / slideCount}%`;
-    });
-    
-    // פונקציה להצגת שקופית ספציפית
-    function showSlide(index) {
-        // וודא שהאינדקס בטווח תקין עם מחזוריות
-        if (index < 0) {
-            index = slideCount - 1;
-        } else if (index >= slideCount) {
-            index = 0;
+    // טעינה מקדימה של כל התמונות לפני הצגת הגלריה
+    function preloadImages() {
+        const gallery = document.querySelector('.gallery');
+        if (gallery) {
+            gallery.classList.add('loading');
         }
         
-        currentIndex = index;
-        
-        // עדכון המיקום של המיכל
-        galleryContainer.style.transform = `translateX(${-currentIndex * (100 / slideCount)}%)`;
-        
-        // עדכון הנקודות האקטיביות
-        galleryDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-    
-    // הפעלת האוטומציה
-    function startAutoSlide() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            showSlide(currentIndex + 1);
-        }, 5000); // החלפה כל 5 שניות
-    }
-    
-    // טיפול בלחיצה על כפתורי ניווט
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            showSlide(currentIndex - 1);
-            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
-        });
-    }
-    
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            showSlide(currentIndex + 1);
-            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
-        });
-    }
-    
-    // טיפול בלחיצה על נקודות ניווט
-    galleryDots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            showSlide(i);
-            startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
-        });
-    });
-    
-    // הוספת תמיכה במחוות מגע (swipe)
-    const gallery = document.querySelector('.gallery');
-    if (gallery) {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        gallery.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(interval); // עצירת האוטומציה בזמן מגע
-        }, { passive: true });
-        
-        gallery.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            startAutoSlide(); // הפעלת האוטומציה מחדש לאחר המגע
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const minSwipeDistance = 50; // מרחק מינימלי להחשב כהחלקה
-            const swipeDistance = touchEndX - touchStartX;
+        // עובר על כל התמונות ומטעין אותן
+        slides.forEach((slide, index) => {
+            // הסרת lazy loading כדי לטעון את התמונות מיד
+            slide.removeAttribute('loading');
             
-            if (swipeDistance > minSwipeDistance) {
-                // החלקה ימינה - תמונה קודמת
-                showSlide(currentIndex - 1);
-            } else if (swipeDistance < -minSwipeDistance) {
-                // החלקה שמאלה - תמונה הבאה
-                showSlide(currentIndex + 1);
-            }
-        }
-        
-        // עצירת האוטומציה כאשר המצביע מעל הגלריה
-        gallery.addEventListener('mouseenter', () => {
-            clearInterval(interval);
-        });
-        
-        gallery.addEventListener('mouseleave', () => {
-            startAutoSlide();
+            // יצירת אובייקט תמונה חדש לטעינה מקדימה
+            const img = new Image();
+            
+            // כאשר התמונה נטענת, מעדכן את המונה
+            img.onload = function() {
+                loadedImagesCount++;
+                
+                // אם כל התמונות נטענו, מציג את הגלריה
+                if (loadedImagesCount === slideCount) {
+                    allImagesLoaded = true;
+                    initCarousel();
+                    if (gallery) {
+                        gallery.classList.remove('loading');
+                    }
+                }
+            };
+            
+            // במקרה של שגיאה בטעינת תמונה
+            img.onerror = function() {
+                loadedImagesCount++;
+                console.error(`Failed to load image: ${slide.src}`);
+                
+                // אם כל התמונות נסו להיטען, מציג את הגלריה בכל מקרה
+                if (loadedImagesCount === slideCount) {
+                    allImagesLoaded = true;
+                    initCarousel();
+                    if (gallery) {
+                        gallery.classList.remove('loading');
+                    }
+                }
+            };
+            
+            // התחלת טעינת התמונה
+            img.src = slide.src;
+            
+            // הגדרת רוחב כל תמונה באחוזים יחסית לכמות התמונות
+            slide.style.width = `${100 / slideCount}%`;
         });
     }
     
-    // הצגת השקופית הראשונה והפעלת האוטומציה
-    showSlide(0);
-    startAutoSlide();
+    // אתחול הקרוסלה לאחר טעינת התמונות
+    function initCarousel() {
+        // התאמת רוחב המיכל לכמות התמונות
+        galleryContainer.style.width = `${slideCount * 100}%`;
+        
+        // פונקציה להצגת שקופית ספציפית
+        function showSlide(index) {
+            // וודא שהאינדקס בטווח תקין עם מחזוריות
+            if (index < 0) {
+                index = slideCount - 1;
+            } else if (index >= slideCount) {
+                index = 0;
+            }
+            
+            currentIndex = index;
+            
+            // עדכון המיקום של המיכל
+            galleryContainer.style.transform = `translateX(${-currentIndex * (100 / slideCount)}%)`;
+            
+            // עדכון הנקודות האקטיביות
+            galleryDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+        
+        // הפעלת האוטומציה
+        function startAutoSlide() {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                showSlide(currentIndex + 1);
+            }, 5000); // החלפה כל 5 שניות
+        }
+        
+        // טיפול בלחיצה על כפתורי ניווט
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                showSlide(currentIndex - 1);
+                startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
+            });
+        }
+        
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                showSlide(currentIndex + 1);
+                startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
+            });
+        }
+        
+        // טיפול בלחיצה על נקודות ניווט
+        galleryDots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showSlide(i);
+                startAutoSlide(); // איפוס הטיימר לאחר פעולת משתמש
+            });
+        });
+        
+        // הוספת תמיכה במחוות מגע (swipe)
+        const gallery = document.querySelector('.gallery');
+        if (gallery) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            gallery.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(interval); // עצירת האוטומציה בזמן מגע
+            }, { passive: true });
+            
+            gallery.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startAutoSlide(); // הפעלת האוטומציה מחדש לאחר המגע
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const minSwipeDistance = 50; // מרחק מינימלי להחשב כהחלקה
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (swipeDistance > minSwipeDistance) {
+                    // החלקה ימינה - תמונה קודמת
+                    showSlide(currentIndex - 1);
+                } else if (swipeDistance < -minSwipeDistance) {
+                    // החלקה שמאלה - תמונה הבאה
+                    showSlide(currentIndex + 1);
+                }
+            }
+            
+            // עצירת האוטומציה כאשר המצביע מעל הגלריה
+            gallery.addEventListener('mouseenter', () => {
+                clearInterval(interval);
+            });
+            
+            gallery.addEventListener('mouseleave', () => {
+                startAutoSlide();
+            });
+        }
+        
+        // הצגת השקופית הראשונה והפעלת האוטומציה
+        showSlide(0);
+        startAutoSlide();
+    }
+    
+    // התחלת תהליך טעינת התמונות
+    preloadImages();
 }
 
 // Popup functionality

@@ -10,6 +10,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- הטענה מוקדמת של תמונות הגלריה -->
+    <link rel="preload" as="image" href="/images/gallery/1.jpg">
+    <link rel="preload" as="image" href="/images/gallery/2.jpg">
+    <link rel="preload" as="image" href="/images/gallery/3.jpg">
+    <link rel="preload" as="image" href="/images/gallery/4.jpg">
+    <link rel="preload" as="image" href="/images/gallery/5.jpg">
+    <link rel="preload" as="image" href="/images/gallery/6.jpg">
+    <link rel="preload" as="image" href="/images/gallery/7.jpg">
+    <link rel="preload" as="image" href="/images/gallery/8.jpg">
+    <link rel="preload" as="image" href="/images/gallery/9.jpg">
+    <link rel="preload" as="image" href="/images/gallery/10.jpg">
+    <link rel="preload" as="image" href="/images/gallery/11.jpg">
+    <link rel="preload" as="image" href="/images/gallery/12.jpg">
+    <link rel="preload" as="image" href="/images/gallery/13.jpg">
+    <link rel="preload" as="image" href="/images/gallery/14.jpg">
+    <link rel="preload" as="image" href="/images/gallery/15.jpg">
+    <!-- Facebook Open Graph -->
+    <meta property="og:title" content="Afroz להרפות, להיפתח, להתמלא | ריטריט המוקדש לחוויה ושינוי">
+    <meta property="og:description" content="ריטריט מדיטציה בלסבוס, יוון - חוויה מרגשת ומעצימה בהנחיית ז'יוואני יובל. ריטריט המוקדש לחוויה ושינוי, המזמין אתכם למסע של שלווה והתחדשות פנימית.">
+    <meta property="og:image" content="/images/about/32.jpg">
+    <meta property="og:url" content="https://afroz.vercel.app/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Afroz להרפות, להיפתח, להתמלא | ריטריט המוקדש לחוויה ושינוי">
+    <meta name="twitter:description" content="ריטריט מדיטציה בלסבוס, יוון - חוויה מרגשת ומעצימה בהנחיית ז'יוואני יובל. ריטריט המוקדש לחוויה ושינוי, המזמין אתכם למסע של שלווה והתחדשות פנימית.">
+    <meta name="twitter:image" content="/images/about/32.jpg">
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "ריטריט מדיטציה Afroz",
+            "description": "ריטריט המוקדש לחוויה ושינוי, המזמין אתכם למסע של שלווה והתחדשות פנימית.",
+            "image": "/images/about/32.jpg",
+            "startDate": "2023-08-25",
+            "endDate": "2023-09-01",
+            "location": {
+                "@type": "Place",
+                "name": "Afroz, Lesbos",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "Greece"
+                }
+            },
+            "organizer": {
+                "@type": "Person",
+                "name": "ז'יוואני יובל"
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -129,21 +180,21 @@
         <p>תמונות מהחוף, החדרים והחוויות בריטריט - הרגע האמיתי של אפרוז</p>
         <div class="gallery">
             <div class="gallery-container">
-                <img src="/images/gallery/1.jpg" alt="תמונה 1" loading="lazy" />
-                <img src="/images/gallery/2.jpg" alt="תמונה 2" loading="lazy" />
-                <img src="/images/gallery/3.jpg" alt="תמונה 3" loading="lazy" />
-                <img src="/images/gallery/4.jpg" alt="תמונה 4" loading="lazy" />
-                <img src="/images/gallery/5.jpg" alt="תמונה 5" loading="lazy" />
-                <img src="/images/gallery/6.jpg" alt="תמונה 6" loading="lazy" />
-                <img src="/images/gallery/7.jpg" alt="תמונה 7" loading="lazy" />
-                <img src="/images/gallery/8.jpg" alt="תמונה 8" loading="lazy" />
-                <img src="/images/gallery/9.jpg" alt="תמונה 9" loading="lazy" />
-                <img src="/images/gallery/10.jpg" alt="תמונה 10" loading="lazy" />
-                <img src="/images/gallery/11.jpg" alt="תמונה 11" loading="lazy" />
-                <img src="/images/gallery/12.jpg" alt="תמונה 12" loading="lazy" />
-                <img src="/images/gallery/13.jpg" alt="תמונה 13" loading="lazy" />
-                <img src="/images/gallery/14.jpg" alt="תמונה 14" loading="lazy" />
-                <img src="/images/gallery/15.jpg" alt="תמונה 15" loading="lazy" />
+                <img src="/images/gallery/1.jpg" alt="תמונה 1" decoding="async" fetchpriority="high" />
+                <img src="/images/gallery/2.jpg" alt="תמונה 2" decoding="async" fetchpriority="high" />
+                <img src="/images/gallery/3.jpg" alt="תמונה 3" decoding="async" fetchpriority="high" />
+                <img src="/images/gallery/4.jpg" alt="תמונה 4" decoding="async" fetchpriority="high" />
+                <img src="/images/gallery/5.jpg" alt="תמונה 5" decoding="async" fetchpriority="high" />
+                <img src="/images/gallery/6.jpg" alt="תמונה 6" decoding="async" />
+                <img src="/images/gallery/7.jpg" alt="תמונה 7" decoding="async" />
+                <img src="/images/gallery/8.jpg" alt="תמונה 8" decoding="async" />
+                <img src="/images/gallery/9.jpg" alt="תמונה 9" decoding="async" />
+                <img src="/images/gallery/10.jpg" alt="תמונה 10" decoding="async" />
+                <img src="/images/gallery/11.jpg" alt="תמונה 11" decoding="async" />
+                <img src="/images/gallery/12.jpg" alt="תמונה 12" decoding="async" />
+                <img src="/images/gallery/13.jpg" alt="תמונה 13" decoding="async" />
+                <img src="/images/gallery/14.jpg" alt="תמונה 14" decoding="async" />
+                <img src="/images/gallery/15.jpg" alt="תמונה 15" decoding="async" />
             </div>
             <div class="gallery-controls">
                 <span class="gallery-dot active"></span>

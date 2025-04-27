@@ -16,7 +16,7 @@
     <!-- Header & Sticky Nav -->
     <header id="header">
         <nav id="navbar">
-            <img src="/trans_sqr_logo.png" alt="לוגו" id="logo">
+            <img src="/trans_sqr_logo.png" alt="לוגו" id="logo" style="max-height: 110px; max-width: 110px;">
             <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="תפריט">
                 <span class="hamburger-bar"></span>
                 <span class="hamburger-bar"></span>
@@ -37,6 +37,30 @@
             </ul>
         </nav>
     </header>
+
+    <style>
+        /* עדכון צבע התפריט וגודל הלוגו */
+        #header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #navbar ul li a {
+            color: #555;
+            font-weight: 600;
+        }
+        
+        #navbar ul li a:hover {
+            color: #3CAEA3;
+        }
+        
+        @media (max-width: 768px) {
+            #logo {
+                max-height: 90px !important;
+                max-width: 90px !important;
+            }
+        }
+    </style>
 
     <!-- Hero Section -->
     <section id="hero">

@@ -103,10 +103,10 @@ function initProgramAccordion() {
 function initPopups() {
     console.log('Initializing Popups');
     const heroButton = document.getElementById('open-pricing-popup-hero');
-    const programButton = document.getElementById('open-pricing-popup-program');
-    const locationButton = document.getElementById('open-pricing-popup-location');
+    const programButton = document.getElementById('open-contact-popup-program');
+    const locationButton = document.getElementById('open-contact-popup-location');
     const testimonialsButton = document.getElementById('open-pricing-popup-testimonials');
-    const accommodationButton = document.getElementById('open-pricing-popup-accommodation');
+    const accommodationButton = document.getElementById('open-contact-popup-accommodation');
     const closePricingButton = document.getElementById('close-pricing');
     const closeContactButton = document.getElementById('close-contact');
     const contactButton = document.getElementById('open-contact-popup');
@@ -116,11 +116,11 @@ function initPopups() {
     const contactPopup = document.getElementById('contact-popup');
 
     // Popup opener buttons
-    if (heroButton) heroButton.addEventListener('click', () => openPopup(pricingPopup)); 
-    if (programButton) programButton.addEventListener('click', () => openPopup(pricingPopup));
-    if (locationButton) locationButton.addEventListener('click', () => openPopup(pricingPopup));
+    if (heroButton) heroButton.addEventListener('click', () => openPopup(contactPopup)); 
+    if (programButton) programButton.addEventListener('click', () => openPopup(contactPopup));
+    if (locationButton) locationButton.addEventListener('click', () => openPopup(contactPopup));
     if (testimonialsButton) testimonialsButton.addEventListener('click', () => openPopup(contactPopup));
-    if (accommodationButton) accommodationButton.addEventListener('click', () => openPopup(pricingPopup));
+    if (accommodationButton) accommodationButton.addEventListener('click', () => openPopup(contactPopup));
     if (contactButton) contactButton.addEventListener('click', () => openPopup(contactPopup));
     if (contactButtonHero) contactButtonHero.addEventListener('click', () => openPopup(contactPopup));
     if (contactButtonLocation) contactButtonLocation.addEventListener('click', () => openPopup(contactPopup));

@@ -421,56 +421,65 @@
         </div>
     </section>
 
-    <!-- Footer & Contact -->
+    <!-- Contact Section -->
     <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-top-row">
-                <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo">
-                <div class="social-links">
-                    <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם - Be Meditation"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק - Be Meditation"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:bemeditation.info@gmail.com" aria-label="Email" title="שלחו אימייל עם שאלות"><i class="fas fa-envelope"></i></a>
-                    <a href="https://nataraj.co.il/" aria-label="Home" target="_blank" title="בקרו באתר הבית שלנו"><i class="fas fa-home"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <!-- עמודה ימנית - פרטי יצירת קשר -->
+                    <div class="footer-left">
+                        <img src="./assets/images/logo-white.png" alt="ג'יבאני לוגו">
+                        <h3>צור קשר</h3>
+                        <p>השאירו פרטים ונחזור אליכם בהקדם</p>
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> 054-123-4567</p>
+                            <p><i class="fas fa-envelope"></i> info@jivani.co.il</p>
+                            <p><i class="fas fa-map-marker-alt"></i> שדרות ירושלים 123, תל אביב</p>
+                        </div>
+                    </div>
+                    
+                    <!-- עמודה שמאלית - טופס יצירת קשר -->
+                    <div class="footer-right">
+                        <div class="contact-form-container">
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" placeholder="שם מלא" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" name="phone" id="phone" placeholder="טלפון" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" placeholder="אימייל" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" id="message" placeholder="הודעה" class="contact-message"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">שליחה</button>
+                            </form>
+                            <div id="successMessage" class="success-message">
+                                <p>ההודעה נשלחה בהצלחה!</p>
+                                <p>נחזור אליכם בהקדם.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- אזור התחתון של הפוטר - קישורים לרשתות חברתיות וזכויות יוצרים -->
+                <div class="footer-center">
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="copyright">
+                        <p>© 2023 ג'יבאני השכרת ציוד. כל הזכויות שמורות.</p>
+                    </div>
                 </div>
             </div>
-            
-            <!-- טופס יצירת קשר מקומי -->
-            <div class="contact-form-container">
-                <h3>השאירו פרטים ונחזור אליכם</h3>
-                <form id="local-contact-form" class="local-contact-form">
-                    <div class="form-group">
-                        <label for="name">שם מלא</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">טלפון</label>
-                        <input type="text" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">אימייל</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">הודעה</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-form">שליחה</button>
-                    <div id="contact-success-message" class="contact-success-message">
-                        תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
-                    </div>
-                </form>
-            </div>
-            
-            <div class="contact-message">
-                <p>רוצים לשאול משהו? התקשרו אלינו או שלחו מייל ל-<a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a></p>
-            </div>
-            <button id="open-contact-popup" class="cta-button-secondary">פרטי קשר נוספים</button>
-            <p class="closing-message">נשמח לראות אותך איתנו בריטריט! - ז'יוואני והצוות ❤️</p>
-            <p>&copy; 2024 כל הזכויות שמורות ל Be meditation</p>
-            <a href="#hero" class="back-to-top" title="חזרה לראש הדף"><i class="fas fa-chevron-up"></i></a>
         </div>
     </footer>
+    <!-- End Contact Section -->
 
     <!-- Pricing Popup -->
     <div id="pricing-popup" class="popup">

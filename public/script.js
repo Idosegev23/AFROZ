@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initLocalContactForm();
     fixIosScroll();
     createRandomDunes(); // Add random dunes to the page
-    initContactForm();  // אתחול טופס יצירת קשר בפוטר
 });
 
 function initMobileMenu() {
@@ -337,60 +336,4 @@ function initLocalContactForm() {
     } else {
         console.error('Local contact form not found');
     }
-}
-
-// פונקציה לטיפול בטופס יצירת הקשר בפוטר
-function initContactForm() {
-    console.log('Initializing footer contact form');
-    const contactForm = document.getElementById('contactForm');
-    const successMessage = document.getElementById('successMessage');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            console.log('Footer contact form submitted');
-            
-            // איסוף הנתונים מהטופס
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
-                date: new Date().toISOString()
-            };
-            
-            // שמירת הנתונים ב-localStorage
-            const existingData = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-            existingData.push(formData);
-            localStorage.setItem('contactSubmissions', JSON.stringify(existingData));
-            
-            console.log('Contact data saved:', formData);
-            
-            // איפוס הטופס והצגת הודעת הצלחה
-            contactForm.reset();
-            
-            // הצגת הודעת הצלחה
-            if (successMessage) {
-                successMessage.style.display = 'block';
-                
-                // הסתרת ההודעה אחרי 5 שניות
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-            }
-        });
-    } else {
-        console.error('Footer contact form not found');
-    }
-}
-
-// עדכון פונקציית האתחול 
-function init() {
-    console.log('Initializing app');
-    initMenu();
-    initAnimations();
-    initPopups();
-    initAccordion();
-    initContactForm();  // אתחול טופס יצירת קשר בפוטר
-    initLocalContactForm();
 } 

@@ -76,6 +76,7 @@
             <ul id="nav-links">
                 <li><a href="#hero">ראשי</a></li>
                 <li><a href="#what-awaits">מה מחכה</a></li>
+                <li><a href="#about">אודות</a></li>
                 <li><a href="#gallery">גלריה</a></li>
                 <li><a href="#program">תוכנית</a></li>
                 <li><a href="#location">על המקום</a></li>
@@ -229,6 +230,42 @@
         </div>
     </section>
 
+    <!-- What Awaits Section -->
+    <section id="what-awaits" class="content-section">
+        <h2>מה מחכה לכם שם?</h2>
+        <p>קבוצה אינטימית ואיכותית, עם אנשים מכל העולם, בסביבה קסומה ומרגיעה שתאפשר לכם להתחבר אל עצמכם ואל האחרים בצורה עמוקה ובלתי נשכחת.<br>מקום בו תוכלו ליהנות ממגוון חוויות שמזמינות שינוי פנימי וצמיחה.</p>
+        
+        <div class="awaits-categories">
+            <div class="awaits-category">
+                <h3><i class="fas fa-peace"></i> מדיטציה ושקט פנימי</h3>
+                <ul class="awaits-list">
+                    <li><strong>מרחב מדיטטיבי</strong> - מתחם מדיטציות בטבע, בו תמצאו שלווה ושקט פנימי</li>
+                    <li><strong>חיבור פנימי</strong> - זמן המוקדש להתחברות פנימה – גם יחד, גם לבד</li>
+                    <li><strong>מגוון שיטות</strong> - מדיטציות אקטיביות מבית אושו שמזמינות תנועה ותודעה חדשה</li>
+                </ul>
+            </div>
+            
+            <div class="awaits-category">
+                <h3><i class="fas fa-users"></i> חיבור קבוצתי ותמיכה</h3>
+                <ul class="awaits-list">
+                    <li><strong>שיתוף משמעותי</strong> - מעגלי שיתוף המאפשרים לחקור ולמצוא מענה לשאלות עמוקות</li>
+                    <li><strong>קהילה תומכת</strong> - אנשים איכותיים מרחבי העולם שהופכים לחברים אמיתיים</li>
+                    <li><strong>אירועי חיבור</strong> - פעילויות ערב מגוונות: מסיבות ריקודים, סדנאות מעוררות השראה ומדיטציות מיוחדות</li>
+                </ul>
+            </div>
+            
+            <div class="awaits-category">
+                <h3><i class="fas fa-umbrella-beach"></i> טבע, פנאי וחוויות</h3>
+                <ul class="awaits-list">
+                    <li><strong>טבע מרהיב</strong> - טיול מדיטטיבי בטבע, מחוברות לגוף ולסביבה</li>
+                    <li><strong>חוויות ייחודיות</strong> - טיול בהפלגה או נסיעה לאי חוסוס הסמוך, חוף ים מדהים</li>
+                    <li><strong>נופש מפנק</strong> - ארוחות צמחוניות משותפות מהמטבח המדהים, בר עם תפריט מגוון ואווירה נינוחה</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="highlight-text">המסע הזה מזמין אתכם להיות חלק ממסע של חיבור אמיתי – לעצמכם, לאחרים ולסביבה, וליצור שינוי חיובי ומרפא בחיים שלכם.</p>
+    </section>
 
     <!-- Program Section -->
     <section id="program" class="content-section">
@@ -610,9 +647,9 @@
                 </div>
             </div>
             
-            <!-- חלק תחתון של הפוטר -->
+            <!-- חלק תחתון של הפוטר עם זכויות יוצרים -->
             <div class="footer-bottom">
-                <!-- הטקסט הוסר כפי שהתבקש -->
+                <p>&copy; 2024 כל הזכויות שמורות ל Be meditation</p>
             </div>
             
             <a href="#hero" class="back-to-top" title="חזרה לראש הדף"><i class="fas fa-chevron-up"></i></a>

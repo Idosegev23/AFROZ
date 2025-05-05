@@ -699,7 +699,9 @@
             <div class="footer-grid">
                 <!-- עמודה 1 - לוגו ומידע -->
                 <div class="footer-column">
-                    <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo">
+                    <div class="footer-logo-container">
+                        <img src="/trans_sqr_logo.png" alt="לוגו Be Meditation" class="footer-logo">
+                    </div>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק"><i class="fab fa-facebook-f"></i></a>
@@ -867,10 +869,15 @@
             background-color: #ffffff !important;
         }
         
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
         #contact .footer-logo {
             width: 150px !important;
             height: 150px !important;
-            margin: 0 auto 1rem !important;
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
             background-color: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
@@ -897,6 +904,14 @@
         
         #contact .footer-links li i {
             color: #3CAEA3 !important;
+        }
+        
+        #contact .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         #contact .footer-social a {

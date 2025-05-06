@@ -15,12 +15,16 @@ h1, h2, h3, h4 {
     color: #5684BF; /* New color: desert-and-sea-1 */
     text-align: center;
     margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 p {
     line-height: 1.7;
     text-align: right; /* Default text alignment for RTL */
     color: #444;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 a {
@@ -2451,5 +2455,33 @@ h3 i {
         width: 100%;
         max-width: 320px;
         margin-bottom: 20px;
+    }
+}
+
+/* טיפול בטקסט ארוך במובייל */
+@media (max-width: 768px) {
+    /* מונע גלישת טקסט במובייל */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* שבירת מילים ארוכות */
+    p, h1, h2, h3, h4, li, a, blockquote, .accordion-content, .hero-content p, .hero-content h1 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* טיפול בבעיית גלישה בטקסט ארוך במקומות ספציפיים */
+    .hero-content p, .testimonials-container blockquote p {
+        max-width: 100%;
+        white-space: normal;
+    }
+    
+    /* התאמת תמונות למסך במובייל */
+    img {
+        max-width: 100%;
+        height: auto;
     }
 } 

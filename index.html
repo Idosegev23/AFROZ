@@ -2,7 +2,8 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
     <title>ריטריט מדיטציה ושלווה</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,33 +62,6 @@
             }
         }
     </script>
-</head>
-<body>
-
-    <!-- Header & Sticky Nav -->
-    <header id="header">
-        <nav id="navbar">
-            <img src="/trans_sqr_logo.png" alt="לוגו" id="logo" style="max-height: 150px; max-width: 150px;">
-            <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="תפריט">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-            </button>
-            <ul id="nav-links">
-                <li><a href="#hero">ראשי</a></li>
-                <li><a href="#what-awaits">על הרטריט</a></li>
-                <li><a href="#gallery">גלריה</a></li>
-                <li><a href="#program">תוכנית</a></li>
-                <li><a href="#location">על המקום</a></li>
-                <li><a href="#facilitators">על המנחים</a></li>
-                <li><a href="#accommodation">לינה וכרטיסים</a></li>
-                <li><a href="#testimonials">המלצות</a></li>
-                <li><a href="#faq">שאלות נפוצות</a></li>
-                <li><a href="#contact">צור קשר</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <style>
         /* עדכון צבע התפריט וגודל הלוגו */
         #header {
@@ -118,7 +92,64 @@
                 max-width: 110px !important;
             }
         }
+        
+        /* תיקון כללי לטקסט שגולש במובייל */
+        @media (max-width: 768px) {
+            /* הגדרות גלובליות למניעת גלישה */
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            /* טיפול במקרים חריגים */
+            .hero-content p, 
+            .hero-content h1, 
+            .testimonials-container blockquote p,
+            .snip1533 blockquote p {
+                word-break: break-word;
+                overflow-wrap: break-word;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            /* טיפול בטקסט ארוך בהמלצות */
+            .snip1533 {
+                padding: 20px 15px;
+            }
+            
+            .snip1533 blockquote p {
+                font-size: 14px;
+                white-space: normal;
+                line-height: 1.5;
+            }
+        }
     </style>
+</head>
+<body>
+
+    <!-- Header & Sticky Nav -->
+    <header id="header">
+        <nav id="navbar">
+            <img src="/trans_sqr_logo.png" alt="לוגו" id="logo" style="max-height: 150px; max-width: 150px;">
+            <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="תפריט">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+            <ul id="nav-links">
+                <li><a href="#hero">ראשי</a></li>
+                <li><a href="#what-awaits">על הרטריט</a></li>
+                <li><a href="#gallery">גלריה</a></li>
+                <li><a href="#program">תוכנית</a></li>
+                <li><a href="#location">על המקום</a></li>
+                <li><a href="#facilitators">על המנחים</a></li>
+                <li><a href="#accommodation">לינה וכרטיסים</a></li>
+                <li><a href="#testimonials">המלצות</a></li>
+                <li><a href="#faq">שאלות נפוצות</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="hero">

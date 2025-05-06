@@ -249,21 +249,21 @@ function initGalleryCarousel() {
         clearInterval(interval);
         interval = setInterval(() => {
             showSlide(currentIndex + 1);
-        }, 5000); // מעבר כל 5 שניות
+        }, 2000); // שינוי מ-5000 ל-2000 מילישניות (2 שניות)
     }
     
-    // מעבר אוטומטי בין תמונות
+    // התחלת החלקה אוטומטית בטעינה
     startAutoSlide();
     
-    // מוסיף תמיכה בהחלקה
+    // הוספת תמיכה בהחלקה במגע
     let touchStartX = 0;
     let touchEndX = 0;
     
-    galleryContainer.addEventListener('touchstart', e => {
+    galleryContainer.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
     
-    galleryContainer.addEventListener('touchend', e => {
+    galleryContainer.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     }, { passive: true });

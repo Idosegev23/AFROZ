@@ -86,15 +86,17 @@ img {
 
 .logo-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
-    flex-direction: row-reverse;
 }
 
 .logo-text {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 500;
     color: #2c3e50;
+    font-family: 'Sour Gummy', cursive;
+    order: -1; /* שימוש ב-order כדי לשים את הטקסט לפני הלוגו בכיוון LTR */
 }
 
 #logo {
@@ -107,6 +109,7 @@ img {
     transition: max-height 0.3s ease;
     padding: 2px;
     background: transparent;
+    vertical-align: middle;
 }
 
 /* Hamburger Menu Button */

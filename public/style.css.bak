@@ -1840,6 +1840,11 @@ button.submit-form:hover {
 }
 
 /* Smaller mobile devices */
+@media (max-width: 480px) {
+    #logo {
+        max-height: 40px; /* הקטן מ-60px ל-40px */
+        background: transparent;
+    }
     
     #hero {
         height: 70vh;
@@ -2583,9 +2588,3 @@ h3 i {
         height: auto;
     }
 } 
-
-@media (max-width: 768px) {
-    #header {
-        background-color: rgba(235, 248, 255, 0.85); /* תכלת עדין מאוד במובייל */
-    }
-}

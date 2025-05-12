@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="format-detection" content="telephone=no">
     <title>ריטריט מדיטציה ושלווה</title>
-    <link rel="stylesheet" href="/style.css">
+    <!-- שינוי קישור ה-CSS עם פרמטר רנדומי להימנע מcache -->
+    <link rel="stylesheet" href="public/style.css?v=1.0.2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Sour+Gummy&display=swap" rel="stylesheet">
@@ -121,6 +122,22 @@
                 line-height: 1.5;
             }
         }
+        /* תיקוני סגנון חשובים שלא יידרסו */
+        @media (max-width: 768px) {
+            #header {
+                background-color: rgba(235, 248, 255, 0.85) !important; /* תכלת עדין מאוד במובייל */
+            }
+            #logo {
+                max-height: 45px !important;
+                max-width: 45px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #logo {
+                max-height: 35px !important;
+                max-width: 35px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,7 +146,7 @@
     <header id="header">
         <nav id="navbar">
             <div class="logo-container">
-                <img src="/public/images/rnd_logo.png" alt="לוגו" id="logo" style="max-height: 50px; max-width: 50px; background: transparent;">
+                <img src="public/images/rnd_logo.png" alt="לוגו" id="logo" style="background: transparent;">
                 <span class="logo-text">Be Meditation</span>
             </div>
             <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="תפריט">
@@ -926,7 +943,7 @@
                 <!-- עמודה 1 - לוגו ומידע -->
                 <div class="footer-column">
                     <div class="footer-logo-container">
-                        <img src="/public/images/rnd_logo.png" alt="לוגו Be Meditation" class="footer-logo" style="background: transparent;">
+                        <img src="public/images/rnd_logo.png" alt="לוגו Be Meditation" class="footer-logo" style="background: transparent;">
                     </div>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
@@ -1172,5 +1189,45 @@
             }
         }
     </style>
+
+    <!-- בסוף הקובץ, לפני סגירת תגית body, אוסיף קוד JavaScript כדי לאלץ טעינה מחדש של ה-CSS -->
+    <script>
+        // אילוץ טעינה מחדש של CSS
+        function refreshCSS() {
+            var links = document.getElementsByTagName('link');
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].rel === 'stylesheet') {
+                    var href = links[i].href.replace(/\?.*$/, '');
+                    links[i].href = href + '?v=' + new Date().getTime();
+                }
+            }
+        }
+        
+        // הפעלת הפונקציה בטעינת העמוד
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshCSS();
+        });
+    </script>
+
+    <!-- קוד לאילוץ רענון CSS -->
+    <script>
+        // פונקציה לאילוץ רענון של קובץ CSS
+        function forceRefreshCSS() {
+            var links = document.getElementsByTagName('link');
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].rel === 'stylesheet') {
+                    var href = links[i].getAttribute('href');
+                    var newHref = href.split('?')[0] + '?v=' + new Date().getTime();
+                    links[i].setAttribute('href', newHref);
+                    console.log('Refreshed CSS: ' + newHref);
+                }
+            }
+        }
+        
+        // הפעלת הפונקציה בטעינת העמוד
+        window.addEventListener('load', function() {
+            setTimeout(forceRefreshCSS, 100);
+        });
+    </script>
 </body>
 </html> 

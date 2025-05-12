@@ -67,7 +67,7 @@ img {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: rgba(142, 181, 216, 0.95); /* desert-and-sea-2 with transparency */
+    background-color: rgba(86, 192, 240, 0.95); /* תכלת בהיר יותר */
     z-index: 1000;
     box-shadow: 0 3px 8px rgba(86, 131, 191, 0.2); /* desert-and-sea-1 with transparency */
     transition: background-color 0.3s ease;
@@ -104,8 +104,6 @@ img {
     object-fit: contain;
     margin: 0;
     transition: max-height 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
     padding: 2px;
 }
 

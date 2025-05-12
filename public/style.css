@@ -67,9 +67,9 @@ img {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: rgba(173, 216, 230, 0.9); /* תכלת עדין יותר */
+    background-color: rgba(206, 242, 254, 0.9); /* תכלת עדין יותר */
     z-index: 1000;
-    box-shadow: 0 3px 8px rgba(173, 216, 230, 0.2); /* צל תכלת עדין */
+    box-shadow: 0 3px 8px rgba(196, 223, 232, 0.2); /* צל תכלת עדין */
     transition: background-color 0.3s ease;
     padding: 0.2rem 0; /* הקטנת הpadding האנכי */
 }

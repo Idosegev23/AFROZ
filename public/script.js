@@ -390,4 +390,92 @@ function initLocalContactForm() {
     } else {
         console.error('Local contact form not found');
     }
-} 
+}
+
+// Gallery Lightbox functionality
+let galleryImages = [];
+let currentImageIndex = 0;
+
+// Fill galleryImages array with all the gallery image paths
+function initGalleryImages() {
+    galleryImages = [];
+    for (let i = 1; i <= 15; i++) {
+        galleryImages.push(`/images/gallery/${i}.jpg`);
+    }
+}
+
+function openLightbox(imageSrc, index) {
+    // Initialize gallery images if not already done
+    if (galleryImages.length === 0) {
+        initGalleryImages();
+    }
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    // Set the current image and index
+    lightboxImg.src = imageSrc;
+    currentImageIndex = index;
+    
+    // Display the lightbox
+    lightbox.style.display = 'block';
+    
+    // Prevent body scrolling when lightbox is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+    
+    // Restore body scrolling when lightbox is closed
+    document.body.style.overflow = 'auto';
+}
+
+function changeImage(direction) {
+    // Update the current image index based on direction
+    currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+    
+    // Update the image source
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = galleryImages[currentImageIndex];
+}
+
+// Set up event listeners when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Lightbox functionality
+    initGalleryImages();
+    
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        const closeBtn = document.querySelector('.close-lightbox');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', () => changeImage(-1));
+        nextBtn.addEventListener('click', () => changeImage(1));
+        
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', function(event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (lightbox.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeLightbox();
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    }
+}); 

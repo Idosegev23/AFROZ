@@ -105,6 +105,7 @@ img {
     margin: 0;
     transition: max-height 0.3s ease;
     padding: 2px;
+    background: transparent;
 }
 
 /* Hamburger Menu Button */
@@ -691,10 +692,13 @@ img {
 }
 
 .footer-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    max-height: 60px;
     margin: 0 auto 1rem;
     object-fit: contain;
+    border-radius: 10px;
+    background: transparent;
 }
 
 .footer-social {
@@ -819,6 +823,7 @@ img {
     
     .footer-logo {
         margin: 0 auto 1.5rem;
+        background: transparent;
     }
     
     .footer-social {
@@ -1148,6 +1153,7 @@ button.submit-form:hover {
         max-height: 80px;
         margin: 0;
         z-index: 10;
+        background: transparent;
     }
 
     #nav-links {
@@ -1306,6 +1312,7 @@ button.submit-form:hover {
     .footer-logo {
         max-height: 65px;
         order: 1;
+        background: transparent;
     }
     
     .social-links {
@@ -1814,6 +1821,7 @@ button.submit-form:hover {
 @media (max-width: 480px) {
     #logo {
         max-height: 60px;
+        background: transparent;
     }
     
     #hero {

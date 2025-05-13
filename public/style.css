@@ -2440,6 +2440,9 @@ h3 i {
     overflow: hidden;
     transition: all 0.3s ease;
     border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    height: 420px; /* גובה קבוע לכל הכרטיסיות */
 }
 
 .pricing-card:hover {
@@ -2453,6 +2456,7 @@ h3 i {
     padding: 20px;
     text-align: center;
     position: relative;
+    flex: 0 0 auto; /* הגודל לא ישתנה באופן אוטומטי */
 }
 
 .pricing-header h4 {
@@ -2471,6 +2475,9 @@ h3 i {
 
 .pricing-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* התוכן ימלא את שאר המקום בכרטיסיה */
 }
 
 .pricing-content p {
@@ -2492,6 +2499,7 @@ h3 i {
     list-style: none;
     padding: 0;
     margin: 20px 0 0 0;
+    flex: 1;
 }
 
 .pricing-features li {
@@ -2553,6 +2561,7 @@ h3 i {
         width: 100%;
         max-width: 320px;
         margin-bottom: 20px;
+        height: auto; /* במובייל מאפשרים גובה גמיש לפי התוכן */
     }
 }
 
@@ -2587,5 +2596,40 @@ h3 i {
 @media (max-width: 768px) {
     #header {
         background-color: rgba(235, 248, 255, 0.85); /* תכלת עדין מאוד במובייל */
+    }
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 15px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px;
+    scroll-snap-type: x mandatory; /* לגלילה חלקה במובייל */
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 8px;
+        width: 98%;
+        padding: 10px 0;
+        overflow-x: auto; /* לאפשר גלילה אופקית במקרה הצורך */
+        -webkit-overflow-scrolling: touch; /* גלילה חלקה במכשירי iOS */
+    }
+    
+    .gallery-item {
+        height: 140px;
+        aspect-ratio: 1/1; /* יחס ריבועי במובייל */
+        scroll-snap-align: start; /* לשיפור הגלילה */
+        margin-bottom: 5px;
+    }
+    
+    .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
     }
 }

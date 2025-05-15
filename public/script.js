@@ -41,6 +41,13 @@ function initFaqAccordion() {
     const faqItems = document.querySelectorAll('#faq .accordion-item, .faq-accordion .accordion-item');
     console.log(`Found ${faqItems.length} FAQ items:`, faqItems);
     
+    if (faqItems.length === 0) {
+        console.error('No FAQ accordion items found! DOM might not be ready yet.');
+        // נסה לבצע אתחול שוב אחרי השהייה קצרה
+        setTimeout(initFaqAccordion, 500);
+        return;
+    }
+    
     faqItems.forEach((item, index) => {
         const header = item.querySelector('.accordion-header');
         if (header) {
@@ -80,6 +87,14 @@ function initProgramAccordion() {
     if (programSection) {
         const programItems = programSection.querySelectorAll('.accordion-item');
         console.log(`Found ${programItems.length} Program items:`, programItems);
+        
+        if (programItems.length === 0) {
+            console.error('No Program accordion items found! DOM might not be ready yet.');
+            // נסה לבצע אתחול שוב אחרי השהייה קצרה
+            setTimeout(initProgramAccordion, 500);
+            return;
+        }
+        
         programItems.forEach((item, index) => {
             const header = item.querySelector('.accordion-header');
             if (header) {
@@ -113,6 +128,8 @@ function initProgramAccordion() {
         });
     } else {
         console.error('Program section not found');
+        // נסה לבצע אתחול שוב אחרי השהייה קצרה
+        setTimeout(initProgramAccordion, 500);
     }
 }
 

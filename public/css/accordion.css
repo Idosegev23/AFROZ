@@ -18,6 +18,17 @@
 .accordion-header {
     cursor: pointer;
     background: linear-gradient(to left, rgba(148, 210, 189, 0.1), rgba(255, 255, 255, 0));
+    padding: 1.5rem 2rem; /* פדינג אחיד לכותרות */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #005f73;
 }
 
 .accordion-header:hover {
@@ -35,21 +46,61 @@
 }
 
 /* כדי לוודא שהסגנון יחול גם על שני סוגי האקורדיונים */
-.program-accordion .accordion-item, .faq-accordion .accordion-item {
+.program-accordion .accordion-item, 
+.faq-accordion .accordion-item {
     border: 1px solid #8FB6D9;
     border-radius: 8px;
     margin-bottom: 15px;
     overflow: hidden;
     transition: all 0.3s ease;
     background-color: white;
+    width: 100%; /* רוחב מלא */
+    max-width: 900px; /* רוחב מקסימלי אחיד */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.program-accordion .accordion-item:hover, .faq-accordion .accordion-item:hover {
+.program-accordion .accordion-item:hover, 
+.faq-accordion .accordion-item:hover {
     box-shadow: 0 5px 15px rgba(86, 131, 191, 0.15);
     border-color: #D9A443;
 }
 
 /* ודא שכל הסגנונות באקורדיונים יחולו באופן אחיד */
-.program-accordion, .faq-accordion {
+.program-accordion, 
+.faq-accordion {
     margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px; /* רוחב מקסימלי אחיד */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* וידוא שהתוכן של האקורדיון מעוצב באופן אחיד */
+.accordion-content ul {
+    padding-right: 1.5rem;
+    margin: 1rem 0;
+}
+
+.accordion-content p {
+    margin: 1rem 0;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .accordion-header {
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.5rem;
+    }
+    
+    .accordion-item.active .accordion-content {
+        padding: 1rem 1.5rem 1.5rem;
+    }
 } 

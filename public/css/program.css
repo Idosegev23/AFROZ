@@ -280,20 +280,14 @@
     color: white;
 }
 
-#program #fullProgram { /* This likely refers to the new accordion section */
-    margin-top: 600px; /* May need adjustment after removing old timeline */
+#program #fullProgram { /* אזור האקורדיונים */
+    margin-top: 600px; /* יתכן שנדרש התאמה לאחר הסרת הציר הזמן הישן */
 }
 
-/* Program Accordion (New Style) */
-.program-accordion {
-    max-width: 800px;
-    margin: 2rem auto;
-}
+/* הערה: סגנונות האקורדיון הועברו לקובץ accordion.css */
+/* הגדרות מיוחדות לתוכנית במידת הצורך מוגדרות כאן ספציפית */
 
-/* Using general .accordion-item, .accordion-header, .accordion-content, .accordion-icon from base or components.css */
-/* If these need to be specific to Program Accordion, define them here with a more specific selector e.g. .program-accordion .accordion-item */
-
-/* Responsive Styles for Program Section */
+/* מדיה קוורי לסקשן התוכנית */
 @media (max-width: 768px) {
     /* Program Timeline (New Style) */
     #program .timeline-item {
@@ -313,10 +307,9 @@
         transform: scale(0.7) translateY(-100px);
         margin-bottom: -200px;
     }
-    #program #fullProgram { /* Likely refers to new accordion section */
+    #program #fullProgram { /* האקורדיון החדש */
         margin-top: 400px;
     }
 
-    /* Program Accordion specific mobile styles (if any, beyond general accordion styles) */
-    /* .program-accordion .accordion-header { ... } */
+    /* הערה: סגנונות אקורדיון למובייל הועברו לקובץ accordion.css */
 } 

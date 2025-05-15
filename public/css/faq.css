@@ -1,4 +1,11 @@
 /* FAQ Section */
+#faq {
+    position: relative;
+}
+
+/* הערה: רוב הסגנונות של .faq-item הועברו ל-accordion.css */
+/* כאן נשארים רק סגנונות ייחודיים לשאלות נפוצות */
+
 #faq .faq-item {
     border: 1px solid #8FB6D9; /* New color: desert-and-sea-2 */
     border-radius: 8px;
@@ -55,26 +62,18 @@
     padding: 1rem 2rem 2rem; /* Restore padding when open */
 }
 
-/* Shared Accordion Styles (if applicable to FAQ) */
-/* If FAQ uses the same .accordion-item, .accordion-header, .accordion-content structure */
-/* Otherwise, these are specific to FAQ */
+/* הערה: סגנונות משותפים של אקורדיון הועברו ל-accordion.css */
 
 /* Responsive Styles for FAQ */
 @media (max-width: 768px) {
-    /* FAQ & Program Accordion (Shared Styles adjustments if they are indeed shared) */
-    /* If FAQ has its own structure, these are FAQ specific mobile styles */
-    #faq .faq-question { /* Specific to FAQ if not merged with accordion */
+    #faq .faq-question {
         font-size: 1.1rem;
-        padding-right: 20px; /* Adjust for icon */
+        padding-right: 20px;
     }
+    
     #faq .faq-answer {
         font-size: 0.95rem;
     }
-
-    /* If FAQ uses general accordion styles that were moved: */
-    /* .accordion-header { padding: 1.2rem 1.5rem; } */
-    /* .accordion-header h3 { font-size: 1.1rem; } */
-    /* .accordion-item.active .accordion-content { padding: 1rem 1.5rem 1.5rem; } */
 }
 
 @media (max-width: 480px) {

@@ -15,7 +15,7 @@
 
 .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 20;
     padding: 1rem;
     max-width: 800px;
     margin: 0 auto;
@@ -62,7 +62,7 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    overflow: hidden; /* מונע גלישה של הווידאו */
+    overflow: hidden;
 }
 
 #bg-video {
@@ -73,7 +73,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.7); /* הכהיית הוידאו מעט להבלטת הטקסט */
+    filter: brightness(0.65);
 }
 
 .fallback-image {
@@ -84,7 +84,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
+    filter: brightness(0.65);
 }
 
 .cta-button {
@@ -105,7 +105,7 @@
     cursor: pointer;
     font-size: 1rem;
     backdrop-filter: blur(5px);
-    z-index: 15;
+    z-index: 25;
     transition: all 0.3s ease;
     font-family: 'Heebo', sans-serif;
 }
@@ -114,14 +114,14 @@
     background: rgba(255,255,255,0.4);
 }
 
-/* אנימציה של המדבר */
+/* אנימציה של המדבר - שכבה מעל הוידאו */
 .desert-animation {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 30%;
-    z-index: 2;
+    height: 100%;
+    z-index: 10;
     pointer-events: none;
 }
 
@@ -130,8 +130,9 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(194, 178, 128, 0.3) 0%, transparent 100%);
+    height: 40%;
+    background: linear-gradient(to top, rgba(215, 198, 148, 0.25) 0%, transparent 100%);
+    z-index: 10;
 }
 
 .sand-wave {
@@ -139,9 +140,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(to top, rgba(194, 178, 128, 0.2) 0%, transparent 100%);
-    animation: sand-wave 10s infinite alternate ease-in-out;
+    height: 60%;
+    background: linear-gradient(to top, rgba(215, 198, 148, 0.2) 0%, transparent 100%);
+    animation: sand-wave 15s infinite alternate ease-in-out;
+    z-index: 11;
 }
 
 .heat-haze {
@@ -150,8 +152,65 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(255,255,255,0.05) 100%);
-    z-index: 3;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(255,255,255,0.03) 100%);
+    z-index: 12;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* שכבות נוספות של החול */
+.dune-layer-1, 
+.dune-layer-2, 
+.dune-layer-3 {
+    position: absolute;
+    width: 100%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    mix-blend-mode: overlay;
+}
+
+.dune-layer-1 {
+    height: 25%;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C100,70 200,100 300,90 C400,80 500,10 600,20 C700,30 800,100 900,90 C1000,80 1100,30 1200,30 L1200,120 L0,120 Z' fill='rgba(215, 198, 148, 0.6)'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    animation: dune-move-1 20s infinite alternate ease-in-out;
+    z-index: 13;
+    opacity: 0.6;
+}
+
+.dune-layer-2 {
+    height: 20%;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,40 300,20 450,40 C600,60 750,100 900,80 C1050,60 1150,40 1200,60 L1200,120 L0,120 Z' fill='rgba(215, 198, 148, 0.5)'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    animation: dune-move-2 25s infinite alternate ease-in-out;
+    z-index: 14;
+    opacity: 0.5;
+}
+
+.dune-layer-3 {
+    height: 15%;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C150,80 300,60 450,70 C600,80 750,100 900,90 C1050,80 1150,90 1200,100 L1200,120 L0,120 Z' fill='rgba(215, 198, 148, 0.7)'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    animation: dune-move-3 30s infinite alternate ease-in-out;
+    z-index: 15;
+    opacity: 0.7;
+}
+
+/* אפקט חדש - חלקיקי אבק מרחף */
+.dust-particle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='rgba(255,255,255,0.1)'%3E%3Ccircle cx='100' cy='100' r='1' /%3E%3Ccircle cx='200' cy='50' r='0.7' /%3E%3Ccircle cx='300' cy='150' r='1.2' /%3E%3Ccircle cx='150' cy='250' r='0.9' /%3E%3Ccircle cx='250' cy='300' r='0.8' /%3E%3Ccircle cx='50' cy='200' r='1.1' /%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 16;
+    animation: dust-float 60s linear infinite;
+    mix-blend-mode: screen;
     pointer-events: none;
 }
 
@@ -161,6 +220,42 @@
     }
     100% {
         transform: translateX(5%) scale(1);
+    }
+}
+
+@keyframes dune-move-1 {
+    0% {
+        transform: translateX(-4%) translateY(5%);
+    }
+    100% {
+        transform: translateX(4%) translateY(0%);
+    }
+}
+
+@keyframes dune-move-2 {
+    0% {
+        transform: translateX(3%) translateY(3%);
+    }
+    100% {
+        transform: translateX(-3%) translateY(0%);
+    }
+}
+
+@keyframes dune-move-3 {
+    0% {
+        transform: translateX(-2%) translateY(0%);
+    }
+    100% {
+        transform: translateX(2%) translateY(2%);
+    }
+}
+
+@keyframes dust-float {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 1000px 500px;
     }
 }
 
@@ -187,5 +282,18 @@
     
     .fallback-image {
         display: none;
+    }
+    
+    /* הדיונות גם במובייל - לא צריך שינוי בגובה כי כעת הם על כל הגובה */
+    .dune-layer-1 {
+        height: 35%;
+    }
+    
+    .dune-layer-2 {
+        height: 30%;
+    }
+    
+    .dune-layer-3 {
+        height: 25%;
     }
 } 

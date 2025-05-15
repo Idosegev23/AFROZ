@@ -232,17 +232,17 @@ img {
 /* Buttons */
 .cta-button, .cta-button-secondary {
     display: inline-block;
-    padding: 1rem 3rem; /* הגדלת רוחב הכפתור */
+    padding: 1rem 3rem;
     border: none;
-    border-radius: 30px; /* More rounded buttons */
+    border-radius: 30px;
     font-weight: 700;
-    font-size: 1.2rem; /* הגדלת גודל הטקסט בכפתורים */
+    font-size: 1.4rem; /* הגדלת גודל הטקסט בכפתורים */
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
     margin: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    min-width: 250px; /* קביעת רוחב מינימלי */
+    min-width: 250px;
 }
 
 .cta-button {
@@ -263,7 +263,7 @@ img {
     border: 1px solid rgba(230, 126, 34, 0.7);
     padding: 0.7rem 1.5rem;
     border-radius: 5px;
-    font-size: 0.95rem;
+    font-size: 1.1rem; /* הגדלת גודל הטקסט בכפתורי משנה */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -954,22 +954,21 @@ img {
 }
 
 button.submit-form {
-    background-color: #e67e22;
+    background-color: #3CAEA3;
     color: white;
     border: none;
-    padding: 0.9rem 1.8rem;
     border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 1.1rem; /* הגדלת גודל הטקסט בכפתור השליחה */
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-family: 'Heebo', sans-serif;
-    font-size: 1rem;
-    display: block;
-    margin: 1.5rem 0 0.5rem auto;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
 }
 
 button.submit-form:hover {
-    background-color: #d35400;
+    background-color: #2C8C83;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -1060,15 +1059,9 @@ button.submit-form:hover {
 #contact-popup button.submit-form {
     background-color: #3CAEA3;
     color: white;
-    border: none;
+    padding: 12px 20px;
+    font-size: 1.1rem; /* הגדלת גודל הטקסט בכפתור השליחה בפופאפ */
     border-radius: 30px;
-    padding: 12px 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: auto;
-    margin: 1rem auto;
-    display: block;
 }
 
 #contact-popup button.submit-form:hover {
@@ -2631,5 +2624,22 @@ h3 i {
         height: 100%;
         object-fit: cover;
         border-radius: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Buttons */
+    .cta-button, .cta-button-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem; /* הגדלת גודל הטקסט בכפתורים במובייל */
+    }
+}
+
+@media (hover: none) {
+    /* ... existing code ... */
+    
+    .cta-button, .cta-button-secondary {
+        padding: 0.7rem 1.3rem;
+        font-size: 1rem; /* הגדלת גודל הטקסט בכפתורים במובייל קטן יותר */
     }
 }

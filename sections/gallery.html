@@ -54,9 +54,10 @@
     
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
+        <div class="close-lightbox">&times;</div>
         <img class="lightbox-content" id="lightbox-img">
         <div class="lightbox-caption"></div>
+        <div class="lightbox-counter"></div>
         <a class="lightbox-prev">&#10094;</a>
         <a class="lightbox-next">&#10095;</a>
     </div>
@@ -73,6 +74,7 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxCaption = document.querySelector('.lightbox-caption');
+            const lightboxCounter = document.querySelector('.lightbox-counter');
             
             if (lightbox && lightboxImg && lightboxCaption) {
                 lightboxImg.addEventListener('load', function() {
@@ -82,6 +84,11 @@
                         lightboxCaption.style.display = 'block';
                     } else {
                         lightboxCaption.style.display = 'none';
+                    }
+                    
+                    // עדכון מונה התמונות
+                    if (lightboxCounter && typeof currentImageIndex !== 'undefined' && galleryImages && galleryImages.length) {
+                        lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
                     }
                 });
             }

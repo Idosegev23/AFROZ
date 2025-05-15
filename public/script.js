@@ -430,6 +430,7 @@ function openLightbox(imageSrc, index) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.querySelector('.lightbox-caption');
+    const lightboxCounter = document.querySelector('.lightbox-counter');
     
     // Set the current image and index
     lightboxImg.src = imageSrc;
@@ -446,6 +447,11 @@ function openLightbox(imageSrc, index) {
             } else {
                 lightboxCaption.style.display = 'none';
             }
+        }
+        
+        // עדכון מונה התמונות
+        if (lightboxCounter) {
+            lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
         }
     } catch (e) {
         console.log('Could not find original image alt text');
@@ -473,6 +479,7 @@ function changeImage(direction) {
     // Update the image source
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.querySelector('.lightbox-caption');
+    const lightboxCounter = document.querySelector('.lightbox-counter');
     const newSrc = galleryImages[currentImageIndex];
     
     lightboxImg.src = newSrc;
@@ -488,6 +495,11 @@ function changeImage(direction) {
             } else {
                 lightboxCaption.style.display = 'none';
             }
+        }
+        
+        // עדכון מונה התמונות
+        if (lightboxCounter) {
+            lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
         }
     } catch (e) {
         console.log('Could not find original image alt text for new image');

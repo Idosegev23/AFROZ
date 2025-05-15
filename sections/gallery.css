@@ -8,6 +8,14 @@
     max-width: 1200px;
 }
 
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin: 10px 0 20px;
+    font-weight: 500;
+}
+
 .gallery-item {
     overflow: hidden;
     border-radius: 8px;
@@ -129,43 +137,123 @@
     background-color: rgba(60, 174, 163, 0.7);
 }
 
-@media (max-width: 768px) {
+/* תצוגת טאבלט */
+@media (max-width: 1024px) {
     .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
-        width: 95%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 12px;
+        width: 92%;
     }
     
     .gallery-item {
-        height: 150px;
-        aspect-ratio: 1/1; /* יחס ריבועי במובייל לשמירה על אחידות */
+        height: 200px;
+    }
+}
+
+/* תצוגת מובייל גדול */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 8px;
+        width: 96%;
+        margin: 15px auto;
+    }
+    
+    .gallery-item {
+        height: 110px;
+        border-radius: 6px;
     }
     
     .lightbox-content {
         max-width: 95%;
+        max-height: 80vh;
     }
     
     .close-lightbox {
         font-size: 35px;
-        top: 10px;
+        top: 15px;
         right: 25px;
     }
     
     .lightbox-prev, .lightbox-next {
         width: 40px;
         height: 40px;
-        font-size: 25px;
+        font-size: 24px;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .lightbox {
+        padding: 15px;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
     }
 }
 
-@media (max-width: 480px) {
+/* תצוגת מובייל בינוני */
+@media (max-width: 650px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 6px;
+        width: 96%;
+    }
+    
     .gallery-item {
-        height: 120px;
+        height: 150px;
+    }
+}
+
+/* תצוגת מובייל קטן */
+@media (max-width: 480px) {
+    .gallery-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 92%;
+    }
+    
+    .gallery-item {
+        height: 220px;
+        border-radius: 8px;
+        margin: 0 auto;
+        width: 100%;
     }
     
     .lightbox-prev, .lightbox-next {
         width: 35px;
         height: 35px;
-        font-size: 20px;
+        font-size: 18px;
+    }
+    
+    .close-lightbox {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
+    }
+    
+    .lightbox {
+        padding: 10px;
+    }
+    
+    .lightbox-content {
+        border-width: 1px;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+}
+
+/* תצוגת מובייל קטן מאוד */
+@media (max-width: 360px) {
+    .gallery-item {
+        height: 180px;
+    }
+    
+    .gallery-grid {
+        width: 90%;
     }
 } 

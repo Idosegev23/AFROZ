@@ -2,51 +2,53 @@
     <h2>גלריה</h2>
     <p style="text-align: center;">תמונות של מרכז אפרוז, החוויות, המדיטציות, החדרים והחוף הקסום - הרגעים האמיתיים של הרטריט</p>
     
+    <div class="section-subtitle">לחצו על התמונות להגדלה</div>
+    
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox('/images/gallery/1.jpg', 0)">
-            <img src="/images/gallery/1.jpg" alt="תמונה 1" loading="lazy" />
+            <img src="/images/gallery/1.jpg" alt="חוף הים באפרוז" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/2.jpg', 1)">
-            <img src="/images/gallery/2.jpg" alt="תמונה 2" loading="lazy" />
+            <img src="/images/gallery/2.jpg" alt="אולם המדיטציה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/3.jpg', 2)">
-            <img src="/images/gallery/3.jpg" alt="תמונה 3" loading="lazy" />
+            <img src="/images/gallery/3.jpg" alt="נוף מהמרפסת" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/4.jpg', 3)">
-            <img src="/images/gallery/4.jpg" alt="תמונה 4" loading="lazy" />
+            <img src="/images/gallery/4.jpg" alt="פינת ישיבה בגינה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/5.jpg', 4)">
-            <img src="/images/gallery/5.jpg" alt="תמונה 5" loading="lazy" />
+            <img src="/images/gallery/5.jpg" alt="עבודה עם המנחה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/6.jpg', 5)">
-            <img src="/images/gallery/6.jpg" alt="תמונה 6" loading="lazy" />
+            <img src="/images/gallery/6.jpg" alt="ארוחה משותפת" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/7.jpg', 6)">
-            <img src="/images/gallery/7.jpg" alt="תמונה 7" loading="lazy" />
+            <img src="/images/gallery/7.jpg" alt="מדיטציה בשקיעה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/8.jpg', 7)">
-            <img src="/images/gallery/8.jpg" alt="תמונה 8" loading="lazy" />
+            <img src="/images/gallery/8.jpg" alt="חדר במרכז" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/9.jpg', 8)">
-            <img src="/images/gallery/9.jpg" alt="תמונה 9" loading="lazy" />
+            <img src="/images/gallery/9.jpg" alt="רגע של שלווה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/10.jpg', 9)">
-            <img src="/images/gallery/10.jpg" alt="תמונה 10" loading="lazy" />
+            <img src="/images/gallery/10.jpg" alt="שביל הליכה בטבע" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/11.jpg', 10)">
-            <img src="/images/gallery/11.jpg" alt="תמונה 11" loading="lazy" />
+            <img src="/images/gallery/11.jpg" alt="שיחה בקבוצה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/12.jpg', 11)">
-            <img src="/images/gallery/12.jpg" alt="תמונה 12" loading="lazy" />
+            <img src="/images/gallery/12.jpg" alt="מבט מהגבעה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/13.jpg', 12)">
-            <img src="/images/gallery/13.jpg" alt="תמונה 13" loading="lazy" />
+            <img src="/images/gallery/13.jpg" alt="ריקוד ותנועה" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/14.jpg', 13)">
-            <img src="/images/gallery/14.jpg" alt="תמונה 14" loading="lazy" />
+            <img src="/images/gallery/14.jpg" alt="זריחה במרכז" loading="lazy" />
         </div>
         <div class="gallery-item" onclick="openLightbox('/images/gallery/15.jpg', 14)">
-            <img src="/images/gallery/15.jpg" alt="תמונה 15" loading="lazy" />
+            <img src="/images/gallery/15.jpg" alt="רגעי התבוננות" loading="lazy" />
         </div>
     </div>
     
@@ -58,4 +60,31 @@
         <a class="lightbox-prev">&#10094;</a>
         <a class="lightbox-next">&#10095;</a>
     </div>
+    
+    <!-- סקריפט מקומי לאתחול הלייטבוקס -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // וידוא שהלייטבוקס מאותחל
+            if (typeof setupLightbox === 'function') {
+                setupLightbox();
+            }
+            
+            // עדכון כיתוב עבור התמונות בלייטבוקס
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            
+            if (lightbox && lightboxImg && lightboxCaption) {
+                lightboxImg.addEventListener('load', function() {
+                    const imgAlt = this.getAttribute('alt') || '';
+                    if (imgAlt) {
+                        lightboxCaption.textContent = imgAlt;
+                        lightboxCaption.style.display = 'block';
+                    } else {
+                        lightboxCaption.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </section> 

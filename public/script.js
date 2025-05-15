@@ -429,10 +429,27 @@ function openLightbox(imageSrc, index) {
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
     
     // Set the current image and index
     lightboxImg.src = imageSrc;
     currentImageIndex = index;
+    
+    // נסה למצוא את האלמנט img המקורי כדי לקחת ממנו את התיאור
+    try {
+        const originalImageElement = document.querySelector(`img[src="${imageSrc}"]`);
+        if (originalImageElement && lightboxCaption) {
+            const altText = originalImageElement.getAttribute('alt');
+            if (altText && altText.trim() !== '') {
+                lightboxCaption.textContent = altText;
+                lightboxCaption.style.display = 'block';
+            } else {
+                lightboxCaption.style.display = 'none';
+            }
+        }
+    } catch (e) {
+        console.log('Could not find original image alt text');
+    }
     
     // Display the lightbox
     lightbox.style.display = 'block';
@@ -455,7 +472,26 @@ function changeImage(direction) {
     
     // Update the image source
     const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = galleryImages[currentImageIndex];
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const newSrc = galleryImages[currentImageIndex];
+    
+    lightboxImg.src = newSrc;
+    
+    // עדכון הכיתוב לתמונה החדשה
+    try {
+        const originalImageElement = document.querySelector(`img[src="${newSrc}"]`);
+        if (originalImageElement && lightboxCaption) {
+            const altText = originalImageElement.getAttribute('alt');
+            if (altText && altText.trim() !== '') {
+                lightboxCaption.textContent = altText;
+                lightboxCaption.style.display = 'block';
+            } else {
+                lightboxCaption.style.display = 'none';
+            }
+        }
+    } catch (e) {
+        console.log('Could not find original image alt text for new image');
+    }
 }
 
 // פונקציה שתהיה נגישה חיצונית לאתחול הלייטבוקס

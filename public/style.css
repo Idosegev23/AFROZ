@@ -100,8 +100,8 @@ img {
 }
 
 #logo {
-    max-height: 70px;
-    max-width: 70px;
+    max-height: 60px; /* הקטנת הלוגו מ-70px ל-60px */
+    max-width: 60px; /* הקטנת הלוגו מ-70px ל-60px */
     width: auto;
     height: auto;
     object-fit: contain;
@@ -1338,8 +1338,8 @@ button.submit-form:hover {
 
 @media (max-width: 768px) {
     #logo {
-        max-height: 45px !important; /* חשיבות גבוהה למניעת דריסה */
-        max-width: 45px !important;
+        max-height: 40px !important; /* הקטנת הלוגו מ-45px ל-40px */
+        max-width: 40px !important;
         margin: 0;
         z-index: 10;
         background: transparent;
@@ -1348,8 +1348,8 @@ button.submit-form:hover {
 
 @media (max-width: 480px) {
     #logo {
-        max-height: 35px !important; /* חשיבות גבוהה למניעת דריסה */
-        max-width: 35px !important;
+        max-height: 30px !important; /* הקטנת הלוגו מ-35px ל-30px */
+        max-width: 30px !important;
         background: transparent;
     }
 }

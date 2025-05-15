@@ -318,7 +318,11 @@
                 // טעינת שאר הסקציות
                 Promise.all(sections.slice(1).map(loadSection)).then(() => {
                     // Ensure all scripts from dynamically loaded content are processed before running this
-                    initializePageSpecificScripts();
+                    setTimeout(() => {
+                        console.log('Running page specific scripts after short delay to ensure content is loaded');
+                        forceRefreshCSS(); // ריענון ה-CSS אחרי טעינת התוכן
+                        initializePageSpecificScripts();
+                    }, 200);
                 });
             });
 
@@ -376,9 +380,13 @@
                 if (typeof setupLightbox === 'function') {
                     setupLightbox(); // Assuming gallery script defines and calls this, or it's in script.js
                 } 
-                // Initialize accordion for program and faq if their scripts are now separate
+                
+                // Initialize accordion for program and faq
+                console.log("Calling initializeAccordions...");
                 if (typeof initializeAccordions === 'function') { 
-                    initializeAccordions(); // Assuming relevant script defines this
+                    initializeAccordions(); // קריאה לפונקציה שמאתחלת את האקורדיונים
+                } else {
+                    console.error("initializeAccordions function not found!");
                 }
             }
         });

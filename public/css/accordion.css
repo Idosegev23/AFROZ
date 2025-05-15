@@ -1,10 +1,11 @@
 /* Accordion Styles */
 .accordion-content {
+    display: block;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    padding: 0 2rem; /* אין צורך בריפוד אנכי כשסגור */
-    transition: all 0.4s ease;
+    padding: 0 2rem;
+    transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, padding 0.6s ease-in-out;
 }
 
 .accordion-item.active .accordion-content {
@@ -13,9 +14,39 @@
     padding: 1rem 2rem 2rem; /* החזרת הריפוד כשפתוח */
 }
 
+/* סגנון נוסף שיוצר אפקטים ויזואליים */
+.accordion-header {
+    cursor: pointer;
+    background: linear-gradient(to left, rgba(148, 210, 189, 0.1), rgba(255, 255, 255, 0));
+}
+
+.accordion-header:hover {
+    background-color: rgba(148, 210, 189, 0.15);
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    color: #94d2bd;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
 /* כדי לוודא שהסגנון יחול גם על שני סוגי האקורדיונים */
 .program-accordion .accordion-item, .faq-accordion .accordion-item {
+    border: 1px solid #8FB6D9;
+    border-radius: 8px;
     margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.program-accordion .accordion-item:hover, .faq-accordion .accordion-item:hover {
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.15);
+    border-color: #D9A443;
 }
 
 /* ודא שכל הסגנונות באקורדיונים יחולו באופן אחיד */

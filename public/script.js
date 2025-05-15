@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
-    closeAllAccordions(); // סגירת כל האקורדיונים בתחילה
     initMobileMenu();
-    initFaqAccordion();
-    initProgramAccordion();
     initPopups();
     initGalleryCarousel();
     initLocalContactForm();
@@ -42,7 +39,7 @@ function initMobileMenu() {
 function initFaqAccordion() {
     console.log('Initializing FAQ Accordion');
     const faqItems = document.querySelectorAll('#faq .accordion-item, .faq-accordion .accordion-item');
-    console.log(`Found ${faqItems.length} FAQ items`);
+    console.log(`Found ${faqItems.length} FAQ items:`, faqItems);
     
     faqItems.forEach((item, index) => {
         const header = item.querySelector('.accordion-header');
@@ -82,7 +79,7 @@ function initProgramAccordion() {
     const programSection = document.getElementById('program');
     if (programSection) {
         const programItems = programSection.querySelectorAll('.accordion-item');
-        console.log(`Found ${programItems.length} Program items`);
+        console.log(`Found ${programItems.length} Program items:`, programItems);
         programItems.forEach((item, index) => {
             const header = item.querySelector('.accordion-header');
             if (header) {
@@ -492,4 +489,13 @@ function closeAllAccordions() {
             icon.textContent = '+';
         }
     });
+}
+
+// פונקציה חדשה שתקרא אחרי טעינת תוכן דינמית
+// מוגדרת כגלובלית בלי var/let/const כדי שתהיה זמינה גם ל-index.html
+function initializeAccordions() {
+    console.log('Initializing accordions after dynamic content loaded');
+    closeAllAccordions();
+    initFaqAccordion();
+    initProgramAccordion();
 } 

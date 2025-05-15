@@ -1,0 +1,147 @@
+/* סקציית הלינה - עיצובים ספציפיים */
+#accommodation {
+    padding: 3rem 0;
+    background: linear-gradient(to bottom, #ffffff, #f8fbfb);
+}
+
+#accommodation h2 {
+    color: #3CAEA3;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+#accommodation h2:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #D9A443;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+#accommodation h3 {
+    color: #3CAEA3;
+    margin: 2.5rem 0 1.2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#accommodation h3 i {
+    margin-left: 0.5rem;
+    color: #D9A443;
+}
+
+.intro-message {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    background-color: rgba(60, 174, 163, 0.05);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-bottom: 3px solid #3CAEA3;
+}
+
+/* עיצוב כרטיסיות המחירים */
+#accommodation .pricing-cards {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+#accommodation .pricing-card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#accommodation .pricing-card:hover {
+    transform: translateY(-8px);
+}
+
+#accommodation .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    z-index: -1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#accommodation .pricing-card:hover::before {
+    opacity: 1;
+}
+
+/* סגנונות ספציפיים לכרטיסיה הראשונה */
+#accommodation .pricing-card:nth-child(1) .pricing-header {
+    background: linear-gradient(135deg, #3CAEA3, #2A8C9A);
+}
+
+/* סגנונות ספציפיים לכרטיסיה השנייה */
+#accommodation .pricing-card:nth-child(2) .pricing-header {
+    background: linear-gradient(135deg, #5684BF, #3A5A8B);
+}
+
+/* סגנונות ספציפיים לכרטיסיה השלישית */
+#accommodation .pricing-card:nth-child(3) .pricing-header {
+    background: linear-gradient(135deg, #D9A443, #C08E35);
+}
+
+/* עיצובים לתיאור מה כלול */
+.cancellation-section {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    border-right: 4px solid #D9A443;
+}
+
+/* כפתור הזמנה */
+#accommodation .cta-container {
+    text-align: center;
+    margin: 3rem 0 1rem;
+}
+
+#accommodation .cta-button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background-color: #3CAEA3;
+    transition: all 0.3s ease;
+}
+
+#accommodation .cta-button:hover {
+    background-color: #D9A443;
+    transform: scale(1.05);
+}
+
+/* מדיה קוורי */
+@media (max-width: 768px) {
+    #accommodation {
+        padding: 2rem 1rem;
+    }
+    
+    #accommodation .pricing-cards {
+        gap: 30px;
+    }
+    
+    #accommodation .pricing-card {
+        width: 90%;
+        max-width: 350px;
+    }
+    
+    .intro-message {
+        padding: 1rem;
+    }
+    
+    .cancellation-section {
+        padding: 1.5rem;
+    }
+}

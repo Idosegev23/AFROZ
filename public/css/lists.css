@@ -83,19 +83,29 @@
 .pricing-notes ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+.pricing-notes h4 {
+    color: #3CAEA3;
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 1.2rem;
 }
 
 .pricing-notes li {
-    margin: 10px 0;
-    padding-right: 30px; /* Space for icon */
+    margin-bottom: 12px;
     position: relative;
+    padding-right: 28px;
+    line-height: 1.5;
 }
 
-.pricing-notes li i { /* For icons like info or warning */
+.pricing-notes li i {
     position: absolute;
     right: 0;
     top: 3px;
-    color: #3CAEA3; /* CTA color for icons */
+    color: #D9A443;
+    font-size: 18px;
 }
 
 /* Footer Links List (from .footer-links) */
@@ -137,4 +147,59 @@
     .popup-content p, .popup-content li { /* This was a general rule for popups */
         font-size: 0.95rem;
     }
+    
+    .accommodation-options li {
+        padding: 12px 35px 12px 12px;
+    }
+    
+    .cancellation-policy li {
+        padding: 10px;
+    }
+}
+
+/* תוספת סגנונות לרשימות הכרטיסים והמחירים */
+.cancellation-policy {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.cancellation-policy li {
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    border-right: 3px solid #3CAEA3;
+    font-weight: 500;
+}
+
+.accommodation-options {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.accommodation-options li {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(60, 174, 163, 0.05);
+    border-radius: 10px;
+    position: relative;
+    padding-right: 30px;
+    transition: all 0.3s ease;
+}
+
+.accommodation-options li:before {
+    content: '\f058';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #3CAEA3;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.accommodation-options li:hover {
+    background-color: rgba(60, 174, 163, 0.1);
+    transform: translateX(-5px);
 } 

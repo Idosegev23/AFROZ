@@ -327,67 +327,19 @@
             });
 
             function initializePageSpecificScripts() {
-                // Original script content from index.html (popups, etc.)
-                // קישור לפופאפ המחירים מהפוטר
-                const pricingButtonFooter = document.getElementById('open-pricing-popup-footer');
-                if (pricingButtonFooter) {
-                    pricingButtonFooter.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        document.getElementById('pricing-popup').style.display = 'flex';
-                    });
-                }
+                // אתחול האקורדיונים לשאלות נפוצות ולתוכנית הריטריט
+                initFaqAccordion();
+                initProgramAccordion();
                 
-                // פופאפ לטופס יצירת קשר
-                const contactPopupBtn = document.getElementById('open-contact-popup');
-                const contactPopup = document.getElementById('contact-popup');
-                const closeContactBtn = document.getElementById('close-contact');
+                // עיצוב ופונקציונליות למדריכים בדף הנוכחי
+                setupFacilitatorImages();
                 
-                if (contactPopupBtn && contactPopup) {
-                    contactPopupBtn.addEventListener('click', function() {
-                        contactPopup.style.display = 'flex';
-                    });
-                    
-                    if (closeContactBtn) {
-                        closeContactBtn.addEventListener('click', function() {
-                            contactPopup.style.display = 'none';
-                        });
-                    }
-                    
-                    contactPopup.addEventListener('click', function(e) {
-                        if (e.target === contactPopup) {
-                            contactPopup.style.display = 'none';
-                        }
-                    });
-                }
-
-                // טיפול בטופס יצירת קשר בפופאפ
-                const contactForm = document.getElementById('local-contact-form');
-                if (contactForm) {
-                    contactForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        const successMessage = document.getElementById('contact-success-message');
-                        if (successMessage) {
-                            successMessage.style.display = 'block';
-                            contactForm.reset();
-                            setTimeout(function() {
-                                successMessage.style.display = 'none';
-                            }, 5000);
-                        }
-                    });
-                }
-
-                // Initialize other scripts that might depend on dynamically loaded content, e.g., gallery lightbox
-                if (typeof setupLightbox === 'function') {
-                    setupLightbox(); // Assuming gallery script defines and calls this, or it's in script.js
-                } 
+                // אתחול גלרית התמונות והלייטבוקס
+                initGalleryCarousel();
+                setupLightbox();
                 
-                // Initialize accordion for program and faq
-                console.log("Calling initializeAccordions...");
-                if (typeof initializeAccordions === 'function') { 
-                    initializeAccordions(); // קריאה לפונקציה שמאתחלת את האקורדיונים
-                } else {
-                    console.error("initializeAccordions function not found!");
-                }
+                // אתחול לספירה לאחור
+                setupCountdown();
             }
         });
     </script>

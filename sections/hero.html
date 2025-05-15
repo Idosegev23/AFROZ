@@ -21,9 +21,12 @@
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    function initHeroVideo() {
         const video = document.getElementById('bg-video');
         const fallbackImage = document.querySelector('.fallback-image');
+        
+        if (!video || !fallbackImage) return;
+        
         const isMobile = window.innerWidth <= 768;
         
         // בדיקת תמיכה בווידאו
@@ -86,5 +89,32 @@
         }, { threshold: 0.25 });
         
         observer.observe(video);
-    });
+    }
+    
+    // מאזין לטעינת התוכן הדינמי
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHeroVideo);
+    } else {
+        // אם ה-DOM כבר נטען (למשל בטעינה דינמית)
+        initHeroVideo();
+    }
+    
+    // קישור כפתור יצירת קשר בהירו
+    function initContactButton() {
+        const contactButton = document.getElementById('open-contact-popup-hero');
+        const contactPopup = document.getElementById('contact-popup');
+        
+        if (contactButton && contactPopup) {
+            contactButton.addEventListener('click', function() {
+                contactPopup.style.display = 'flex';
+            });
+        }
+    }
+    
+    // הפעלת פונקציית האתחול לכפתור יצירת קשר
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initContactButton);
+    } else {
+        setTimeout(initContactButton, 100);
+    }
 </script> 

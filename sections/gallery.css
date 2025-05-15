@@ -77,6 +77,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+/* עדכון: סגנון כפתור הסגירה מוצג רק עם לייטבוקס פתוח */
 .close-lightbox {
     position: fixed;
     top: 20px;
@@ -89,12 +90,17 @@
     z-index: 1001;
     width: 40px;
     height: 40px;
-    display: flex;
+    display: none; /* סגנון הסתרה כברירת מחדל */
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* הצגת כפתור הסגירה רק כאשר הלייטבוקס פתוח */
+.lightbox[style*="display: block"] .close-lightbox {
+    display: flex;
 }
 
 .close-lightbox:hover {
@@ -128,6 +134,7 @@
     z-index: 1001;
 }
 
+/* עדכון: כפתורי ניווט קדימה ואחורה מוצגים רק כאשר הלייטבוקס פתוח */
 .lightbox-prev, .lightbox-next {
     cursor: pointer;
     position: absolute;
@@ -142,12 +149,18 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    display: flex;
+    display: none; /* סגנון הסתרה כברירת מחדל */
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
     user-select: none;
     -webkit-user-select: none;
+}
+
+/* הצגת כפתורי ניווט רק כאשר הלייטבוקס פתוח */
+.lightbox[style*="display: block"] .lightbox-prev,
+.lightbox[style*="display: block"] .lightbox-next {
+    display: flex;
 }
 
 .lightbox-next {

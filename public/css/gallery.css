@@ -114,6 +114,12 @@
   right: 10px;
 }
 
+/* הוספת סגנון לאייקונים בלייטבוקס */
+.lightbox .fa {
+  font-size: 20px;
+  line-height: 1;
+}
+
 /* Responsive Styles for Galleries */
 @media (max-width: 768px) {
   /* Carousel Gallery - only for carousel */

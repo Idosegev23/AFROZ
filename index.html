@@ -153,6 +153,45 @@
                 max-width: 35px !important;
             }
         }
+
+        /* סגנון לכפתור הפעלת וידאו במובייל */
+        .video-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            background-color: rgba(60, 174, 163, 0.85);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 22px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-play-button:hover, .video-play-button:focus {
+            background-color: rgba(60, 174, 163, 1);
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-play-button i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .video-play-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -230,6 +269,18 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            overflow: hidden; /* מונע גלישה של הווידאו */
+        }
+        
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.8);
         }
         
         .fallback-image {
@@ -244,15 +295,88 @@
         
         @media (max-width: 768px) {
             #bg-video {
-                display: none;
+                display: block;
+                object-position: center;
+                min-height: 100vh;
+                min-width: 100vw;
+                width: 100%;
+                height: 100%;
             }
             
             .fallback-image {
-                display: block;
-                filter: brightness(0.7);
+                display: none;
             }
         }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById('bg-video');
+            const fallbackImage = document.querySelector('.fallback-image');
+            const isMobile = window.innerWidth <= 768;
+            
+            // בדיקת תמיכה בווידאו
+            const isVideoSupported = !!document.createElement('video').canPlayType;
+            
+            if (!isVideoSupported) {
+                // במקרה שהדפדפן לא תומך בווידאו
+                fallbackImage.style.display = 'block';
+                video.style.display = 'none';
+                return;
+            }
+            
+            // הוספת אירועים לטיפול בווידאו
+            video.addEventListener('error', function(e) {
+                console.log("שגיאת וידאו:", e);
+                fallbackImage.style.display = 'block';
+                video.style.display = 'none';
+            });
+            
+            video.addEventListener('loadeddata', function() {
+                // הווידאו נטען בהצלחה
+                video.style.display = 'block';
+                fallbackImage.style.display = 'none';
+            });
+            
+            // ניסיון לנגן את הווידאו
+            video.play().catch(function(error) {
+                console.log("אוטופליי נחסם:", error);
+                
+                if (error.name === "NotAllowedError") {
+                    // במקרה שהאוטופליי נחסם, נסתיר את הווידאו ונציג את התמונה
+                    fallbackImage.style.display = 'block';
+                    
+                    // נוסיף כפתור לצפייה בווידאו רק במובייל
+                    if (isMobile) {
+                        const playButton = document.createElement('button');
+                        playButton.innerHTML = '<i class="fas fa-play"></i> הפעל וידאו';
+                        playButton.className = 'video-play-button';
+                        document.querySelector('.hero-content').appendChild(playButton);
+                        
+                        playButton.addEventListener('click', function() {
+                            video.style.display = 'block';
+                            fallbackImage.style.display = 'none';
+                            video.play();
+                            playButton.remove();
+                        });
+                    }
+                }
+            });
+            
+            // אופטימיזציה - הפסק את הווידאו כשהוא לא בתצוגה (חוסך משאבים)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting && !video.paused) {
+                        video.pause();
+                    } else if (entry.isIntersecting && video.paused) {
+                        video.play().catch(e => console.log("לא ניתן לנגן וידאו:", e));
+                    }
+                });
+            }, { threshold: 0.25 });
+            
+            observer.observe(video);
+        });
+    </script>
 
     <!-- About Retreat Section -->
     <section id="what-awaits" class="content-section">

@@ -179,6 +179,6 @@
     #accommodation .pricing-card {
         width: 100%;
         max-width: 350px;
-        min-height: auto;
+        min-height: 500px;
     }
 }

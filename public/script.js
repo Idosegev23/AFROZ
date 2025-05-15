@@ -439,11 +439,11 @@ function changeImage(direction) {
     lightboxImg.src = galleryImages[currentImageIndex];
 }
 
-// Set up event listeners when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ... existing code ...
+// פונקציה שתהיה נגישה חיצונית לאתחול הלייטבוקס
+function setupLightbox() {
+    console.log('Setting up lightbox functionality');
     
-    // Lightbox functionality
+    // Initialize gallery images array
     initGalleryImages();
     
     const lightbox = document.getElementById('lightbox');
@@ -452,9 +452,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.querySelector('.lightbox-prev');
         const nextBtn = document.querySelector('.lightbox-next');
         
-        closeBtn.addEventListener('click', closeLightbox);
-        prevBtn.addEventListener('click', () => changeImage(-1));
-        nextBtn.addEventListener('click', () => changeImage(1));
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        if (prevBtn) prevBtn.addEventListener('click', () => changeImage(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => changeImage(1));
         
         // Close lightbox when clicking outside the image
         lightbox.addEventListener('click', function(event) {
@@ -475,7 +475,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+    } else {
+        console.error('Lightbox element not found');
     }
+}
+
+// Set up event listeners when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Lightbox functionality
+    setupLightbox();
+    
+    // Remove redundant code since setupLightbox now handles all lightbox initialization
+    // const lightbox = document.getElementById('lightbox');
+    // if (lightbox) {
+    //     const closeBtn = document.querySelector('.close-lightbox');
+    //     const prevBtn = document.querySelector('.lightbox-prev');
+    //     const nextBtn = document.querySelector('.lightbox-next');
+    //     
+    //     closeBtn.addEventListener('click', closeLightbox);
+    //     prevBtn.addEventListener('click', () => changeImage(-1));
+    //     nextBtn.addEventListener('click', () => changeImage(1));
+    //     
+    //     // Close lightbox when clicking outside the image
+    //     lightbox.addEventListener('click', function(event) {
+    //         if (event.target === lightbox) {
+    //             closeLightbox();
+    //         }
+    //     });
+    //     
+    //     // Handle keyboard navigation
+    //     document.addEventListener('keydown', function(event) {
+    //         if (lightbox.style.display === 'block') {
+    //             if (event.key === 'Escape') {
+    //                 closeLightbox();
+    //             } else if (event.key === 'ArrowLeft') {
+    //                 changeImage(-1);
+    //             } else if (event.key === 'ArrowRight') {
+    //                 changeImage(1);
+    //             }
+    //         }
+    //     });
+    // }
 });
 
 // פונקציה שסוגרת את כל האקורדיונים כשהדף נטען

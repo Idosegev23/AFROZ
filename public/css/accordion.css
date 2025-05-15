@@ -1,0 +1,24 @@
+/* Accordion Styles */
+.accordion-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 2rem; /* אין צורך בריפוד אנכי כשסגור */
+    transition: all 0.4s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px; /* גובה מרבי שיכול להכיל את התוכן */
+    opacity: 1;
+    padding: 1rem 2rem 2rem; /* החזרת הריפוד כשפתוח */
+}
+
+/* כדי לוודא שהסגנון יחול גם על שני סוגי האקורדיונים */
+.program-accordion .accordion-item, .faq-accordion .accordion-item {
+    margin-bottom: 15px;
+}
+
+/* ודא שכל הסגנונות באקורדיונים יחולו באופן אחיד */
+.program-accordion, .faq-accordion {
+    margin-bottom: 30px;
+} 

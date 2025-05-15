@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
+    closeAllAccordions(); // סגירת כל האקורדיונים בתחילה
     initMobileMenu();
     initFaqAccordion();
     initProgramAccordion();
@@ -40,7 +41,7 @@ function initMobileMenu() {
 
 function initFaqAccordion() {
     console.log('Initializing FAQ Accordion');
-    const faqItems = document.querySelectorAll('#faq .accordion-item');
+    const faqItems = document.querySelectorAll('#faq .accordion-item, .faq-accordion .accordion-item');
     console.log(`Found ${faqItems.length} FAQ items`);
     
     faqItems.forEach((item, index) => {
@@ -478,4 +479,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-}); 
+});
+
+// פונקציה שסוגרת את כל האקורדיונים כשהדף נטען
+function closeAllAccordions() {
+    console.log('Closing all accordions initially');
+    const allAccordionItems = document.querySelectorAll('.accordion-item');
+    allAccordionItems.forEach(item => {
+        item.classList.remove('active');
+        const icon = item.querySelector('.accordion-icon');
+        if (icon) {
+            icon.textContent = '+';
+        }
+    });
+} 

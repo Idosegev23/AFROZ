@@ -1,0 +1,70 @@
+/* Content Sections */
+.content-section {
+    padding: 4rem 2rem;
+    max-width: 900px;
+    margin: 2.5rem auto; /* Slightly more space between sections */
+    background-color: white;
+    border-radius: 20px; /* More rounded sections */
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.1); /* desert-and-sea-1 with transparency */
+}
+
+.content-section h2 {
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+}
+
+/* General .section-image, specific overrides will be in their respective component/section CSS */
+.section-image {
+    max-width: 90%;
+    height: auto;
+    margin: 1.5rem auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    border-radius: 12px;
+}
+
+.section-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* עיצוב מיוחד לתמונה בחלק "על המקום" - this stays if #location is a general content section type */
+/* If #location has its own CSS, this should move there. For now, assuming it's a variant of .content-section */
+#location .section-image {
+    max-width: 95%;
+    margin: 2rem auto;
+    border: 1px solid #eaeaea;
+    padding: 5px;
+    background-color: white;
+}
+
+/* Responsive Styles for Content Sections */
+@media (max-width: 768px) {
+    .content-section {
+        padding: 2.5rem 1rem;
+        margin: 1rem auto; /* Less margin */
+        border-radius: 15px; /* Slightly less rounded */
+    }
+    .content-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    .content-section h3 { /* General h3 within content sections */
+        font-size: 1.4rem;
+    }
+    .content-section p { /* General p within content sections */
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .section-image {
+        max-width: 100%; /* Full width within content section padding */
+        margin: 1.5rem auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section { padding: 2rem 0.8rem; } /* Less padding */
+    .content-section h2 { font-size: 1.5rem; }
+    .content-section h3 { font-size: 1.3rem; }
+} 

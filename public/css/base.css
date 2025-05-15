@@ -1,0 +1,544 @@
+/* General Styles */
+body {
+    font-family: 'Heebo', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+    background-color: #f5f5f5;
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    font-size: 18px; /* הגדלת גודל הפונט הבסיסי */
+}
+
+h1, h2, h3, h4 {
+    color: #5684BF; /* New color: desert-and-sea-1 */
+    text-align: center;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+h1 {
+    font-size: 2.5rem; /* הגדלת גודל כותרות רמה 1 */
+}
+
+h2 {
+    font-size: 2.2rem; /* הגדלת גודל כותרות רמה 2 */
+}
+
+h3 {
+    font-size: 1.8rem; /* הגדלת גודל כותרות רמה 3 */
+}
+
+h4 {
+    font-size: 1.5rem; /* הגדלת גודל כותרות רמה 4 */
+}
+
+p {
+    line-height: 1.7;
+    text-align: right; /* Default text alignment for RTL */
+    color: #444;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 1.1rem; /* הגדלת גודל הטקסט בפסקאות */
+}
+
+a {
+    color: #5684BF; /* New color: desert-and-sea-1 */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #BF8136; /* New color: desert-and-sea-4 */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 15px; /* More rounded corners for images */
+}
+
+/* Header & Navigation */
+/* MOVED TO public/css/header.css */
+
+/* Hamburger Menu Button */
+/* MOVED TO public/css/header.css */
+
+/* Hero Section */
+/* MOVED TO public/css/hero.css */
+
+/* Buttons */
+/* MOVED TO public/css/buttons.css */
+
+/* CTA Button Centering Container */
+/* MOVED TO public/css/buttons.css */
+
+.popup-cta-container {
+    margin-top: 1rem; /* Less margin inside popup */
+}
+
+/* Content Sections */
+/* MOVED TO public/css/content_sections.css */
+
+/* עיצוב מיוחד לתמונה בחלק "על המקום" */
+/* MOVED TO public/css/content_sections.css (or a specific location.css if created) */
+
+/* Testimonials Section */
+/* MOVED TO public/css/testimonials.css */
+
+/* Testimonials New Style - Snipcss */
+/* MOVED TO public/css/testimonials.css */
+
+#testimonials {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+#testimonials .testimonials-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+/* Testimonials New Style - Snipcss */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+.snip1533 {
+    box-shadow: 0 0 5px rgba(86, 131, 191, 0.15); /* desert-and-sea-1 with transparency */
+    color: #666;
+    display: inline-block;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    margin: 35px 10px 10px;
+    max-width: 310px;
+    min-width: 250px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border-top: 5px solid #8FB6D9; /* New color: desert-and-sea-2 */
+}
+
+.snip1533 *,
+.snip1533 *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+.snip1533 figcaption {
+    padding: 13% 10% 12%;
+}
+
+.snip1533 figcaption:before {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(86, 131, 191, 0.25); /* desert-and-sea-1 with transparency */
+    color: #5684BF; /* New color: desert-and-sea-1 */
+    content: "\f10e";
+    font-family: 'FontAwesome';
+    font-size: 32px;
+    font-style: normal;
+    left: 50%;
+    line-height: 60px;
+    position: absolute;
+    top: -30px;
+    width: 60px;
+}
+
+.snip1533 h3 {
+    color: #3c3c3c;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+    margin: 10px 0 5px;
+}
+
+.snip1533 h4 {
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.5;
+}
+
+.snip1533 blockquote {
+    font-style: italic;
+    font-weight: 300;
+    margin: 0 0 20px;
+}
+
+/* FAQ Section */
+/* MOVED TO public/css/faq.css */
+
+/* Program Section */
+/* MOVED TO public/css/program.css */
+
+/* Program Timeline (New Style) */
+/* MOVED TO public/css/program.css */
+
+/* Program Timeline (Old Style - Snipcss) */
+/* MOVED TO public/css/program.css */
+
+/* Program Accordion (New Style) */
+/* MOVED TO public/css/program.css (assuming .program-accordion is specific) */
+/* General .accordion-xxx styles might remain in base/components or move if specific to program */
+.accordion-item { /* Shared with FAQ, keep consistent or make specific */
+    border: 1px solid #8FB6D9; /* New color: desert-and-sea-2 */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.accordion-item:hover { /* Shared with FAQ */
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.15); /* desert-and-sea-1 with transparency */
+    border-color: #D9A443; /* New color: desert-and-sea-3 */
+}
+
+.accordion-header { /* Shared with FAQ */
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to left, rgba(148, 210, 189, 0.1), rgba(255, 255, 255, 0));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.accordion-header h3 { /* Shared with FAQ */
+    margin: 0;
+    font-size: 1.2rem;
+    color: #005f73;
+    font-weight: 500;
+}
+
+.accordion-icon { /* Specific to Program Accordion, or make general if FAQ uses it */
+    font-size: 1.5rem;
+    color: #94d2bd;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon { /* Specific or general */
+    transform: rotate(45deg);
+}
+
+/* .accordion-content styles moved to lists.css as they are list-like */
+/* General list styles moved to lists.css */
+
+/* Lists (General) */
+.awaits-list, .accommodation-options, .pricing-list, .cancellation-policy {
+    list-style: none;
+    padding-right: 0;
+    margin-top: 1rem; /* .awaits-list default */
+}
+
+.awaits-list li, .accommodation-options li, .pricing-list li, .cancellation-policy li {
+    position: relative;
+    color: #333; /* .awaits-list default */
+    line-height: 1.6; /* .awaits-list default */
+}
+
+/* Checkmark Lists */
+.awaits-list li, .accommodation-options li, .pricing-list li {
+    padding-right: 1.5rem; /* Indent list items */
+    margin-bottom: 0.8rem; /* .awaits-list & .accommodation-options default */
+}
+
+.awaits-list li::before, .accommodation-options li::before, .pricing-list li::before {
+    content: '\2714'; /* Checkmark icon */
+    color: #D9A443; /* New color: desert-and-sea-3 */
+    position: absolute;
+    right: 0;
+    font-weight: bold; /* .awaits-list default */
+    top: 2px; /* .awaits-list default, .accommodation-options & .pricing-list use 4px */
+}
+
+/* Bullet List */
+.cancellation-policy li {
+    margin-bottom: 0.7rem;
+    padding-right: 1.2rem;
+}
+
+.cancellation-policy li::before {
+    content: '\2022'; /* Bullet */
+    color: #0a9396;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Gallery (Carousel Version) */
+/* MOVED TO public/css/gallery.css */
+
+/* @keyframes pulse is a general animation, will be in animations.css */
+
+/* Gallery Grid Version */
+/* MOVED TO public/css/gallery.css */
+
+/* Footer */
+/* MOVED TO public/css/footer.css */
+
+/* Contact Form (within Footer or Popup) */
+/* MOVED TO public/css/footer.css (for footer context) and public/css/popups.css (for popup context and general form styles) */
+
+/* Popups */
+/* MOVED TO public/css/popups.css */
+
+/* Desert Animation (for #hero) - MOVED TO public/css/hero.css */
+/* Keyframes for animations like sandWave, sandDrift, heatHaze MOVED TO public/css/animations.css */
+
+/* Random Dunes Animation */
+/* MOVED TO public/css/animations.css */
+
+/* Facilitators Images Layout */
+/* MOVED TO public/css/components.css */
+
+.facilitators-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Align to top if images have different heights */
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.facilitators-images .section-image { /* Specific styling for images in this section */
+    width: calc(50% - 10px); /* Two images per row, accounting for gap */
+    max-width: 350px;
+    border-radius: 15px; /* Consistent with general .section-image */
+    transition: transform 0.3s ease;
+}
+
+.facilitators-images .section-image:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
+}
+
+.round-image { /* For specifically round images, e.g., Avatars */
+    border-radius: 50%;
+    width: 200px; /* Example size */
+    height: 200px; /* Example size */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    margin: 1rem;
+    display: inline-block; /* Or block with auto margins for centering */
+}
+
+/* MOVED TO public/css/components.css */
+
+/* Benefit Section */
+/* MOVED TO public/css/components.css */
+
+.benefit-section { /* Container for benefits */
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(142, 181, 216, 0.1); /* desert-and-sea-2 with transparency */
+    border-radius: 15px;
+}
+
+.benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.benefit-item {
+    flex: 1;
+    min-width: 250px; /* Ensures items don't get too squished */
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.1); /* desert-and-sea-1 with transparency */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(86, 131, 191, 0.15);
+}
+
+.benefit-item i { /* Icon styling */
+    font-size: 2.5rem;
+    color: #D9A443; /* desert-and-sea-3 */
+    margin-bottom: 1rem;
+}
+
+.benefit-item h4 {
+    color: #5684BF; /* desert-and-sea-1 */
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.benefit-item p {
+    text-align: center; /* Explicitly centered if not inheriting */
+    margin-bottom: 0;
+}
+
+h3 i { /* General icon styling within h3, e.g., section titles */
+    margin-left: 0.5rem; /* RTL: icon to the right of text */
+    color: #D9A443; /* desert-and-sea-3 */
+}
+
+/* Highlighted Text */
+/* MOVED TO public/css/components.css */
+
+/* Awaits Categories */
+/* MOVED TO public/css/components.css */
+
+.awaits-categories { /* Container for categories of "What Awaits You" */
+    margin: 2rem 0;
+}
+
+.awaits-category {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.1); /* desert-and-sea-1 with transparency */
+    border-right: 4px solid #D9A443; /* Accent border */
+}
+
+.awaits-category h3 {
+    color: #5684BF; /* desert-and-sea-1 */
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    text-align: right; /* RTL */
+}
+
+.awaits-category h3 i { /* Icon within category heading */
+    margin-left: 0.5rem; /* RTL */
+    color: #D9A443; /* desert-and-sea-3 */
+}
+
+.awaits-category .awaits-list { /* Styling for the list within each category */
+    margin-bottom: 0; /* Remove default bottom margin if not needed */
+}
+
+.awaits-category .awaits-list li {
+    margin-bottom: 1rem; /* Spacing between list items */
+}
+
+.awaits-category .awaits-list li strong { /* Highlight strong text in list items */
+    color: #5684BF; /* desert-and-sea-1 */
+    font-weight: 600; /* Ensure it's bold */
+}
+
+/* Quote Banner */
+/* MOVED TO public/css/components.css */
+
+/* Specific Quote Banner Backgrounds */
+/* MOVED TO public/css/components.css */
+
+/* Pricing Section Components */
+/* MOVED TO public/css/components.css */
+
+.pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 2rem 0;
+}
+
+.pricing-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(60, 174, 163, 0.15); /* CTA color shadow */
+    width: 280px; /* Default width */
+    overflow: hidden; /* To contain header bg color */
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0; /* Light border */
+    display: flex;
+    flex-direction: column;
+    height: 420px; /* Fixed height for consistent card size */
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(60, 174, 163, 0.25); /* Enhanced shadow on hover */
+}
+
+.pricing-header {
+    background-color: #3CAEA3; /* Main CTA color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    flex: 0 0 auto; /* Header size doesn't change with content */
+}
+
+.pricing-header h4 {
+    color: white; /* Ensure text is white on colored bg */
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+}
+
+.price {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 10px; /* Spacing from title */
+    position: relative;
+    display: inline-block; /* Allows for potential pseudo-elements like currency symbol */
+}
+
+.pricing-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Content takes remaining space in card */
+}
+
+.pricing-content p { /* General paragraph within pricing card */
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.pricing-note { /* Small italic note, e.g., "per person" */
+    font-style: italic;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    background-color: #f9f9f9; /* Very light background for note */
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0; /* Spacing from content above */
+    flex: 1; /* Features list takes available space before notes/button */
+}
+
+/* Back to Top Button */
+/* MOVED TO public/css/components.css */
+
+/* ======== MEDIA QUERIES ======== */
+
+/* General Mobile Optimizations (max-width: 768px) - This is a large block */
+@media (max-width: 768px) {
+    /* ... other sections ... */
+    /* MOVED TO public/css/footer.css */
+    
+    /* Facilitators Images styles MOVED TO public/css/components.css */
+    /* Benefits Section styles MOVED TO public/css/components.css */
+    /* Awaits Categories styles MOVED TO public/css/components.css */
+    /* Quote Banner styles MOVED TO public/css/components.css */
+    /* Pricing Section styles MOVED TO public/css/components.css */
+    /* Contact Message styles MOVED TO public/css/components.css */
+
+    /* Text Wrapping and Max Width */
+    * { /* Apply to all elements to prevent overflow */
+    /* ... existing code ... */
+}

@@ -1,0 +1,286 @@
+/* Footer */
+#contact { /* This ID is used for the entire footer section */
+    background: linear-gradient(to bottom, #3a6186, #4a6d8c);
+    color: white;
+    padding: 3rem 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Old Footer Structure - you might want to remove or refactor this if .footer-grid and .footer-column are no longer used */
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    text-align: right;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px;
+}
+/* End of Old Footer Structure */
+
+.footer-top-row { /* Potentially part of old structure or a specific layout element */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* New Footer Structure */
+.footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    text-align: right;
+}
+
+.footer-left-column,
+.footer-right-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Default for desktop */
+    justify-content: flex-start;
+}
+
+.footer-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer-logo { /* Appears in multiple contexts, general styling here */
+    width: 80px;
+    height: 80px;
+    max-height: 70px; /* More specific from another rule, taking precedence */
+    object-fit: contain;
+    border-radius: 10px;
+    background: transparent;
+    margin: 0 auto 1rem; /* Default margin, adjust if needed in specific columns */
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.footer-social a:hover {
+    background: #e67e22;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-links { /* For FontAwesome icons, often in footer */
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.7rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #D9A443;
+    transform: translateY(-3px);
+}
+
+.footer-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-heading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 2px;
+    background-color: rgba(230, 126, 34, 0.8);
+}
+
+/* Footer Links list styling is in lists.css */
+
+.footer-center { /* For centering elements like WhatsApp button */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #25D366;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button i {
+    font-size: 1.3rem;
+}
+
+/* Contact Form (within Footer) */
+/* Assuming .contact-form-container in the footer, not a popup here */
+#contact .contact-form-container { 
+    background: rgba(44, 62, 80, 0.05); 
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    text-align: right;
+}
+
+#contact .contact-form-container h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #2c3e50; 
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+#contact .contact-form-container h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #e67e22; 
+}
+
+/* General .form-group, .form-group label, input, textarea, button.submit-form, .contact-success-message are in popups.css or components.css if truly global */
+/* If they are ONLY for this footer form, define them here with #contact prefix */
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Footer button specific styling (cta-button-secondary in #contact) - this is in buttons.css */
+
+/* Responsive Styles for Footer */
+@media (max-width: 768px) {
+    #contact { /* Entire footer section */
+        padding: 2rem 1rem;
+    }
+    .footer-main { 
+        flex-direction: column;
+        align-items: center; 
+        text-align: center; 
+    }
+    .footer-left-column,
+    .footer-right-column {
+        width: 100%;
+        align-items: center; 
+    }
+    /* Old footer structure mobile */
+    .footer-grid { 
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .footer-column { 
+        width: 100%;
+        text-align: center;
+    }
+    .footer-logo {
+        max-height: 65px;
+        order: 1; 
+        margin: 0 auto 1.5rem; 
+    }
+    .footer-social { 
+        justify-content: center; 
+    }
+    .social-links { 
+        order: 2; 
+        margin-top: 0.5rem;
+        justify-content: center; 
+    }
+    .social-links a {
+        font-size: 1.5rem; 
+        margin: 0 0.5rem; 
+    }
+    .footer-heading {
+        text-align: center;
+    }
+    .footer-heading:after { 
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%); 
+    }
+    /* Footer links hover already handled in lists.css or by general a:hover */
+    /* Footer .cta-button-secondary already handled in buttons.css mobile styles */
+
+    .footer-top-row { 
+        flex-direction: column;
+        gap: 1rem;
+    }
+    #contact .contact-form-container { /* Footer contact form */
+        padding: 1.5rem; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+    /* Assuming form-group styles are general or in popups/components */
+    /* #contact button.submit-form specific mobile style if needed beyond general button.submit-form */
+    .contact-message { 
+        text-align: center;
+    }
+} 

@@ -1,0 +1,89 @@
+/* FAQ Section */
+#faq .faq-item {
+    border: 1px solid #8FB6D9; /* New color: desert-and-sea-2 */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+#faq .faq-item:hover {
+    box-shadow: 0 5px 15px rgba(86, 131, 191, 0.15); /* desert-and-sea-1 with transparency */
+    border-color: #D9A443; /* New color: desert-and-sea-3 */
+}
+
+#faq .faq-question {
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to left, rgba(148, 210, 189, 0.1), rgba(255, 255, 255, 0));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    color: #005f73;
+    margin-bottom: 0;
+}
+
+#faq .faq-question::before {
+    content: '+';
+    font-size: 1.5rem;
+    color: #94d2bd;
+    transition: transform 0.3s ease;
+}
+
+#faq .faq-item.active .faq-question::before {
+    transform: rotate(45deg);
+}
+
+#faq .faq-item.active .faq-question {
+    color: #005f73;
+}
+
+#faq .faq-answer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: #fff;
+    padding: 0 2rem; /* Remove vertical padding when closed */
+    transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, padding 0.6s ease-in-out;
+}
+
+#faq .faq-item.active .faq-answer {
+    max-height: 500px; /* Adjust if content is significantly taller */
+    opacity: 1;
+    padding: 1rem 2rem 2rem; /* Restore padding when open */
+}
+
+/* Shared Accordion Styles (if applicable to FAQ) */
+/* If FAQ uses the same .accordion-item, .accordion-header, .accordion-content structure */
+/* Otherwise, these are specific to FAQ */
+
+/* Responsive Styles for FAQ */
+@media (max-width: 768px) {
+    /* FAQ & Program Accordion (Shared Styles adjustments if they are indeed shared) */
+    /* If FAQ has its own structure, these are FAQ specific mobile styles */
+    #faq .faq-question { /* Specific to FAQ if not merged with accordion */
+        font-size: 1.1rem;
+        padding-right: 20px; /* Adjust for icon */
+    }
+    #faq .faq-answer {
+        font-size: 0.95rem;
+    }
+
+    /* If FAQ uses general accordion styles that were moved: */
+    /* .accordion-header { padding: 1.2rem 1.5rem; } */
+    /* .accordion-header h3 { font-size: 1.1rem; } */
+    /* .accordion-item.active .accordion-content { padding: 1rem 1.5rem 1.5rem; } */
+}
+
+@media (max-width: 480px) {
+    /* If FAQ uses general accordion styles that were moved: */
+    /* .accordion-header h3 { font-size: 1rem; } */
+}
+
+@media (hover: none) {
+    #faq .faq-question {
+        min-height: 44px; /* Apple's recommended min touch area */
+    }
+} 

@@ -1,0 +1,107 @@
+/* Buttons */
+.cta-button, .cta-button-secondary {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.5rem; /* הגדלת גודל הטקסט בכפתורים */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+}
+
+.cta-button {
+    background-color: #3CAEA3; /* צבע כחול-ירוק */
+    color: white;
+}
+
+.cta-button:hover {
+    background-color: #2C8C83; /* כחול-ירוק כהה יותר */
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(44, 140, 131, 0.3);
+}
+
+.cta-button-secondary {
+    background-color: rgba(255, 255, 255, 0.1); /* Default, often overridden for context */
+    color: white; /* Default, often overridden */
+    border: 1px solid rgba(230, 126, 34, 0.7); /* Default, often overridden */
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem; /* הגדלת גודל הטקסט בכפתורי משנה */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.cta-button-secondary:hover {
+    background-color: rgba(230, 126, 34, 0.9); /* Default, often overridden */
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA Button Centering Container */
+.button-container, .cta-container { /* Combined .button-container and .cta-container */
+    text-align: center;
+    margin: 1.5rem auto;
+    display: block;
+    width: 100%;
+}
+
+.popup-cta-container {
+    margin-top: 1rem; /* Less margin inside popup */
+}
+
+/* Footer button specific styling (cta-button-secondary in #contact) */
+/* This will be in footer.css if #contact is only in footer */
+/* Keeping it here if .cta-button-secondary is used elsewhere with this specific styling */
+#contact .cta-button-secondary {
+    background-color: #D9A443; /* New color: desert-and-sea-3 */
+    color: #592202; /* New color: desert-and-sea-5 */
+    border: none;
+}
+
+#contact .cta-button-secondary:hover {
+    background-color: #BF8136; /* New color: desert-and-sea-4 */
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(89, 33, 1, 0.3); /* desert-and-sea-5 with transparency */
+}
+
+
+/* Responsive Styles for Buttons */
+@media (max-width: 768px) {
+    .cta-button, .cta-button-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    /* Specific overrides for #contact .cta-button-secondary on mobile if needed */
+    #contact .cta-button-secondary {
+        display: block; /* Already in footer mobile styles, but good to have here if this button is specific */
+        width: 80%;
+        margin: 1rem auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-button, .cta-button-secondary {
+        padding: 0.7rem 1.3rem; /* Smaller padding */
+        font-size: 0.85rem;   /* Smaller font */
+    }
+}
+
+/* Touch device optimizations (hover: none) */
+@media (hover: none) {
+    .cta-button, .cta-button-secondary {
+        /* padding: 10px 15px; */ /* Consider if mobile padding is sufficient */
+    }
+    /* Specific overrides for #contact .cta-button-secondary on touch if needed */
+} 

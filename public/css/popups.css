@@ -1,0 +1,204 @@
+/* Popups General */
+.popup {
+    display: none; /* Hidden by default, shown by JS */
+    position: fixed;
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+}
+
+.popup-content { 
+    background-color: #fff;
+    max-width: 600px; 
+    width: 90%; 
+    margin: 2rem auto; 
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    position: relative; 
+    transition: all 0.3s ease;
+    overflow-y: auto; 
+    max-height: 90vh; 
+}
+
+.close-button { 
+    color: #BF8136; 
+    position: absolute;
+    left: 15px; 
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #BF8136; 
+    text-decoration: none;
+}
+
+@keyframes fadeIn { 
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+/* Contact Form Popup Specifics */
+#contact-popup .popup-content { 
+    max-width: 500px;
+    border-radius: 15px;
+    background-color: white; 
+    padding: 2rem; 
+    border-top: 5px solid #3CAEA3; 
+}
+
+#contact-popup .form-group label { /* Assuming .form-group is general, this makes label specific to contact popup */
+    color: #333; 
+    font-weight: 600;
+}
+
+#contact-popup .form-group input,
+#contact-popup .form-group textarea {
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    padding: 12px; 
+    background-color: #f9f9f9; 
+}
+
+#contact-popup .form-group input:focus,
+#contact-popup .form-group textarea:focus {
+    border-color: #3CAEA3; 
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(60, 174, 163, 0.2); 
+}
+
+#contact-popup button.submit-form { /* Specific submit button for contact popup */
+    background-color: #3CAEA3; 
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 30px; 
+}
+
+#contact-popup button.submit-form:hover {
+    background-color: #2C8C83; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(44, 140, 131, 0.3); 
+}
+
+#contact-popup .contact-success-message { 
+    background-color: #e6f7f5; 
+    color: #2C8C83; 
+    border: 1px solid #3CAEA3; 
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 1rem;
+    display: none; 
+}
+
+/* General Form Styling (if not in components.css) */
+/* These were in the original file, may or may not be popup specific */
+.form-group { /* If this is truly global for all forms */
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.form-group label { /* Global form label */
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c3e50; 
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea { /* Global form fields */
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(44, 62, 80, 0.2); 
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #2c3e50; 
+    font-family: 'Heebo', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus { /* Global form field focus */
+    outline: none;
+    border-color: #e67e22; 
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2); 
+    background-color: #fff;
+}
+
+.form-group textarea { /* Global textarea */
+    min-height: 100px;
+    resize: vertical;
+}
+
+button.submit-form { /* Global submit button, if not overridden by popup/footer specifics */
+    background-color: #3CAEA3; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; 
+    margin-top: 10px;
+}
+
+button.submit-form:hover {
+    background-color: #2C8C83; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-success-message { /* Global success message for forms */
+    display: none; 
+    background-color: rgba(39, 174, 96, 0.1); 
+    color: #27ae60;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+/* Responsive Styles for Popups */
+@media (max-width: 768px) {
+    .popup-content { /* General popup content on mobile */
+        padding: 1.5rem;
+        width: 90%; /* Was also 95% in one instance, standardizing to 90% for general popup */
+        margin: 20% auto; /* Adjust top margin for smaller screens */
+        border-radius: 15px;
+    }
+    .popup-content h2 { font-size: 1.5rem; }
+    .popup-content h3 { font-size: 1.3rem; }
+    /* .popup-content p, .popup-content li are in lists.css */
+
+    /* Contact form container inside popup (if it uses .contact-form-container class) */
+    #contact-popup .contact-form-container { /* If a .contact-form-container is INSIDE #contact-popup */
+        padding: 1.2rem;
+    }
+    /* General form button.submit-form on mobile (if not overridden by #contact-popup button.submit-form) */
+    button.submit-form { /* General form submit button on mobile */
+        width: 100%; 
+        margin: 1rem auto; /* Center button */
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content { /* Further adjustments for very small screens */
+        width: 95%;
+        padding: 1.2rem;
+    }
+} 

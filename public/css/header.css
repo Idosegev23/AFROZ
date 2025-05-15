@@ -1,0 +1,211 @@
+/* Header & Navigation */
+#header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(217, 242, 254, 0.85); /* תכלת עדין מאוד */
+    z-index: 1000;
+    box-shadow: 0 3px 8px rgba(217, 242, 254, 0.2); /* צל תכלת בהיר */
+    transition: background-color 0.3s ease;
+    padding: 0.2rem 0; /* הקטנת הpadding האנכי */
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 2rem; /* הקטנת הpadding */
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #2c3e50;
+    font-family: 'Sour Gummy', cursive;
+    order: -1; /* שימוש ב-order כדי לשים את הטקסט לפני הלוגו בכיוון LTR */
+}
+
+#logo {
+    max-height: 60px; /* הקטנת הלוגו מ-70px ל-60px */
+    max-width: 60px; /* הקטנת הלוגו מ-70px ל-60px */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0;
+    transition: max-height 0.3s ease;
+    padding: 2px;
+    background: transparent;
+    vertical-align: middle;
+}
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar ul li {
+    margin-right: 1.5rem;
+}
+
+#navbar ul li a {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+    color: #D9A443;
+}
+
+/* Hamburger Menu Button */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #5684BF; /* New color: desert-and-sea-1 */
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Menu specific styles from @media (max-width: 768px) */
+@media (max-width: 768px) {
+    #header {
+        background-color: rgba(235, 248, 255, 0.85); /* תכלת עדין מאוד במובייל */
+    }
+    #navbar {
+        padding: 5px 15px;
+        justify-content: space-between;
+        position: relative;
+    }
+    #logo {
+        max-height: 40px !important;
+        max-width: 40px !important;
+        margin: 0;
+        z-index: 10; /* Above nav links when closed */
+        background: transparent;
+    }
+    .hamburger-btn { /* Show hamburger */
+        display: block; /* Was flex, but block is fine for a button */
+        width: 45px;
+        height: 45px;
+        position: relative;
+        background-color: #94d2bd; /* Light teal */
+        border-radius: 50%;
+        display: flex; /* Centering bars */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px; /* Padding around bars */
+    }
+    .hamburger-bar { /* Styles for bars inside button */
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 3px 0; /* Spacing between bars */
+        background-color: #005f73; /* Dark teal */
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    /* Hamburger animation */
+    .hamburger-btn.active .hamburger-bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+    .hamburger-btn.active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-btn.active .hamburger-bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+    #nav-links { /* Mobile navigation panel */
+        position: fixed;
+        top: 0;
+        right: -100%; /* Off-screen initially */
+        width: 80%; /* Panel width */
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.97); /* Slightly transparent white */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Align items to top */
+        padding: 70px 0 30px; /* Top padding for header space */
+        transition: right 0.4s ease;
+        z-index: 5; /* Below hamburger button, above page content */
+        overflow-y: auto; /* Scroll if many links */
+    }
+    #nav-links.active { /* Shown state */
+        right: 0;
+        animation: slideIn 0.4s ease forwards;
+    }
+    @keyframes slideIn {
+        from { right: -100%; opacity: 0; }
+        to { right: 0; opacity: 1; }
+    }
+    #navbar ul li {
+        margin: 8px 0; /* Vertical spacing for links */
+        width: 100%;
+        text-align: center;
+        padding: 0 20px; /* Padding for link text */
+    }
+    #navbar ul li a {
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 8px 0;
+        display: block; /* Full width clickable area */
+        color: #005f73; /* Dark teal for links */
+        border-bottom: 1px solid rgba(0, 95, 115, 0.1); /* Separator */
+    }
+}
+
+/* Smaller mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    #header {
+        padding: 0.1rem 0; /* Minimal padding */
+    }
+    #navbar {
+        padding: 3px 10px; /* Minimal padding */
+    }
+    .logo-container {
+        gap: 5px; /* Less gap */
+    }
+    #logo {
+        max-height: 30px !important; /* Smaller logo */
+        max-width: 30px !important;
+        background: transparent; /* Ensure no bg color if overridden */
+    }
+    .logo-text {
+        font-size: 1.1rem; /* Smaller logo text */
+    }
+    #nav-links { width: 80%; } /* Mobile nav panel width, was duplicated */
+}
+
+/* Touch device optimizations (hover: none) */
+@media (hover: none) {
+    #navbar ul li a {
+        /* padding: 10px 15px; */ /* Potentially adjust for touch, but covered by general mobile */
+    }
+} 

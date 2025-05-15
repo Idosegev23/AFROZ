@@ -1,0 +1,193 @@
+/* Gallery (Carousel Version) */
+.gallery {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin: 2rem auto;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery.loading::after {
+  content: 'טוען תמונות...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 21;
+  color: #333;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* @keyframes pulse is a general animation, will be in animations.css */
+
+.gallery-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.gallery img { /* This is for carousel images */
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  /* Note: General img styles exist in base.css */
+}
+
+.gallery-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gallery-dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+.gallery-prev, .gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.gallery-prev:hover, .gallery-next:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+.gallery-prev {
+  left: 10px;
+}
+
+.gallery-next {
+  right: 10px;
+}
+
+/* Gallery Grid Version */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 15px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px;
+    scroll-snap-type: x mandatory; /* לגלילה חלקה במובייל */
+}
+
+/* Responsive Styles for Galleries */
+@media (max-width: 768px) {
+  /* Carousel Gallery */
+  .gallery {
+    height: 300px;
+    width: 90%;
+  }
+  .gallery-prev, .gallery-next {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+  .gallery-controls {
+    bottom: 12px;
+    gap: 5px;
+  }
+  .gallery-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Grid Gallery */
+  .gallery-grid {
+      grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
+      grid-gap: 8px;
+      width: 98%; /* Near full width */
+      padding: 10px 0;
+      overflow-x: auto; /* Enable horizontal scroll if needed */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  .gallery-item { /* Grid item */
+      height: 140px;
+      aspect-ratio: 1/1; /* Square items */
+      scroll-snap-align: start; /* For snapping scroll */
+      margin-bottom: 5px; /* Small bottom margin */
+  }
+  .gallery-grid img { /* Image within grid item, different from general .gallery img */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px; /* Slight rounding for grid images */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Carousel Gallery */
+  .gallery { /* This specific block was overriding the 768px gallery block */
+    height: 250px; 
+    width: 100%;  
+    margin: 1.5rem auto;
+  }
+  .gallery-prev, .gallery-next {
+    width: 28px; 
+    height: 28px; 
+    font-size: 1rem; 
+  }
+  .gallery-controls {
+    bottom: 8px; 
+    gap: 4px;    
+  }
+  .gallery-dot {
+    width: 7px;  
+    height: 7px; 
+  }
+   /* .gallery { height: 120vw; } */ /* Commented out, as fixed height is generally better for carousel */
+} 

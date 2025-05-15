@@ -1,0 +1,90 @@
+<section id="hero">
+    <div class="video-container">
+        <img src="/images/gallery/3.jpg" alt="תמונת רקע" class="fallback-image">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="/0420_more_compressed.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="desert-animation">
+        <div class="sand-dune"></div>
+        <div class="sand-wave"></div>
+        <div class="heat-haze"></div>
+    </div>
+    <div class="hero-content">
+        <h1>ריטריט מדיטציה ייחודי באי יווני קסום</h1>
+        <h2 class="hero-subtitle">מסע עומק לגוף ולנפש | 25.8–1.9 | לסבוס</h2>
+        <div class="button-container">
+            <button id="open-contact-popup-hero" class="cta-button">הצטרפו למסע</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const video = document.getElementById('bg-video');
+        const fallbackImage = document.querySelector('.fallback-image');
+        const isMobile = window.innerWidth <= 768;
+        
+        // בדיקת תמיכה בווידאו
+        const isVideoSupported = !!document.createElement('video').canPlayType;
+        
+        if (!isVideoSupported) {
+            // במקרה שהדפדפן לא תומך בווידאו
+            fallbackImage.style.display = 'block';
+            video.style.display = 'none';
+            return;
+        }
+        
+        // הוספת אירועים לטיפול בווידאו
+        video.addEventListener('error', function(e) {
+            console.log("שגיאת וידאו:", e);
+            fallbackImage.style.display = 'block';
+            video.style.display = 'none';
+        });
+        
+        video.addEventListener('loadeddata', function() {
+            // הווידאו נטען בהצלחה
+            video.style.display = 'block';
+            fallbackImage.style.display = 'none';
+        });
+        
+        // ניסיון לנגן את הווידאו
+        video.play().catch(function(error) {
+            console.log("אוטופליי נחסם:", error);
+            
+            if (error.name === "NotAllowedError") {
+                // במקרה שהאוטופליי נחסם, נסתיר את הווידאו ונציג את התמונה
+                fallbackImage.style.display = 'block';
+                
+                // נוסיף כפתור לצפייה בווידאו רק במובייל
+                if (isMobile) {
+                    const playButton = document.createElement('button');
+                    playButton.innerHTML = '<i class="fas fa-play"></i> הפעל וידאו';
+                    playButton.className = 'video-play-button';
+                    document.querySelector('.hero-content').appendChild(playButton);
+                    
+                    playButton.addEventListener('click', function() {
+                        video.style.display = 'block';
+                        fallbackImage.style.display = 'none';
+                        video.play();
+                        playButton.remove();
+                    });
+                }
+            }
+        });
+        
+        // אופטימיזציה - הפסק את הווידאו כשהוא לא בתצוגה (חוסך משאבים)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting && !video.paused) {
+                    video.pause();
+                } else if (entry.isIntersecting && video.paused) {
+                    video.play().catch(e => console.log("לא ניתן לנגן וידאו:", e));
+                }
+            });
+        }, { threshold: 0.25 });
+        
+        observer.observe(video);
+    });
+</script> 

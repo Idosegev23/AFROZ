@@ -1,0 +1,140 @@
+/* Lists (General) */
+.awaits-list, .accommodation-options, .pricing-list, .cancellation-policy {
+    list-style: none;
+    padding-right: 0;
+    margin-top: 1rem; /* .awaits-list default, .pricing-list, .cancellation-policy use margin-bottom: 1.5rem on container */
+}
+
+.awaits-list li, .accommodation-options li, .pricing-list li, .cancellation-policy li {
+    position: relative;
+    color: #333; /* .awaits-list default */
+    line-height: 1.6; /* .awaits-list default */
+    /* .pricing-list li & .cancellation-policy li have margin-bottom: 0.7rem */
+    /* .awaits-list li & .accommodation-options li have margin-bottom: 0.8rem */
+}
+
+/* Checkmark Lists */
+.awaits-list li, .accommodation-options li, .pricing-list li {
+    padding-right: 1.5rem; /* Indent list items. .pricing-list uses 1.2rem */
+    margin-bottom: 0.8rem; /* .awaits-list & .accommodation-options default. .pricing-list uses 0.7rem */
+}
+
+.awaits-list li::before, .accommodation-options li::before, .pricing-list li::before {
+    content: '\2714'; /* Checkmark icon */
+    color: #D9A443; /* New color: desert-and-sea-3 */
+    position: absolute;
+    right: 0;
+    font-weight: bold; /* .awaits-list default */
+    top: 2px; /* .awaits-list default. .accommodation-options & .pricing-list use 4px. Review for consistency. */
+}
+
+/* Bullet List */
+.cancellation-policy li {
+    margin-bottom: 0.7rem;
+    padding-right: 1.2rem;
+}
+
+.cancellation-policy li::before {
+    content: '\2022'; /* Bullet */
+    color: #0a9396;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Specific list item styling from .awaits-category .awaits-list li (if different from general .awaits-list li) */
+.awaits-category .awaits-list li {
+    margin-bottom: 1rem; /* Overrides general .awaits-list li margin if more specific */
+}
+
+.awaits-category .awaits-list li strong { /* Highlight strong text in list items */
+    color: #5684BF; /* desert-and-sea-1 */
+    font-weight: 600; /* Ensure it's bold */
+}
+
+/* Accordion Content Lists (from .accordion-content ul/li) */
+.accordion-content ul { /* If accordion lists are styled uniquely */
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Or specific margin if needed */
+}
+
+.accordion-content li { /* Shared with FAQ, .program-accordion */
+    padding: 0.7rem 1.5rem; 
+    position: relative;
+    color: #555;
+    transition: all 0.2s ease;
+}
+
+.accordion-content li::before { /* Shared checkmark style for accordion lists */
+    content: '\2714'; 
+    color: #D9A443; 
+    position: absolute;
+    right: 0;
+    top: 4px; /* Was 8px (0.5rem), then 4px. Standardizing to 4px. */
+}
+
+.accordion-content li:hover { /* Shared hover for accordion lists */
+    color: #0a9396;
+    transform: translateX(-5px);
+}
+
+/* Pricing Notes List (from .pricing-notes ul/li) */
+.pricing-notes ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-notes li {
+    margin: 10px 0;
+    padding-right: 30px; /* Space for icon */
+    position: relative;
+}
+
+.pricing-notes li i { /* For icons like info or warning */
+    position: absolute;
+    right: 0;
+    top: 3px;
+    color: #3CAEA3; /* CTA color for icons */
+}
+
+/* Footer Links List (from .footer-links) */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.footer-links li {
+    margin-bottom: 1rem;
+}
+
+.footer-links li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.footer-links li a:hover {
+    color: #e67e22;
+    transform: translateX(-5px);
+}
+
+.footer-links li i { /* For icons next to links */
+    width: 20px;
+    margin-left: 8px;
+    color: #e67e22;
+    text-align: center;
+}
+
+/* Responsive for lists if any specific rules exist outside component/section media queries */
+/* For instance, if general list font sizes change on mobile */
+@media (max-width: 768px) {
+    /* .awaits-list li, .accordion-content li, etc. font-size adjustments if needed */
+    .popup-content p, .popup-content li { /* This was a general rule for popups */
+        font-size: 0.95rem;
+    }
+} 

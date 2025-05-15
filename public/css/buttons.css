@@ -94,7 +94,7 @@
 @media (max-width: 480px) {
     .cta-button, .cta-button-secondary {
         padding: 0.7rem 1.3rem; /* Smaller padding */
-        font-size: 0.85rem;   /* Smaller font */
+        font-size: 1rem;   /* Smaller font */
     }
 }
 

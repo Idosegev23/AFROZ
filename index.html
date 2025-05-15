@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="public/css/buttons.css?v=1.0.3">
     <link rel="stylesheet" href="public/css/lists.css?v=1.0.3">
     <link rel="stylesheet" href="public/css/animations.css?v=1.0.3">
-    <link rel="stylesheet" href="public/css/hero.css?v=1.0.3">
+    
+    <!-- החלפת ה-hero.css הישן בקובץ המאוחד -->
+    <link rel="stylesheet" href="sections/hero.css?v=1.0.4">
+    
     <link rel="stylesheet" href="public/css/content_sections.css?v=1.0.3">
     <link rel="stylesheet" href="public/css/testimonials.css?v=1.0.3">
     <link rel="stylesheet" href="public/css/faq.css?v=1.0.3">
@@ -23,7 +26,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Sour+Gummy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Sour+Gummy&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- הטענה מוקדמת של תמונות הגלריה -->
@@ -42,6 +45,8 @@
     <link rel="preload" as="image" href="/images/gallery/13.jpg">
     <link rel="preload" as="image" href="/images/gallery/14.jpg">
     <link rel="preload" as="image" href="/images/gallery/15.jpg">
+    <!-- הטענה מוקדמת של הווידאו הראשי -->
+    <link rel="preload" as="video" href="/0420_more_compressed.mp4">
     <!-- Facebook Open Graph -->
     <meta property="og:title" content="Afroz להרפות, להיפתח, להתמלא | ריטריט המוקדש לחוויה ושינוי">
     <meta property="og:description" content="ריטריט מדיטציה בלסבוס, יוון - חוויה מרגשת ומעצימה בהנחיית ז'יוואני יובל. ריטריט המוקדש לחוויה ושינוי, המזמין אתכם למסע של שלווה והתחדשות פנימית.">
@@ -77,6 +82,12 @@
             }
         }
     </script>
+    <style>
+        /* הגדרה גלובלית של פונט ברירת מחדל */
+        body, html {
+            font-family: 'Heebo', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -301,10 +312,13 @@
                 }
             }
 
-            // Load all sections
-            Promise.all(sections.map(loadSection)).then(() => {
-                // Ensure all scripts from dynamically loaded content are processed before running this
-                initializePageSpecificScripts();
+            // טעינת סקציית ההירו תחילה לאופטימיזציה
+            loadSection(sections[0]).then(() => {
+                // טעינת שאר הסקציות
+                Promise.all(sections.slice(1).map(loadSection)).then(() => {
+                    // Ensure all scripts from dynamically loaded content are processed before running this
+                    initializePageSpecificScripts();
+                });
             });
 
             function initializePageSpecificScripts() {

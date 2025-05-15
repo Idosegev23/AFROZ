@@ -1,7 +1,7 @@
 <section id="hero">
     <div class="video-container">
         <img src="/images/gallery/3.jpg" alt="תמונת רקע" class="fallback-image">
-        <video autoplay muted loop playsinline id="bg-video">
+        <video autoplay muted loop playsinline preload="auto" id="bg-video">
             <source src="/0420_more_compressed.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -24,6 +24,8 @@
     function initHeroVideo() {
         const video = document.getElementById('bg-video');
         const fallbackImage = document.querySelector('.fallback-image');
+        const contactButton = document.getElementById('open-contact-popup-hero');
+        const contactPopup = document.getElementById('contact-popup');
         
         if (!video || !fallbackImage) return;
         
@@ -52,30 +54,44 @@
             fallbackImage.style.display = 'none';
         });
         
+        // לאלץ את הווידאו להיטען ולהתנגן
+        video.load();
+        
         // ניסיון לנגן את הווידאו
-        video.play().catch(function(error) {
-            console.log("אוטופליי נחסם:", error);
-            
-            if (error.name === "NotAllowedError") {
-                // במקרה שהאוטופליי נחסם, נסתיר את הווידאו ונציג את התמונה
-                fallbackImage.style.display = 'block';
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("אוטופליי נחסם:", error);
                 
-                // נוסיף כפתור לצפייה בווידאו רק במובייל
-                if (isMobile) {
-                    const playButton = document.createElement('button');
-                    playButton.innerHTML = '<i class="fas fa-play"></i> הפעל וידאו';
-                    playButton.className = 'video-play-button';
-                    document.querySelector('.hero-content').appendChild(playButton);
+                if (error.name === "NotAllowedError") {
+                    // במקרה שהאוטופליי נחסם, נסתיר את הווידאו ונציג את התמונה
+                    fallbackImage.style.display = 'block';
                     
-                    playButton.addEventListener('click', function() {
-                        video.style.display = 'block';
-                        fallbackImage.style.display = 'none';
-                        video.play();
-                        playButton.remove();
-                    });
+                    // נוסיף כפתור לצפייה בווידאו רק במובייל
+                    if (isMobile) {
+                        const playButton = document.createElement('button');
+                        playButton.innerHTML = '<i class="fas fa-play"></i> הפעל וידאו';
+                        playButton.className = 'video-play-button';
+                        document.querySelector('.hero-content').appendChild(playButton);
+                        
+                        playButton.addEventListener('click', function() {
+                            video.style.display = 'block';
+                            fallbackImage.style.display = 'none';
+                            video.play();
+                            playButton.remove();
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
+        
+        // קישור כפתור יצירת קשר בהירו
+        if (contactButton && contactPopup) {
+            contactButton.addEventListener('click', function() {
+                contactPopup.style.display = 'flex';
+            });
+        }
         
         // אופטימיזציה - הפסק את הווידאו כשהוא לא בתצוגה (חוסך משאבים)
         const observer = new IntersectionObserver((entries) => {
@@ -91,30 +107,11 @@
         observer.observe(video);
     }
     
-    // מאזין לטעינת התוכן הדינמי
+    // הפעלת פונקציית האתחול של הווידאו
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initHeroVideo);
     } else {
         // אם ה-DOM כבר נטען (למשל בטעינה דינמית)
-        initHeroVideo();
-    }
-    
-    // קישור כפתור יצירת קשר בהירו
-    function initContactButton() {
-        const contactButton = document.getElementById('open-contact-popup-hero');
-        const contactPopup = document.getElementById('contact-popup');
-        
-        if (contactButton && contactPopup) {
-            contactButton.addEventListener('click', function() {
-                contactPopup.style.display = 'flex';
-            });
-        }
-    }
-    
-    // הפעלת פונקציית האתחול לכפתור יצירת קשר
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initContactButton);
-    } else {
-        setTimeout(initContactButton, 100);
+        setTimeout(initHeroVideo, 100);
     }
 </script> 

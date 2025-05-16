@@ -2,57 +2,57 @@
     <h2>גלריה</h2>
     <p style="text-align: center;">תמונות של מרכז אפרוז, החוויות, המדיטציות, החדרים והחוף הקסום - הרגעים האמיתיים של הרטריט</p>
     
-    <div class="section-subtitle">לחצו על התמונות להגדלה</div>
+    <div class="section-subtitle desktop-only">לחצו על התמונות להגדלה</div>
     
     <div class="gallery-grid">
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/1.jpg', 0)">
+        <div class="gallery-item">
             <img src="/images/gallery/1.jpg" alt="חוף הים באפרוז" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/2.jpg', 1)">
+        <div class="gallery-item">
             <img src="/images/gallery/2.jpg" alt="אולם המדיטציה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/3.jpg', 2)">
+        <div class="gallery-item">
             <img src="/images/gallery/3.jpg" alt="נוף מהמרפסת" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/4.jpg', 3)">
+        <div class="gallery-item">
             <img src="/images/gallery/4.jpg" alt="פינת ישיבה בגינה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/5.jpg', 4)">
+        <div class="gallery-item">
             <img src="/images/gallery/5.jpg" alt="עבודה עם המנחה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/6.jpg', 5)">
+        <div class="gallery-item">
             <img src="/images/gallery/6.jpg" alt="ארוחה משותפת" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/7.jpg', 6)">
+        <div class="gallery-item">
             <img src="/images/gallery/7.jpg" alt="מדיטציה בשקיעה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/8.jpg', 7)">
+        <div class="gallery-item">
             <img src="/images/gallery/8.jpg" alt="חדר במרכז" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/9.jpg', 8)">
+        <div class="gallery-item">
             <img src="/images/gallery/9.jpg" alt="רגע של שלווה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/10.jpg', 9)">
+        <div class="gallery-item">
             <img src="/images/gallery/10.jpg" alt="שביל הליכה בטבע" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/11.jpg', 10)">
+        <div class="gallery-item">
             <img src="/images/gallery/11.jpg" alt="שיחה בקבוצה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/12.jpg', 11)">
+        <div class="gallery-item">
             <img src="/images/gallery/12.jpg" alt="מבט מהגבעה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/13.jpg', 12)">
+        <div class="gallery-item">
             <img src="/images/gallery/13.jpg" alt="ריקוד ותנועה" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/14.jpg', 13)">
+        <div class="gallery-item">
             <img src="/images/gallery/14.jpg" alt="זריחה במרכז" loading="lazy" />
         </div>
-        <div class="gallery-item" onclick="openLightbox('/images/gallery/15.jpg', 14)">
+        <div class="gallery-item">
             <img src="/images/gallery/15.jpg" alt="רגעי התבוננות" loading="lazy" />
         </div>
     </div>
     
-    <!-- Lightbox -->
+    <!-- Lightbox - רק למסכים גדולים -->
     <div id="lightbox" class="lightbox">
         <div class="close-lightbox" onclick="closeLightbox()">&times;</div>
         <img class="lightbox-content" id="lightbox-img">
@@ -66,17 +66,28 @@
     <script>
         let galleryImages = [];
         let currentImageIndex = 0;
+        let isMobile = window.innerWidth <= 768;
         
         document.addEventListener('DOMContentLoaded', function() {
+            updateIsMobile();
+            window.addEventListener('resize', updateIsMobile);
+            
             // איסוף כל התמונות בגלריה
             const galleryItems = document.querySelectorAll('.gallery-item');
             galleryImages = [];
             
-            galleryItems.forEach(item => {
+            galleryItems.forEach((item, index) => {
                 const img = item.querySelector('img');
                 galleryImages.push({
                     src: img.getAttribute('src'),
                     alt: img.getAttribute('alt')
+                });
+                
+                // הוספת אירוע לחיצה רק למסכים גדולים
+                item.addEventListener('click', function() {
+                    if (!isMobile) {
+                        openLightbox(img.getAttribute('src'), index);
+                    }
                 });
             });
             
@@ -117,8 +128,20 @@
             });
         });
         
+        // פונקציה לעדכון המשתנה isMobile
+        function updateIsMobile() {
+            isMobile = window.innerWidth <= 768;
+            
+            // עדכון הסטייל של desktop-only
+            document.querySelectorAll('.desktop-only').forEach(item => {
+                item.style.display = isMobile ? 'none' : 'block';
+            });
+        }
+        
         // פתיחת הלייטבוקס
         function openLightbox(src, index) {
+            if (isMobile) return; // לא פותח לייטבוקס במובייל
+            
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             

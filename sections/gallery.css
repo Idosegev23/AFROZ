@@ -8,6 +8,34 @@
     max-width: 1200px;
 }
 
+/* תצוגת גדולה - מעל 1400 פיקסל */
+@media (min-width: 1400px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 עמודות במסכים גדולים */
+    }
+}
+
+/* תצוגת בינונית - בין 1025 ל-1399 פיקסל */
+@media (min-width: 1025px) and (max-width: 1399px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 עמודות במסכים בינוניים */
+    }
+}
+
+/* תצוגת טאבלט - בין 769 ל-1024 פיקסל */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 עמודות במסכים של טאבלט */
+    }
+}
+
+/* תצוגת מובייל - מתחת ל-768 פיקסל */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* עמודה אחת בלבד */
+    }
+}
+
 .section-subtitle {
     text-align: center;
     font-size: 1.1rem;
@@ -178,24 +206,9 @@
     background-color: rgba(60, 174, 163, 0.7);
 }
 
-/* תצוגת גדולה */
-@media (min-width: 1400px) {
-    .gallery-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 עמודות במסכים גדולים */
-    }
-}
-
-/* תצוגת בינונית */
-@media (max-width: 1399px) and (min-width: 1025px) {
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 עמודות במסכים בינוניים */
-    }
-}
-
-/* תצוגת טאבלט */
+/* תצוגת טאבלט - פרטים נוספים */
 @media (max-width: 1024px) and (min-width: 769px) {
     .gallery-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 עמודות במסכים של טאבלט */
         grid-gap: 12px;
         width: 92%;
     }
@@ -205,10 +218,9 @@
     }
 }
 
-/* תצוגת מובייל */
+/* תצוגת מובייל - עמודה אחת, פרטים נוספים */
 @media (max-width: 768px) {
     .gallery-grid {
-        grid-template-columns: 1fr; /* עמודה אחת בלבד */
         grid-gap: 20px; /* מרווח גדול יותר בין התמונות */
         width: 92%;
         margin: 20px auto;

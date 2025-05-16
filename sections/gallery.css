@@ -58,7 +58,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.9);
-    overflow: hidden;
+    overflow-y: auto; /* אפשר גלילה אנכית אם התוכן גדול */
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
@@ -90,7 +90,7 @@
     z-index: 1001;
     width: 40px;
     height: 40px;
-    display: none; /* סגנון הסתרה כברירת מחדל */
+    display: flex; /* שינוי כאן - תמיד מוצג */
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
@@ -149,7 +149,7 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    display: none; /* סגנון הסתרה כברירת מחדל */
+    display: flex; /* שינוי כאן - תמיד מוצג */
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
@@ -188,13 +188,13 @@
     }
 }
 
-/* תצוגת מובייל - משתמשת באותו סגנון של דסקטופ */
+/* תצוגת מובייל קטן ובינוני */
 @media (max-width: 768px) {
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: 1fr; /* עמודה אחת בלבד */
         grid-gap: 15px;
         width: 90%;
-        margin: 30px auto;
+        margin: 20px auto;
     }
     
     .gallery-item {
@@ -202,72 +202,56 @@
     }
     
     .lightbox-content {
-        max-width: 90%;
-        max-height: 85vh;
+        max-width: 95%;
+        max-height: 80vh;
     }
     
     .close-lightbox {
-        font-size: 30px;
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
+        font-size: 24px;
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
     }
     
     .lightbox-prev, .lightbox-next {
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
-    }
-    
-    .lightbox {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        width: 90%;
-    }
-    
-    .gallery-item {
-        height: 250px;
-    }
-    
-    .lightbox-prev, .lightbox-next {
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
-    }
-    
-    .close-lightbox {
-        font-size: 30px;
-        top: 20px;
-        right: 20px;
         width: 40px;
         height: 40px;
+        font-size: 24px;
+        padding: 8px;
     }
     
     .lightbox {
-        padding: 20px;
-    }
-    
-    .lightbox-content {
-        max-width: 90%;
-        max-height: 85vh;
+        padding: 15px;
     }
     
     .lightbox-counter {
-        font-size: 14px;
-        padding: 5px 15px;
-        bottom: 20px;
+        font-size: 12px;
+        padding: 4px 12px;
+        bottom: 15px;
+    }
+    
+    .lightbox-caption {
+        width: 90%;
+        margin: 8px auto 0;
+        font-size: 0.9rem;
     }
 }
 
 /* תצוגת מובייל קטן מאוד */
 @media (max-width: 360px) {
     .gallery-item {
-        height: 180px;
+        height: 200px;
+    }
+    
+    .close-lightbox {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .lightbox-prev, .lightbox-next {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
     }
 } 

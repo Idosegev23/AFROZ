@@ -54,21 +54,31 @@
     
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
-        <div class="close-lightbox">&times;</div>
+        <div class="close-lightbox" onclick="closeLightbox()">&times;</div>
         <img class="lightbox-content" id="lightbox-img">
         <div class="lightbox-caption"></div>
         <div class="lightbox-counter"></div>
-        <a class="lightbox-prev">&#10094;</a>
-        <a class="lightbox-next">&#10095;</a>
+        <a class="lightbox-prev" onclick="navigateImages(-1)">&#10094;</a>
+        <a class="lightbox-next" onclick="navigateImages(1)">&#10095;</a>
     </div>
     
     <!-- סקריפט מקומי לאתחול הלייטבוקס -->
     <script>
+        let galleryImages = [];
+        let currentImageIndex = 0;
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // וידוא שהלייטבוקס מאותחל
-            if (typeof setupLightbox === 'function') {
-                setupLightbox();
-            }
+            // איסוף כל התמונות בגלריה
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryImages = [];
+            
+            galleryItems.forEach(item => {
+                const img = item.querySelector('img');
+                galleryImages.push({
+                    src: img.getAttribute('src'),
+                    alt: img.getAttribute('alt')
+                });
+            });
             
             // עדכון כיתוב עבור התמונות בלייטבוקס
             const lightbox = document.getElementById('lightbox');
@@ -87,11 +97,52 @@
                     }
                     
                     // עדכון מונה התמונות
-                    if (lightboxCounter && typeof currentImageIndex !== 'undefined' && galleryImages && galleryImages.length) {
+                    if (lightboxCounter) {
                         lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
                     }
                 });
             }
+            
+            // הוספת מאזיני אירועים למקשי מקלדת
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('lightbox').style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowRight') {
+                        navigateImages(-1);
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateImages(1);
+                    }
+                }
+            });
         });
+        
+        // פתיחת הלייטבוקס
+        function openLightbox(src, index) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            currentImageIndex = index;
+            lightboxImg.src = src;
+            lightboxImg.alt = galleryImages[index].alt;
+            
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // מונע גלילה ברקע
+        }
+        
+        // סגירת הלייטבוקס
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = ''; // מחזיר את הגלילה
+        }
+        
+        // מעבר בין תמונות
+        function navigateImages(direction) {
+            currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+            lightboxImg.alt = galleryImages[currentImageIndex].alt;
+        }
     </script>
 </section> 

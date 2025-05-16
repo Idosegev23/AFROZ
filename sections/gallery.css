@@ -1,7 +1,7 @@
 /* Gallery Grid Style */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 4 עמודות בגדלים שווים במסכים גדולים */
     grid-gap: 15px;
     margin: 30px auto;
     width: 90%;
@@ -178,10 +178,24 @@
     background-color: rgba(60, 174, 163, 0.7);
 }
 
+/* תצוגת גדולה */
+@media (min-width: 1400px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 עמודות במסכים גדולים */
+    }
+}
+
+/* תצוגת בינונית */
+@media (max-width: 1399px) and (min-width: 1025px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 עמודות במסכים בינוניים */
+    }
+}
+
 /* תצוגת טאבלט */
 @media (max-width: 1024px) and (min-width: 769px) {
     .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* 3 עמודות במסכים של טאבלט */
         grid-gap: 12px;
         width: 92%;
     }

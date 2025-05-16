@@ -79,7 +79,14 @@ img {
 #img-5:checked ~ [data-for="img-5"].gallery__item,
 #img-6:checked ~ [data-for="img-6"].gallery__item,
 #img-7:checked ~ [data-for="img-7"].gallery__item,
-#img-8:checked ~ [data-for="img-8"].gallery__item {
+#img-8:checked ~ [data-for="img-8"].gallery__item,
+#img-9:checked ~ [data-for="img-9"].gallery__item,
+#img-10:checked ~ [data-for="img-10"].gallery__item,
+#img-11:checked ~ [data-for="img-11"].gallery__item,
+#img-12:checked ~ [data-for="img-12"].gallery__item,
+#img-13:checked ~ [data-for="img-13"].gallery__item,
+#img-14:checked ~ [data-for="img-14"].gallery__item,
+#img-15:checked ~ [data-for="img-15"].gallery__item {
   opacity: 1;
 }
 
@@ -91,7 +98,14 @@ img {
 #img-5:checked ~ .thumbnails-container [for="img-5"] img,
 #img-6:checked ~ .thumbnails-container [for="img-6"] img,
 #img-7:checked ~ .thumbnails-container [for="img-7"] img,
-#img-8:checked ~ .thumbnails-container [for="img-8"] img {
+#img-8:checked ~ .thumbnails-container [for="img-8"] img,
+#img-9:checked ~ .thumbnails-container [for="img-9"] img,
+#img-10:checked ~ .thumbnails-container [for="img-10"] img,
+#img-11:checked ~ .thumbnails-container [for="img-11"] img,
+#img-12:checked ~ .thumbnails-container [for="img-12"] img,
+#img-13:checked ~ .thumbnails-container [for="img-13"] img,
+#img-14:checked ~ .thumbnails-container [for="img-14"] img,
+#img-15:checked ~ .thumbnails-container [for="img-15"] img {
   box-shadow: 0 0 0 3px #0be2f6;
   border-color: #fff;
 }
@@ -132,7 +146,14 @@ img {
   #img-5:checked ~ [data-for="img-5"].gallery__item,
   #img-6:checked ~ [data-for="img-6"].gallery__item,
   #img-7:checked ~ [data-for="img-7"].gallery__item,
-  #img-8:checked ~ [data-for="img-8"].gallery__item {
+  #img-8:checked ~ [data-for="img-8"].gallery__item,
+  #img-9:checked ~ [data-for="img-9"].gallery__item,
+  #img-10:checked ~ [data-for="img-10"].gallery__item,
+  #img-11:checked ~ [data-for="img-11"].gallery__item,
+  #img-12:checked ~ [data-for="img-12"].gallery__item,
+  #img-13:checked ~ [data-for="img-13"].gallery__item,
+  #img-14:checked ~ [data-for="img-14"].gallery__item,
+  #img-15:checked ~ [data-for="img-15"].gallery__item {
     display: block;
   }
   

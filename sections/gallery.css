@@ -14,23 +14,16 @@ img {
   margin: 10px auto;
   max-width: 600px;
   position: relative;
-  padding-top: 66.66%; /* 400px/600px * 100% */
-}
-
-@media screen and (min-width: 600px) {
-  .gallery {
-    padding-top: 400px;
-  }
+  padding-bottom: 120px; /* מרווח לתמונות ממוזערות */
 }
 
 .gallery__item {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  height: 400px;
   width: 100%;
-  height: 100%;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  display: none;
 }
 
 .gallery__img {
@@ -45,7 +38,8 @@ img {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 420px;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .gallery__thumb {
@@ -87,6 +81,7 @@ img {
 #img-13:checked ~ [data-for="img-13"].gallery__item,
 #img-14:checked ~ [data-for="img-14"].gallery__item,
 #img-15:checked ~ [data-for="img-15"].gallery__item {
+  display: block;
   opacity: 1;
 }
 
@@ -127,34 +122,12 @@ img {
 /* רספונסיביות למובייל */
 @media (max-width: 768px) {
   .gallery {
-    padding-top: 0;
-    height: auto;
+    padding-bottom: 0;
   }
   
   .gallery__item {
-    position: relative;
     height: 300px;
-    width: 100%;
-    display: none;
     margin-bottom: 10px;
-  }
-  
-  #img-1:checked ~ [data-for="img-1"].gallery__item,
-  #img-2:checked ~ [data-for="img-2"].gallery__item,
-  #img-3:checked ~ [data-for="img-3"].gallery__item,
-  #img-4:checked ~ [data-for="img-4"].gallery__item,
-  #img-5:checked ~ [data-for="img-5"].gallery__item,
-  #img-6:checked ~ [data-for="img-6"].gallery__item,
-  #img-7:checked ~ [data-for="img-7"].gallery__item,
-  #img-8:checked ~ [data-for="img-8"].gallery__item,
-  #img-9:checked ~ [data-for="img-9"].gallery__item,
-  #img-10:checked ~ [data-for="img-10"].gallery__item,
-  #img-11:checked ~ [data-for="img-11"].gallery__item,
-  #img-12:checked ~ [data-for="img-12"].gallery__item,
-  #img-13:checked ~ [data-for="img-13"].gallery__item,
-  #img-14:checked ~ [data-for="img-14"].gallery__item,
-  #img-15:checked ~ [data-for="img-15"].gallery__item {
-    display: block;
   }
   
   .thumbnails-container {

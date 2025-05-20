@@ -136,53 +136,51 @@ function initPopups() {
     console.log('Initializing Popups');
     
     // טיפול בכפתורים שפותחים פופאפים באמצעות selector יותר כללי
-    const allContactButtons = document.querySelectorAll('[id^="open-contact-popup"]');
-    const allPricingButtons = document.querySelectorAll('[id^="open-pricing-popup"]');
+    const allPopupOpeningButtons = document.querySelectorAll('[id^="open-contact-popup"], [id^="open-pricing-popup"]');
     
-    const pricingPopup = document.getElementById('pricing-popup');
     const contactPopup = document.getElementById('contact-popup');
-    const closePricingButton = document.getElementById('close-pricing');
+    // אין צורך ב pricingPopup אם כולם פותחים את contactPopup
+    // const pricingPopup = document.getElementById('pricing-popup'); 
     const closeContactButton = document.getElementById('close-contact');
+    // גם כפתור הסגירה של פופאפ המחירים לא רלוונטי יותר באותה מידה
+    // const closePricingButton = document.getElementById('close-pricing'); 
 
-    // הוספת מאזין אירועים לכל כפתורי צור קשר
-    if (allContactButtons.length > 0) {
-        console.log(`Found ${allContactButtons.length} contact popup buttons`);
-        allContactButtons.forEach(button => {
+    // הוספת מאזין אירועים לכל הכפתורים שפותחים פופאפ
+    if (allPopupOpeningButtons.length > 0) {
+        console.log(`Found ${allPopupOpeningButtons.length} popup opening buttons`);
+        allPopupOpeningButtons.forEach(button => {
             button.addEventListener('click', () => {
-                console.log(`Contact button clicked: ${button.id}`);
-                openPopup(contactPopup);
+                console.log(`Popup button clicked: ${button.id}, opening contact-popup`);
+                openPopup(contactPopup); // כל הכפתורים פותחים את פופאפ יצירת הקשר
             });
         });
     } else {
-        console.error("No contact popup buttons found");
+        console.error("No popup opening buttons found (contact or pricing)");
     }
 
-    // הוספת מאזין אירועים לכל כפתורי מחירים
-    if (allPricingButtons.length > 0) {
-        console.log(`Found ${allPricingButtons.length} pricing popup buttons`);
-        allPricingButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                console.log(`Pricing button clicked: ${button.id}`);
-                openPopup(pricingPopup);
-            });
-        });
-    } else {
-        console.error("No pricing popup buttons found");
-    }
-
-    // Close popup buttons
-    if (closePricingButton) closePricingButton.addEventListener('click', () => closePopup(pricingPopup));
+    // Close contact popup button
     if (closeContactButton) closeContactButton.addEventListener('click', () => closePopup(contactPopup));
+    // if (closePricingButton) closePricingButton.addEventListener('click', () => closePopup(pricingPopup)); // הסרת מאזין לכפתור סגירת פופאפ מחירים
 
     // Close popup when clicking outside
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('popup')) {
-            closePopup(e.target);
+            // אם יש רק פופאפ אחד פעיל, אפשר לסגור אותו ישירות
+            // אם יש אפשרות למספר פופאפים פתוחים, צריך לוגיקה מורכבת יותר
+            // כרגע, בהנחה שרק פופאפ יצירת קשר פעיל:
+            if (contactPopup && contactPopup.style.display === 'flex') {
+                 closePopup(contactPopup);
+            }
+            // אם רוצים לתמוך גם בסגירת פופאפ המחירים במידה והוא עדיין בשימוש במקום אחר:
+            // const pricingPopup = document.getElementById('pricing-popup');
+            // if (pricingPopup && pricingPopup.style.display === 'flex') {
+            //      closePopup(pricingPopup);
+            // }
         }
     });
     
     // Basic check if popups exist
-    if (!pricingPopup) console.error("Pricing popup not found");
+    // if (!pricingPopup) console.error("Pricing popup not found (though not actively used by all buttons anymore)");
     if (!contactPopup) console.error("Contact popup not found");
 }
 

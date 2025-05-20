@@ -135,30 +135,41 @@ function initProgramAccordion() {
 
 function initPopups() {
     console.log('Initializing Popups');
-    const heroButton = document.getElementById('open-pricing-popup-hero');
-    const programButton = document.getElementById('open-contact-popup-program');
-    const locationButton = document.getElementById('open-contact-popup-location');
-    const testimonialsButton = document.getElementById('open-pricing-popup-testimonials');
-    const accommodationButton = document.getElementById('open-contact-popup-accommodation');
-    const pricingButtonFooter = document.getElementById('open-pricing-popup-footer');
-    const closePricingButton = document.getElementById('close-pricing');
-    const closeContactButton = document.getElementById('close-contact');
-    const contactButton = document.getElementById('open-contact-popup');
-    const contactButtonHero = document.getElementById('open-contact-popup-hero');
-    const contactButtonLocation = document.getElementById('open-contact-popup-location');
+    
+    // טיפול בכפתורים שפותחים פופאפים באמצעות selector יותר כללי
+    const allContactButtons = document.querySelectorAll('[id^="open-contact-popup"]');
+    const allPricingButtons = document.querySelectorAll('[id^="open-pricing-popup"]');
+    
     const pricingPopup = document.getElementById('pricing-popup');
     const contactPopup = document.getElementById('contact-popup');
+    const closePricingButton = document.getElementById('close-pricing');
+    const closeContactButton = document.getElementById('close-contact');
 
-    // Popup opener buttons
-    if (heroButton) heroButton.addEventListener('click', () => openPopup(contactPopup)); 
-    if (programButton) programButton.addEventListener('click', () => openPopup(contactPopup));
-    if (locationButton) locationButton.addEventListener('click', () => openPopup(contactPopup));
-    if (testimonialsButton) testimonialsButton.addEventListener('click', () => openPopup(contactPopup));
-    if (accommodationButton) accommodationButton.addEventListener('click', () => openPopup(contactPopup));
-    if (pricingButtonFooter) pricingButtonFooter.addEventListener('click', () => openPopup(pricingPopup));
-    if (contactButton) contactButton.addEventListener('click', () => openPopup(contactPopup));
-    if (contactButtonHero) contactButtonHero.addEventListener('click', () => openPopup(contactPopup));
-    if (contactButtonLocation) contactButtonLocation.addEventListener('click', () => openPopup(contactPopup));
+    // הוספת מאזין אירועים לכל כפתורי צור קשר
+    if (allContactButtons.length > 0) {
+        console.log(`Found ${allContactButtons.length} contact popup buttons`);
+        allContactButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                console.log(`Contact button clicked: ${button.id}`);
+                openPopup(contactPopup);
+            });
+        });
+    } else {
+        console.error("No contact popup buttons found");
+    }
+
+    // הוספת מאזין אירועים לכל כפתורי מחירים
+    if (allPricingButtons.length > 0) {
+        console.log(`Found ${allPricingButtons.length} pricing popup buttons`);
+        allPricingButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                console.log(`Pricing button clicked: ${button.id}`);
+                openPopup(pricingPopup);
+            });
+        });
+    } else {
+        console.error("No pricing popup buttons found");
+    }
 
     // Close popup buttons
     if (closePricingButton) closePricingButton.addEventListener('click', () => closePopup(pricingPopup));
@@ -170,6 +181,7 @@ function initPopups() {
             closePopup(e.target);
         }
     });
+    
     // Basic check if popups exist
     if (!pricingPopup) console.error("Pricing popup not found");
     if (!contactPopup) console.error("Contact popup not found");

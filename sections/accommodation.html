@@ -110,36 +110,4 @@
     </div>
 </section>
 
-<script>
-    // סקריפט לטיפול בכל כפתורי הפופאפ בכל הסקשנים
-    document.addEventListener('DOMContentLoaded', function() {
-        // מערך של כל הכפתורים שצריכים לפתוח את פופאפ הקשר
-        const contactButtons = [
-            'open-contact-popup-accommodation',
-            'open-contact-popup-location',
-            'open-contact-popup-program',
-            'open-pricing-popup-testimonials',
-            'open-contact-popup-hero',
-            'open-contact-popup'
-        ];
-        
-        // הוספת מאזין אירועים לכל כפתור
-        contactButtons.forEach(buttonId => {
-            const button = document.getElementById(buttonId);
-            if (button) {
-                button.addEventListener('click', function() {
-                    // בדיקה האם זה פופאפ מחירים או פופאפ קשר
-                    let popupId = 'contact-popup';
-                    if (buttonId.includes('pricing')) {
-                        popupId = 'pricing-popup';
-                    }
-                    
-                    const popup = document.getElementById(popupId);
-                    if (popup) {
-                        popup.style.display = 'flex';
-                    }
-                });
-            }
-        });
-    });
-</script> 
+

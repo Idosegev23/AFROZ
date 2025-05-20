@@ -90,13 +90,6 @@
             });
         }
         
-        // קישור כפתור יצירת קשר בהירו
-        if (contactButton && contactPopup) {
-            contactButton.addEventListener('click', function() {
-                contactPopup.style.display = 'flex';
-            });
-        }
-        
         // אופטימיזציה - הפסק את הווידאו כשהוא לא בתצוגה (חוסך משאבים)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

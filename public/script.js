@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
     initMobileMenu();
-    initPopups();
     initGalleryCarousel();
     initLocalContactForm();
     fixIosScroll();

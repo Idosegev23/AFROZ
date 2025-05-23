@@ -72,15 +72,19 @@ img {
 #img-4:checked ~ [data-for="img-4"].gallery__item,
 #img-5:checked ~ [data-for="img-5"].gallery__item,
 #img-6:checked ~ [data-for="img-6"].gallery__item,
-#img-7:checked ~ [data-for="img-7"].gallery__item,
 #img-8:checked ~ [data-for="img-8"].gallery__item,
 #img-9:checked ~ [data-for="img-9"].gallery__item,
 #img-10:checked ~ [data-for="img-10"].gallery__item,
 #img-11:checked ~ [data-for="img-11"].gallery__item,
 #img-12:checked ~ [data-for="img-12"].gallery__item,
-#img-13:checked ~ [data-for="img-13"].gallery__item,
 #img-14:checked ~ [data-for="img-14"].gallery__item,
-#img-20:checked ~ [data-for="img-20"].gallery__item {
+#img-20:checked ~ [data-for="img-20"].gallery__item,
+#img-21:checked ~ [data-for="img-21"].gallery__item,
+#img-22:checked ~ [data-for="img-22"].gallery__item,
+#img-23:checked ~ [data-for="img-23"].gallery__item,
+#img-24:checked ~ [data-for="img-24"].gallery__item,
+#img-25:checked ~ [data-for="img-25"].gallery__item,
+#img-26:checked ~ [data-for="img-26"].gallery__item {
   display: block;
   opacity: 1;
 }
@@ -92,15 +96,19 @@ img {
 #img-4:checked ~ .thumbnails-container [for="img-4"] img,
 #img-5:checked ~ .thumbnails-container [for="img-5"] img,
 #img-6:checked ~ .thumbnails-container [for="img-6"] img,
-#img-7:checked ~ .thumbnails-container [for="img-7"] img,
 #img-8:checked ~ .thumbnails-container [for="img-8"] img,
 #img-9:checked ~ .thumbnails-container [for="img-9"] img,
 #img-10:checked ~ .thumbnails-container [for="img-10"] img,
 #img-11:checked ~ .thumbnails-container [for="img-11"] img,
 #img-12:checked ~ .thumbnails-container [for="img-12"] img,
-#img-13:checked ~ .thumbnails-container [for="img-13"] img,
 #img-14:checked ~ .thumbnails-container [for="img-14"] img,
-#img-20:checked ~ .thumbnails-container [for="img-20"] img {
+#img-20:checked ~ .thumbnails-container [for="img-20"] img,
+#img-21:checked ~ .thumbnails-container [for="img-21"] img,
+#img-22:checked ~ .thumbnails-container [for="img-22"] img,
+#img-23:checked ~ .thumbnails-container [for="img-23"] img,
+#img-24:checked ~ .thumbnails-container [for="img-24"] img,
+#img-25:checked ~ .thumbnails-container [for="img-25"] img,
+#img-26:checked ~ .thumbnails-container [for="img-26"] img {
   box-shadow: 0 0 0 3px #0be2f6;
   border-color: #fff;
 }

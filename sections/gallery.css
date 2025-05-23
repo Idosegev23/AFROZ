@@ -80,7 +80,7 @@ img {
 #img-12:checked ~ [data-for="img-12"].gallery__item,
 #img-13:checked ~ [data-for="img-13"].gallery__item,
 #img-14:checked ~ [data-for="img-14"].gallery__item,
-#img-15:checked ~ [data-for="img-15"].gallery__item {
+#img-20:checked ~ [data-for="img-20"].gallery__item {
   display: block;
   opacity: 1;
 }
@@ -100,7 +100,7 @@ img {
 #img-12:checked ~ .thumbnails-container [for="img-12"] img,
 #img-13:checked ~ .thumbnails-container [for="img-13"] img,
 #img-14:checked ~ .thumbnails-container [for="img-14"] img,
-#img-15:checked ~ .thumbnails-container [for="img-15"] img {
+#img-20:checked ~ .thumbnails-container [for="img-20"] img {
   box-shadow: 0 0 0 3px #0be2f6;
   border-color: #fff;
 }

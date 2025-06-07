@@ -98,6 +98,23 @@
 
       gtag('config', 'G-9QR5W7L15P');
     </script>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1535330879952415');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1535330879952415&ev=PageView&noscript=1"
+    /></noscript>
 </head>
 <body>
 
@@ -170,7 +187,6 @@
                         <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:bemeditation.info@gmail.com" aria-label="Email" title="שלחו אימייל"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 
@@ -178,10 +194,35 @@
                 <div class="footer-column">
                     <div class="footer-heading">יצירת קשר</div>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> <a href="tel:+972547882715">054-7882715</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:bemeditation.info@gmail.com">bemeditation.info@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="https://wa.me/972547882715" target="_blank">054-7882715</a></li>
                     </ul>
-                    <button id="open-contact-popup" class="cta-button-secondary">מתעניינים? פנו אלינו</button>
+                    
+                    <!-- טופס יצירת קשר בפוטר -->
+                    <div class="contact-form-container">
+                        <h3>השאירו פרטים ונחזור אליכם</h3>
+                        <form id="footer-contact-form" class="local-contact-form">
+                            <div class="form-group">
+                                <label for="footer-name">שם מלא</label>
+                                <input type="text" id="footer-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="footer-phone">טלפון</label>
+                                <input type="text" id="footer-phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="footer-email">אימייל</label>
+                                <input type="email" id="footer-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="footer-message">הודעה</label>
+                                <textarea id="footer-message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-form">שליחה</button>
+                            <div id="footer-contact-success-message" class="contact-success-message">
+                                תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             

@@ -170,33 +170,108 @@
 }
 
 /* Contact Form (within Footer) */
-/* Assuming .contact-form-container in the footer, not a popup here */
 #contact .contact-form-container { 
-    background: rgba(44, 62, 80, 0.05); 
-    padding: 1.5rem;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 2rem;
+    border-radius: 15px;
     margin-top: 2rem;
     text-align: right;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 #contact .contact-form-container h3 {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    color: #2c3e50; 
-    font-size: 1.3rem;
+    color: white; 
+    font-size: 1.4rem;
     font-weight: 600;
     position: relative;
     padding-bottom: 0.5rem;
+    text-align: center;
 }
 
 #contact .contact-form-container h3:after {
     content: '';
     position: absolute;
     bottom: 0;
-    right: 0;
-    width: 50px;
-    height: 2px;
-    background-color: #e67e22; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #3CAEA3; 
+    border-radius: 2px;
+}
+
+/* Form styling in footer */
+#contact .form-group {
+    margin-bottom: 1.2rem;
+    text-align: right;
+}
+
+#contact .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: white;
+    font-size: 0.95rem;
+}
+
+#contact .form-group input,
+#contact .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    font-family: 'Heebo', sans-serif;
+    transition: all 0.3s ease;
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus {
+    outline: none;
+    border-color: #3CAEA3;
+    box-shadow: 0 0 0 2px rgba(60, 174, 163, 0.3);
+    background-color: #fff;
+}
+
+#contact .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#contact button.submit-form {
+    background-color: #3CAEA3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#contact button.submit-form:hover {
+    background-color: #2C8C83;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(60, 174, 163, 0.3);
+}
+
+#contact .contact-success-message {
+    display: none;
+    background-color: rgba(60, 174, 163, 0.2);
+    color: white;
+    border: 1px solid rgba(60, 174, 163, 0.4);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
 }
 
 /* General .form-group, .form-group label, input, textarea, button.submit-form, .contact-success-message are in popups.css or components.css if truly global */
@@ -277,6 +352,22 @@
         padding: 1.5rem; 
         margin-left: auto; 
         margin-right: auto;
+        margin-top: 1.5rem;
+    }
+    
+    #contact .contact-form-container h3 {
+        font-size: 1.2rem;
+    }
+    
+    #contact .form-group input,
+    #contact .form-group textarea {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    #contact button.submit-form {
+        padding: 10px 20px;
+        font-size: 1rem;
     }
     /* Assuming form-group styles are general or in popups/components */
     /* #contact button.submit-form specific mobile style if needed beyond general button.submit-form */

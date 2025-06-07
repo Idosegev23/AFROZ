@@ -135,53 +135,60 @@ function initProgramAccordion() {
 function initPopups() {
     console.log('Initializing Popups');
     
-    // טיפול בכפתורים שפותחים פופאפים באמצעות selector יותר כללי
+    // טיפול בכפתורים שפותחים פופאפים - עכשיו יובילו לפוטר
     const allPopupOpeningButtons = document.querySelectorAll('[id^="open-contact-popup"], [id^="open-pricing-popup"]');
     
     const contactPopup = document.getElementById('contact-popup');
-    // אין צורך ב pricingPopup אם כולם פותחים את contactPopup
-    // const pricingPopup = document.getElementById('pricing-popup'); 
     const closeContactButton = document.getElementById('close-contact');
-    // גם כפתור הסגירה של פופאפ המחירים לא רלוונטי יותר באותה מידה
-    // const closePricingButton = document.getElementById('close-pricing'); 
 
-    // הוספת מאזין אירועים לכל הכפתורים שפותחים פופאפ
+    // הוספת מאזין אירועים לכל הכפתורים שפתחו פופאפ - עכשיו יובילו לפוטר
     if (allPopupOpeningButtons.length > 0) {
-        console.log(`Found ${allPopupOpeningButtons.length} popup opening buttons`);
+        console.log(`Found ${allPopupOpeningButtons.length} popup opening buttons - redirecting to footer contact form`);
         allPopupOpeningButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                console.log(`Popup button clicked: ${button.id}, opening contact-popup`);
-                openPopup(contactPopup); // כל הכפתורים פותחים את פופאפ יצירת הקשר
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`Contact button clicked: ${button.id}, scrolling to footer contact form`);
+                
+                // גלילה חלקה לטופס הקשר בפוטר
+                const footerContactForm = document.getElementById('footer-contact-form');
+                if (footerContactForm) {
+                    footerContactForm.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                    
+                    // מיקוד בשדה הראשון אחרי קצת זמן
+                    setTimeout(() => {
+                        const firstInput = footerContactForm.querySelector('input');
+                        if (firstInput) {
+                            firstInput.focus();
+                        }
+                    }, 500);
+                    
+                    // Facebook Pixel tracking
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateContact', {
+                            source: 'button_' + button.id
+                        });
+                    }
+                }
             });
         });
     } else {
-        console.error("No popup opening buttons found (contact or pricing)");
+        console.log("No popup opening buttons found");
     }
 
-    // Close contact popup button
+    // Close contact popup button (עדיין שומר על הפופ-אפ אם הוא בשימוש במקום אחר)
     if (closeContactButton) closeContactButton.addEventListener('click', () => closePopup(contactPopup));
-    // if (closePricingButton) closePricingButton.addEventListener('click', () => closePopup(pricingPopup)); // הסרת מאזין לכפתור סגירת פופאפ מחירים
 
-    // Close popup when clicking outside
+    // Close popup when clicking outside (עדיין שומר על הפופ-אפ אם הוא בשימוש במקום אחר)
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('popup')) {
-            // אם יש רק פופאפ אחד פעיל, אפשר לסגור אותו ישירות
-            // אם יש אפשרות למספר פופאפים פתוחים, צריך לוגיקה מורכבת יותר
-            // כרגע, בהנחה שרק פופאפ יצירת קשר פעיל:
             if (contactPopup && contactPopup.style.display === 'flex') {
                  closePopup(contactPopup);
             }
-            // אם רוצים לתמוך גם בסגירת פופאפ המחירים במידה והוא עדיין בשימוש במקום אחר:
-            // const pricingPopup = document.getElementById('pricing-popup');
-            // if (pricingPopup && pricingPopup.style.display === 'flex') {
-            //      closePopup(pricingPopup);
-            // }
         }
     });
-    
-    // Basic check if popups exist
-    // if (!pricingPopup) console.error("Pricing popup not found (though not actively used by all buttons anymore)");
-    if (!contactPopup) console.error("Contact popup not found");
 }
 
 function fixIosScroll() {
@@ -376,21 +383,32 @@ function createRandomDunes() {
 // פונקציה לטיפול בטופס יצירת הקשר המקומי
 function initLocalContactForm() {
     console.log('Initializing local contact form');
-    const contactForm = document.getElementById('local-contact-form');
-    const successMessage = document.getElementById('contact-success-message');
+    
+    // טיפול בטופס הפופ-אפ (אם עדיין קיים)
+    handleContactForm('local-contact-form', 'contact-success-message', 'popup');
+    
+    // טיפול בטופס הפוטר
+    handleContactForm('footer-contact-form', 'footer-contact-success-message', 'footer');
+}
+
+function handleContactForm(formId, messageId, context) {
+    const contactForm = document.getElementById(formId);
+    const successMessage = document.getElementById(messageId);
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            console.log('Local contact form submitted');
+            console.log(`${context} contact form submitted`);
             
-            // איסוף הנתונים מהטופס
+            // איסוף הנתונים מהטופס - שימוש בקונטקסט לזיהוי השדות
+            const prefix = context === 'footer' ? 'footer-' : '';
             const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
-                date: new Date().toISOString()
+                name: document.getElementById(prefix + 'name').value,
+                phone: document.getElementById(prefix + 'phone').value,
+                email: document.getElementById(prefix + 'email').value,
+                message: document.getElementById(prefix + 'message').value,
+                date: new Date().toISOString(),
+                source: context
             };
             
             // שמירת הנתונים ב-localStorage
@@ -412,9 +430,16 @@ function initLocalContactForm() {
                     successMessage.style.display = 'none';
                 }, 5000);
             }
+            
+            // Facebook Pixel tracking
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact', {
+                    source: context
+                });
+            }
         });
     } else {
-        console.error('Local contact form not found');
+        console.log(`${context} contact form not found (this may be normal)`);
     }
 }
 

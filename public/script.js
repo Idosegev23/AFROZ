@@ -402,11 +402,12 @@ function handleContactForm(formId, messageId, context) {
             
             // איסוף הנתונים מהטופס - שימוש בקונטקסט לזיהוי השדות
             const prefix = context === 'footer' ? 'footer-' : '';
+            const messageField = document.getElementById(prefix + 'message');
             const formData = {
                 name: document.getElementById(prefix + 'name').value,
                 phone: document.getElementById(prefix + 'phone').value,
                 email: document.getElementById(prefix + 'email').value,
-                message: document.getElementById(prefix + 'message').value,
+                message: messageField ? messageField.value : '',
                 date: new Date().toISOString(),
                 source: context
             };

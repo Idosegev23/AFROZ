@@ -175,51 +175,69 @@
     <!-- Footer & Contact -->
     <footer id="contact">
         <div class="footer-content">
-            <!-- מבנה הפוטר החדש ומפושט -->
-            <div class="footer-grid">
-                <!-- עמודה 1 - לוגו ומידע -->
-                <div class="footer-column">
-                    <div class="footer-logo-container" style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="public/images/rnd_logo.png" alt="לוגו Be Meditation" class="footer-logo" style="background: transparent;">
-                        <span class="logo-text" style="margin-top: 10px;">Be Meditation</span>
+            <!-- פוטר מחודש ויפה יותר -->
+            <div class="footer-main">
+                <!-- חלק עליון - לוגו ורשתות חברתיות -->
+                <div class="footer-top">
+                    <div class="footer-logo-section">
+                        <img src="public/images/rnd_logo.png" alt="לוגו Be Meditation" class="footer-logo">
+                        <span class="logo-text">Be Meditation</span>
+                        <div class="footer-social">
+                            <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
+                        </div>
                     </div>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/be_meditation/" aria-label="Instagram" target="_blank" title="עקבו אחרינו באינסטגרם"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/JivanyBeMeditation" aria-label="Facebook" target="_blank" title="הצטרפו אלינו בפייסבוק"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://wa.me/972547882715" aria-label="WhatsApp" target="_blank" title="שלחו הודעה בוואטסאפ"><i class="fab fa-whatsapp"></i></a>
+                    
+                    <!-- פרטי יצירת קשר -->
+                    <div class="footer-contact-info">
+                        <h3>יצירת קשר ישירה</h3>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/972547882715" target="_blank">איריס: 054-7882715</a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- עמודה 2 - צור קשר -->
-                <div class="footer-column">
-                    <div class="footer-heading">יצירת קשר</div>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> <a href="https://wa.me/972547882715" target="_blank">054-7882715</a></li>
-                    </ul>
-                    
-                    <!-- טופס יצירת קשר בפוטר -->
+                <!-- טופס יצירת קשר - מרכז הפוטר -->
+                <div class="footer-form-section">
                     <div class="contact-form-container">
-                        <h3>השאירו פרטים ונחזור אליכם</h3>
-                        <form id="footer-contact-form" class="local-contact-form">
-                            <div class="form-group">
-                                <label for="footer-name">שם מלא</label>
-                                <input type="text" id="footer-name" name="name" required>
+                        <div class="form-header">
+                            <i class="fas fa-envelope"></i>
+                            <h3>השאירו פרטים ונחזור אליכם בהקדם</h3>
+                            <p>מעוניינים בפרטים נוספים? מלאו את הטופס ונהיה בקשר</p>
+                        </div>
+                        
+                        <form id="footer-contact-form" class="footer-contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="footer-name" name="name" placeholder="שם מלא *" required>
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="footer-phone" name="phone" placeholder="טלפון *" required>
+                                    <i class="fas fa-phone"></i>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
-                                <label for="footer-phone">טלפון</label>
-                                <input type="text" id="footer-phone" name="phone" required>
+                                <input type="email" id="footer-email" name="email" placeholder="כתובת אימייל *" required>
+                                <i class="fas fa-envelope"></i>
                             </div>
+                            
                             <div class="form-group">
-                                <label for="footer-email">אימייל</label>
-                                <input type="email" id="footer-email" name="email" required>
+                                <textarea id="footer-message" name="message" placeholder="איך נוכל לעזור לכם? (אופציונלי)" rows="4"></textarea>
+                                <i class="fas fa-comment"></i>
                             </div>
-                            <div class="form-group">
-                                <label for="footer-message">הודעה</label>
-                                <textarea id="footer-message" name="message" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-form">שליחה</button>
+                            
+                            <button type="submit" class="submit-form">
+                                <i class="fas fa-paper-plane"></i>
+                                שליחה
+                            </button>
+                            
                             <div id="footer-contact-success-message" class="contact-success-message">
-                                תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
+                                <i class="fas fa-check-circle"></i>
+                                תודה רבה! פרטיכם נשמרו בהצלחה. ניצור איתכם קשר בהקדם הבא.
                             </div>
                         </form>
                     </div>
@@ -228,10 +246,12 @@
             
             <!-- חלק תחתון של הפוטר -->
             <div class="footer-bottom">
-                <!-- הטקסט הוסר כפי שהתבקש -->
+                <p>&copy; 2024 Be Meditation. כל הזכויות שמורות.</p>
             </div>
             
-            <a href="#hero" class="back-to-top" title="חזרה לראש הדף" style="font-size: 24px; padding: 15px; background-color: #3CAEA3; box-shadow: 0 3px 10px rgba(0,0,0,0.2);"><i class="fas fa-chevron-up"></i></a>
+            <a href="#hero" class="back-to-top" title="חזרה לראש הדף">
+                <i class="fas fa-chevron-up"></i>
+            </a>
         </div>
     </footer>
 

@@ -29,37 +29,9 @@
     100% { opacity: 0.2; transform: translateY(0); }
 }
 
-/* Random Dunes Animation Keyframes */
-@keyframes dune-float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(15px) scale(1.05); } /* Slow floating effect */
-}
+/* Random Dunes Animation Keyframes - הוסר */
 
 /* Styles for elements using these animations, if not already in their component files */
-.heat-haze {
-    position: absolute; /* This positioning might be too specific for a general animation file */
-    top: 50%; 
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0)
-    );
-    animation: heatHaze 5s ease-in-out infinite;
-    opacity: 0.2;
-    pointer-events: none; 
-}
+/* .heat-haze הוסר כדי להפחית אלמנטים ברקע */
 
-.random-dune {
-    position: fixed; 
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #D9A443, #BF8136); 
-    opacity: 0.2; 
-    z-index: -1; 
-    transform: scale(1);
-    animation: dune-float 20s ease-in-out infinite;
-    pointer-events: none; 
-} 
+/* .random-dune הוסר כדי להסיר עיגולים ברקע */ 

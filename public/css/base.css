@@ -5,7 +5,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
-    background-color: #f5f5f5;
+    background-color: #F2D1B3; /* רקע חום בהיר */
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scroll */
     scroll-behavior: smooth; /* Smooth scrolling for anchor links */

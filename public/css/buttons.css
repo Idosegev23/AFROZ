@@ -15,15 +15,15 @@
 }
 
 .cta-button {
-    background-color: #3CAEA3; /* צבע כחול-ירוק */
+    background-color: #A8DADC; /* צבע תכלת בהיר */
     color: white;
 }
 
 .cta-button:hover {
-    background-color: #2C8C83; /* כחול-ירוק כהה יותר */
+    background-color: #85B8BC; /* תכלת כהה יותר */
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(44, 140, 131, 0.3);
+    box-shadow: 0 4px 8px rgba(133, 184, 188, 0.3);
 }
 
 .cta-button-secondary {

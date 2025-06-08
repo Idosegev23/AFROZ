@@ -149,19 +149,22 @@ function initPopups() {
                 e.preventDefault();
                 console.log(`Contact button clicked: ${button.id}, scrolling to footer contact form`);
                 
-                // גלילה חלקה לטופס הקשר בפוטר
-                const footerContactForm = document.getElementById('footer-contact-form');
-                if (footerContactForm) {
-                    footerContactForm.scrollIntoView({ 
+                // גלילה חלקה לחלק העליון של סקשן הצור קשר
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ 
                         behavior: 'smooth', 
-                        block: 'center' 
+                        block: 'start' 
                     });
                     
-                    // מיקוד בשדה הראשון אחרי קצת זמן
+                    // מיקוד בשדה הראשון של הטופס אחרי קצת זמן
                     setTimeout(() => {
-                        const firstInput = footerContactForm.querySelector('input');
-                        if (firstInput) {
-                            firstInput.focus();
+                        const footerContactForm = document.getElementById('footer-contact-form');
+                        if (footerContactForm) {
+                            const firstInput = footerContactForm.querySelector('input');
+                            if (firstInput) {
+                                firstInput.focus();
+                            }
                         }
                     }, 500);
                     

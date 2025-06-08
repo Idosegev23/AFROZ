@@ -149,12 +149,17 @@ function initPopups() {
                 e.preventDefault();
                 console.log(`Contact button clicked: ${button.id}, scrolling to footer contact form`);
                 
-                // גלילה חלקה לחלק העליון של סקשן הצור קשר
+                // גלילה חלקה לחלק העליון של סקשן הצור קשר עם אופסט קטן
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {
-                    contactSection.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
+                    // חישוב מיקום עם אופסט עבור הheader
+                    const headerHeight = document.getElementById('header').offsetHeight || 80;
+                    const elementPosition = contactSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                     
                     // מיקוד בשדה הראשון של הטופס אחרי קצת זמן
@@ -166,7 +171,7 @@ function initPopups() {
                                 firstInput.focus();
                             }
                         }
-                    }, 500);
+                    }, 800);
                     
                     // Facebook Pixel tracking
                     if (typeof fbq !== 'undefined') {

@@ -8,14 +8,14 @@
 .accommodation-gallery {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 2rem 0;
     flex-wrap: wrap;
 }
 
 .accommodation-option {
     text-align: center;
-    max-width: 300px;
+    max-width: 220px;
     background: #f8f9fa;
     border-radius: 15px;
     overflow: hidden;
@@ -30,7 +30,7 @@
 
 .accommodation-image {
     width: 100%;
-    height: 200px;
+    height: 140px;
     object-fit: cover;
     border-radius: 0;
     margin: 0;
@@ -38,16 +38,16 @@
 
 .accommodation-option h4 {
     color: #3CAEA3;
-    margin: 1rem 0 0.5rem;
-    font-size: 1.3rem;
+    margin: 0.8rem 0 0.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 .accommodation-option p {
-    padding: 0 1rem 1.5rem;
+    padding: 0 0.8rem 1rem;
     color: #666;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 0.85rem;
+    line-height: 1.3;
     margin: 0;
 }
 
@@ -220,13 +220,17 @@
     }
     
     .accommodation-gallery {
-        gap: 1.5rem;
+        gap: 1rem;
         margin: 1.5rem 0;
     }
     
     .accommodation-option {
-        max-width: 280px;
+        max-width: 200px; /* קטן יותר במובייל */
         margin: 0 auto;
+    }
+    
+    .accommodation-image {
+        height: 120px; /* קטן יותר במובייל */
     }
     
     #accommodation .pricing-cards {
@@ -242,14 +246,26 @@
 
 @media (max-width: 480px) {
     .accommodation-gallery {
-        gap: 1rem;
+        gap: 0.8rem;
+        flex-direction: row; /* שמירה על שורה אחת גם במובייל קטן */
+        overflow-x: auto; /* אפשרות גלילה אופקית אם צריך */
     }
     
     .accommodation-option {
-        max-width: 100%;
+        max-width: 160px; /* עוד יותר קטן במובייל קטן */
+        flex-shrink: 0; /* מניעת הקטנה */
     }
     
     .accommodation-image {
-        height: 180px;
+        height: 100px; /* עוד יותר קטן במובייל קטן */
+    }
+    
+    .accommodation-option h4 {
+        font-size: 1rem;
+    }
+    
+    .accommodation-option p {
+        font-size: 0.75rem;
+        padding: 0 0.5rem 0.8rem;
     }
 }

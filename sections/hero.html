@@ -1,10 +1,6 @@
 <section id="hero">
-    <div class="video-container">
-        <img src="/images/gallery/3.jpg" alt="תמונת רקע" class="fallback-image">
-        <video autoplay muted loop playsinline preload="auto" id="bg-video">
-            <source src="/0420_more_compressed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <div class="banner-container">
+        <img src="public/images/banner/banner.webp" alt="ריטריט מדיטציה וכיף במרכז אושו יוון" class="hero-banner-image">
     </div>
     <div class="desert-animation">
         <div class="sand-dune"></div>
@@ -21,90 +17,6 @@
 </section>
 
 <script>
-    function initHeroVideo() {
-        const video = document.getElementById('bg-video');
-        const fallbackImage = document.querySelector('.fallback-image');
-        const contactButton = document.getElementById('open-contact-popup-hero');
-        const contactPopup = document.getElementById('contact-popup');
-        
-        if (!video || !fallbackImage) return;
-        
-        const isMobile = window.innerWidth <= 768;
-        
-        // בדיקת תמיכה בווידאו
-        const isVideoSupported = !!document.createElement('video').canPlayType;
-        
-        if (!isVideoSupported) {
-            // במקרה שהדפדפן לא תומך בווידאו
-            fallbackImage.style.display = 'block';
-            video.style.display = 'none';
-            return;
-        }
-        
-        // הוספת אירועים לטיפול בווידאו
-        video.addEventListener('error', function(e) {
-            console.log("שגיאת וידאו:", e);
-            fallbackImage.style.display = 'block';
-            video.style.display = 'none';
-        });
-        
-        video.addEventListener('loadeddata', function() {
-            // הווידאו נטען בהצלחה
-            video.style.display = 'block';
-            fallbackImage.style.display = 'none';
-        });
-        
-        // לאלץ את הווידאו להיטען ולהתנגן
-        video.load();
-        
-        // ניסיון לנגן את הווידאו
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.catch(function(error) {
-                console.log("אוטופליי נחסם:", error);
-                
-                if (error.name === "NotAllowedError") {
-                    // במקרה שהאוטופליי נחסם, נסתיר את הווידאו ונציג את התמונה
-                    fallbackImage.style.display = 'block';
-                    
-                    // נוסיף כפתור לצפייה בווידאו רק במובייל
-                    if (isMobile) {
-                        const playButton = document.createElement('button');
-                        playButton.innerHTML = '<i class="fas fa-play"></i> הפעל וידאו';
-                        playButton.className = 'video-play-button';
-                        document.querySelector('.hero-content').appendChild(playButton);
-                        
-                        playButton.addEventListener('click', function() {
-                            video.style.display = 'block';
-                            fallbackImage.style.display = 'none';
-                            video.play();
-                            playButton.remove();
-                        });
-                    }
-                }
-            });
-        }
-        
-        // אופטימיזציה - הפסק את הווידאו כשהוא לא בתצוגה (חוסך משאבים)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting && !video.paused) {
-                    video.pause();
-                } else if (entry.isIntersecting && video.paused) {
-                    video.play().catch(e => console.log("לא ניתן לנגן וידאו:", e));
-                }
-            });
-        }, { threshold: 0.25 });
-        
-        observer.observe(video);
-    }
-    
-    // הפעלת פונקציית האתחול של הווידאו
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHeroVideo);
-    } else {
-        // אם ה-DOM כבר נטען (למשל בטעינה דינמית)
-        setTimeout(initHeroVideo, 100);
-    }
+    // תמונת הבאנר מחליפה את הוידאו - לא נדרש קוד JavaScript מיוחד
+    console.log('Hero section initialized with banner image');
 </script> 

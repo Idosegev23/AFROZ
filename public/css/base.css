@@ -5,7 +5,11 @@ body {
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
-    background-color: #F2D1B3; /* רקע חום בהיר */
+    /* ===== צבע רקע האתר - לשינוי כאן ===== */
+    /* השתמש בקודי צבע hex כמו #F5E6D3 (חום בהיר) או #E8F4F8 (תכלת עדין) */
+    /* ככל שהערך יותר בהיר, הרקע יהיה יותר בהיר */
+    background-color: #F5E6D3; /* רקע חום בהיר יותר ללא גוון ורדרד */
+    /* ========================================= */
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scroll */
     scroll-behavior: smooth; /* Smooth scrolling for anchor links */

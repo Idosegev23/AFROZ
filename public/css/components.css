@@ -165,10 +165,15 @@
     border-left: 4px solid #D9A443;
 }
 
-#about-quote-banner { background-image: url('/images/gallery/2.jpg'); }
-#program-quote-banner { background-image: url('/images/gallery/3.jpg'); }
-#testimonials-quote-banner { background-image: url('/images/gallery/5.jpg'); }
-#faq-quote-banner { background-image: url('/images/gallery/8.jpg'); }
+/* ===== תמונות רקע לציטוטים - לשינוי כאן ===== */
+/* הציטוטים מופיעים בחלקים שונים באתר עם תמונות רקע */
+/* נתיב התמונות: /images/gallery/ */
+/* תמונות זמינות: 1.jpg, 2.jpg, 3.jpg, 4.jpg, 5.jpg, 6.jpg, 7.jpg, 8.jpg */
+#about-quote-banner { background-image: url('/images/gallery/8.jpg'); } /* ציטוט "החיים הם מסע" - תמונה כחולה */
+#program-quote-banner { background-image: url('/images/gallery/3.jpg'); } /* ציטוט בחלק התוכנית */
+#testimonials-quote-banner { background-image: url('/images/gallery/5.jpg'); } /* ציטוט בחלק המלצות */
+#faq-quote-banner { background-image: url('/images/gallery/8.jpg'); } /* ציטוט בחלק שאלות נפוצות */
+/* ================================================== */
 
 /* Pricing Section Components */
 .pricing-cards {

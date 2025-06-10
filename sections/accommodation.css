@@ -4,6 +4,53 @@
     background: #ffffff;
 }
 
+/* גלריית תמונות הלינה */
+.accommodation-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.accommodation-option {
+    text-align: center;
+    max-width: 300px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accommodation-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.accommodation-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0;
+    margin: 0;
+}
+
+.accommodation-option h4 {
+    color: #3CAEA3;
+    margin: 1rem 0 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.accommodation-option p {
+    padding: 0 1rem 1.5rem;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
 #accommodation h2 {
     color: #3CAEA3;
     margin-bottom: 1.5rem;
@@ -172,6 +219,16 @@
         padding: 1.5rem 1rem;
     }
     
+    .accommodation-gallery {
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .accommodation-option {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
     #accommodation .pricing-cards {
         gap: 25px;
     }
@@ -180,5 +237,19 @@
         width: 100%;
         max-width: 350px;
         min-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .accommodation-gallery {
+        gap: 1rem;
+    }
+    
+    .accommodation-option {
+        max-width: 100%;
+    }
+    
+    .accommodation-image {
+        height: 180px;
     }
 }

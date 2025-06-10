@@ -14,17 +14,20 @@
     min-width: 250px;
 }
 
+/* ===== צבעי הכפתור הראשי - לשינוי כאן ===== */
+/* צבעים מומלצים: ירוק #52C41A, כחול #1890FF, תכלת #3CAEA3 */
 .cta-button {
-    background-color: #D9F2FE; /* תכלת עדין כמו התפריט */
-    color: #2c3e50; /* טקסט כהה עבור ניגודיות טובה */
+    background-color: #52C41A; /* צבע הכפתור הרגיל - ירוק יפה ובהיר */
+    color: white; /* צבע הטקסט - טקסט לבן עבור ניגודיות טובה עם הירוק */
 }
 
 .cta-button:hover {
-    background-color: #94d2bd; /* תכלת בהיר יותר */
-    color: #005f73; /* טקסט כהה יותר */
+    background-color: #389E0D; /* צבע הכפתור כשעוברים עליו עם העכבר - ירוק כהה יותר */
+    color: white; /* צבע הטקסט בהובר - שמירה על טקסט לבן */
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(148, 210, 189, 0.4);
+    box-shadow: 0 4px 8px rgba(82, 196, 26, 0.4); /* צל הכפתור - צל ירוק */
 }
+/* ============================================== */
 
 .cta-button-secondary {
     background-color: rgba(255, 255, 255, 0.1); /* Default, often overridden for context */
@@ -62,19 +65,22 @@
 /* Footer button specific styling (cta-button-secondary in #contact) */
 /* This will be in footer.css if #contact is only in footer */
 /* Keeping it here if .cta-button-secondary is used elsewhere with this specific styling */
+
+/* ===== צבע כפתור הפוטר - לשינוי כאן ===== */
+/* הכפתור הזה מופיע בתחתית העמוד בסקציית יצירת הקשר */
 #contact .cta-button-secondary {
-    background-color: #D9A443; /* New color: desert-and-sea-3 */
-    color: #592202; /* New color: desert-and-sea-5 */
+    background-color: #52C41A; /* צבע הכפתור בפוטר - ירוק אחיד כמו שאר הכפתורים */
+    color: white; /* צבע הטקסט בכפתור הפוטר - טקסט לבן */
     border: none;
 }
 
 #contact .cta-button-secondary:hover {
-    background-color: #BF8136; /* New color: desert-and-sea-4 */
+    background-color: #389E0D; /* צבע הכפתור בפוטר כשעוברים עליו - ירוק כהה יותר */
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(89, 33, 1, 0.3); /* desert-and-sea-5 with transparency */
+    box-shadow: 0 4px 8px rgba(82, 196, 26, 0.4); /* צל הכפתור בפוטר - צל ירוק */
 }
-
+/* =========================================== */
 
 /* Responsive Styles for Buttons */
 @media (max-width: 768px) {

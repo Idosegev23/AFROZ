@@ -55,7 +55,7 @@
     width: 100%;
 }
 
-.video-container {
+.banner-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -65,7 +65,7 @@
     overflow: hidden;
 }
 
-#bg-video {
+.hero-banner-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -73,17 +73,6 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.65);
-}
-
-.fallback-image {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     filter: brightness(0.65);
 }
 
@@ -192,17 +181,13 @@
         padding: 0 15px;
     }
     
-    #bg-video {
+    .hero-banner-image {
         display: block;
         object-position: center;
         min-height: 100vh;
         min-width: 100vw;
         width: 100%;
         height: 100%;
-    }
-    
-    .fallback-image {
-        display: none;
     }
     
     /* הדיונות הוסרו - לא צריך עוד סטיילים למובייל */

@@ -1,6 +1,18 @@
 <section id="hero">
     <div class="banner-container">
-        <img src="public/images/banner/banner.webp" alt="ריטריט מדיטציה וכיף במרכז אושו יוון" class="hero-banner-image">
+        <!-- Desktop Video -->
+        <video class="hero-banner-video desktop-video" autoplay muted loop playsinline>
+            <source src="public/videos/afrozwebsite_compressed.mp4" type="video/mp4">
+            <!-- תמונת גיבוי אם הסרטון לא נטען -->
+            <img src="public/images/banner/banner.webp" alt="ריטריט מדיטציה וכיף במרכז אושו יוון" class="hero-banner-image">
+        </video>
+        
+        <!-- Mobile Video -->
+        <video class="hero-banner-video mobile-video" autoplay muted loop playsinline>
+            <source src="public/videos/afrozmobile_compressed.mp4" type="video/mp4">
+            <!-- תמונת גיבוי אם הסרטון לא נטען -->
+            <img src="public/images/banner/banner.webp" alt="ריטריט מדיטציה וכיף במרכז אושו יוון" class="hero-banner-image">
+        </video>
     </div>
     <div class="desert-animation">
         <div class="sand-dune"></div>
@@ -17,6 +29,17 @@
 </section>
 
 <script>
-    // תמונת הבאנר מחליפה את הוידאו - לא נדרש קוד JavaScript מיוחד
-    console.log('Hero section initialized with banner image');
+    // טיפול בווידאו ברקע
+    console.log('Hero section initialized with video backgrounds');
+    
+    const desktopVideo = document.querySelector('.desktop-video');
+    const mobileVideo = document.querySelector('.mobile-video');
+    
+    // וידוד שהסרטונים מופעלים
+    if (desktopVideo) {
+        desktopVideo.play().catch(e => console.log('Desktop video autoplay prevented:', e));
+    }
+    if (mobileVideo) {
+        mobileVideo.play().catch(e => console.log('Mobile video autoplay prevented:', e));
+    }
 </script> 

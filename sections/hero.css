@@ -104,15 +104,20 @@
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
 } */
-/*  הגדרה חדשה */
 
+/*  הגדרה ספציפית לכפתור הזה בשביל השקיפות */
 #hero .cta-button {
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     
     padding: 12px 30px;
     font-size: 1.1rem;
-    background-color: #3CAEA3;
+
+    background-color: rgba(255, 255, 255, 0.3); /* צבע לבן עם שקיפות */
+  color: black; /* שים לב לניגודיות עם הרקע */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* גם הגבול יכול להיות שקוף */
+    
+  /*  background-color: #3CAEA3; */
     transition: all 0.3s ease;
 }
 /* in case needed

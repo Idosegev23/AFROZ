@@ -114,8 +114,8 @@
     font-size: 1.1rem;
 
     background-color: rgba(0, 0, 0, 0.3); /* צבע לבן עם שקיפות */
-  color: black; /* שים לב לניגודיות עם הרקע */
-  border: 1px solid rgba(0, 0, 0, 0.7); /* גם הגבול יכול להיות שקוף */
+  color: white; /* שים לב לניגודיות עם הרקע */
+  border: 1px solid rgba(255,255, 255, 0.7); /* גם הגבול יכול להיות שקוף */
     
   /*  background-color: #3CAEA3; */
     transition: all 0.3s ease;

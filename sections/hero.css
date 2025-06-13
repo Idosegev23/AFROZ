@@ -106,7 +106,7 @@
 } */
 /*  הגדרה חדשה */
 
-#accommodation .cta-button {
+#hero .cta-button {
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     
@@ -115,8 +115,8 @@
     background-color: #3CAEA3;
     transition: all 0.3s ease;
 }
-/*
-#accommodation .cta-button:hover {
+/* in case needed
+#hero .cta-button:hover {
     background-color: #2A8C84;
 }  */
 

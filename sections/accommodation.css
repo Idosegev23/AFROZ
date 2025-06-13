@@ -196,7 +196,7 @@
     margin: 1.5rem 0;
 }
 
-/* כפתור הזמנה */
+/*  כפתור הזמנה - לא ברור למה ההי הרשום את זה וגרם לכפתור להראות אחרת מכולם
 #accommodation .cta-container {
     text-align: center;
     margin: 2rem 0 1rem;
@@ -211,7 +211,7 @@
 
 #accommodation .cta-button:hover {
     background-color: #2A8C84;
-}
+}  */
 
 /* מדיה קוורי */
 @media (max-width: 768px) {

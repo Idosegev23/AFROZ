@@ -111,13 +111,11 @@
     font-weight: 500;
     
     padding: 12px 30px;
-  /*  font-size: 1.1rem; */
 
     background-color: rgba(100, 100, 100, 0.4); /* צבע לבן עם שקיפות */
-  color: white; /* שים לב לניגודיות עם הרקע */
-  border: 1px solid rgba(255, 255, 255, 0.7); /* גם הגבול יכול להיות שקוף */
+    color: white; /* שים לב לניגודיות עם הרקע */
+    border: 2px solid rgba(255, 255, 255, 0.7); /* גם הגבול יכול להיות שקוף */
     
-  /*  background-color: #3CAEA3; */
     transition: all 0.3s ease;
 }
 /* in case needed

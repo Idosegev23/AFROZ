@@ -99,10 +99,26 @@
     filter: brightness(0.65);
 }
 
+/* הגדרה ישנה שהורחבה כדי ליצור שקיפות בכפתור הזה 
 .cta-button {
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
+} */
+/*  הגדרה חדשה */
+
+#accommodation .cta-button {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: #3CAEA3;
+    transition: all 0.3s ease;
 }
+/*
+#accommodation .cta-button:hover {
+    background-color: #2A8C84;
+}  */
 
 .video-play-button {
     position: absolute;

@@ -58,14 +58,14 @@
 }
 
 #accommodation h3 {
-    color: #3CAEA3;
+    color: #56a8bf;
     margin: 2rem 0 1rem;
     font-size: 1.3rem;
 }
 
 #accommodation h3 i {
     margin-left: 0.5rem;
-    color: #3CAEA3;
+    color: #56a8bf;
 }
 
 .intro-message {
@@ -100,7 +100,7 @@
 
 /* סגנונות פשוטים לכותרת הכרטיסיה */
 #accommodation .pricing-header {
-    background-color: #3CAEA3;
+    background-color: #56a8bf;
     color: white;
     padding: 20px;
     text-align: center;

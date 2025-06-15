@@ -124,7 +124,7 @@
 #accommodation .pricing-header {
     background-color: #b356bf;  /* 56a8bf; */
     color: white;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     border-radius: 0 0 10px 10px; /* עיגול בתחתית במקום בראש */
     margin-top: auto; /* דוחף את הכותרת לתחתית הכרטיס */
@@ -155,7 +155,7 @@ accommodation .pricing-header {
 }
 
 #accommodation .price {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 700;
 }
  

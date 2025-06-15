@@ -12,16 +12,8 @@
     margin: 2rem 0;
     flex-wrap: wrap;
 }
-/* old....
-.accommodation-option {
-    text-align: center;
-    max-width: 220px;
-    background: #f8f9fa;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
+
+/* חדש - שונה כדי לאפשר לחלק של במחיר שהיה לפני זה ב'כרטיס' להראות בחלק התחתון */
 .accommodation-option {
     display: flex;
     flex-direction: column;
@@ -34,6 +26,16 @@
     height: 100%; /* אם רוצים שגובה הכרטיס יתאים */
     min-height: 400px; /* או גובה מינימום מתאים */
 }
+/* ישן. 
+.accommodation-option {
+    text-align: center;
+    max-width: 220px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+} */
 
 .accommodation-option:hover {
     transform: translateY(-5px);
@@ -110,49 +112,8 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* חדש 
-/* עיצוב כללי לכל כותרת מחיר, בין אם בכרטיס או באופציה ללינה 
-.pricing-header {
-  background-color: #56a8bf;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-/* צבעים ייחודיים (אם צריך) לפי מיקום בכרטיסים 
-.pricing-card:nth-child(2) .pricing-header {
-  background-color: #5684BF;
-}
-
-.pricing-card:nth-child(3) .pricing-header {
-  background-color: #D9A443;
-}
-
-/* כותרת בתוך pricing-header 
-.pricing-header h4 {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  color: white;
-}
-
-/* עיצוב של המחיר 
-.price {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* ישן למה שהיה לפני שהשתמשתי רק בכרטיסים עם התמונות מה שנקרא אופציות
 /* סגנונות פשוטים לכותרת הכרטיסיה  
-accommodation .pricing-header {
-    background-color: #56a8bf;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px 10px 0 0;
-} */
-
+/*  חדש */ 
 #accommodation .pricing-header {
     background-color: #56a8bf;
     color: white;
@@ -161,6 +122,14 @@ accommodation .pricing-header {
     border-radius: 0 0 10px 10px; /* עיגול בתחתית במקום בראש */
     margin-top: auto; /* דוחף את הכותרת לתחתית הכרטיס */
 }
+/* ישן למה שהיה לפני שהשתמשתי רק בכרטיסים עם התמונות מה שנקרא אופציות
+accommodation .pricing-header {
+    background-color: #56a8bf;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+} */
 
 /* סגנונות ספציפיים לכרטיסיה השנייה */
 #accommodation .pricing-card:nth-child(2) .pricing-header {

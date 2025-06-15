@@ -11,17 +11,14 @@
     gap: 1.5rem;
     margin: 2rem 0;
     flex-wrap: wrap;
-    align-items: stretch; /* זה דואג שכל פריט יקבל את אותו הגובה של הגבוה ביותר */
-   
+ /*   align-items: stretch; /* זה דואג שכל פריט יקבל את אותו הגובה של הגבוה ביותר */ 
 }
 
 /* חדש - שונה כדי לאפשר לחלק של במחיר שהיה לפני זה ב'כרטיס' להראות בחלק התחתון */
 .accommodation-option {
     display: flex;
     flex-direction: column;
-
-     justify-content: space-between; /* דוחף את המחיר לתחתית */
-
+      justify-content: space-between; /* דוחף את המחיר לתחתית */
     max-width: 220px;
     background: #f8f9fa;
     border-radius: 15px;
@@ -31,7 +28,7 @@
    /* height: 100%; /* אם רוצים שגובה הכרטיס יתאים */
    /* min-height: 400px; /* או גובה מינימום מתאים */
 
-     min-height: 440px; /* נסה להתאים לפי התוכן הכי גבוה */
+     min-height: 1000px; /* נסה להתאים לפי התוכן הכי גבוה */
     height: 100%;
     
 }

@@ -98,7 +98,41 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* סגנונות פשוטים לכותרת הכרטיסיה */
+/* חדש */
+/* עיצוב כללי לכל כותרת מחיר, בין אם בכרטיס או באופציה ללינה */
+.pricing-header {
+  background-color: #56a8bf;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* צבעים ייחודיים (אם צריך) לפי מיקום בכרטיסים */
+.pricing-card:nth-child(2) .pricing-header {
+  background-color: #5684BF;
+}
+
+.pricing-card:nth-child(3) .pricing-header {
+  background-color: #D9A443;
+}
+
+/* כותרת בתוך pricing-header */
+.pricing-header h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* עיצוב של המחיר */
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* ישן למה שהיה לפני שהשתמשתי רק בכרטיסים עם התמונות מה שנקרא אופציות
+/* סגנונות פשוטים לכותרת הכרטיסיה 
 #accommodation .pricing-header {
     background-color: #56a8bf;
     color: white;
@@ -107,12 +141,12 @@
     border-radius: 10px 10px 0 0;
 }
 
-/* סגנונות ספציפיים לכרטיסיה השנייה */
+/* סגנונות ספציפיים לכרטיסיה השנייה 
 #accommodation .pricing-card:nth-child(2) .pricing-header {
     background-color: #5684BF;
 }
 
-/* סגנונות ספציפיים לכרטיסיה השלישית */
+/* סגנונות ספציפיים לכרטיסיה השלישית 
 #accommodation .pricing-card:nth-child(3) .pricing-header {
     background-color: #D9A443;
 }
@@ -127,6 +161,7 @@
     font-size: 2.2rem;
     font-weight: 700;
 }
+*/ 
 
 #accommodation .pricing-content {
     padding: 20px;

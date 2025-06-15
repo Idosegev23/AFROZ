@@ -122,7 +122,7 @@
 /* סגנונות פשוטים לכותרת הכרטיסיה  
 /*  חדש */ 
 #accommodation .pricing-header {
-    background-color: #b356bf;  /* 56a8bf; */
+    background-color: 56a8bf; /* ההגדרה הזאת מדרסת על ידיד ההגדרה ברבץ.. COmponnents.css שלא ברור למה בכלל יש אותה שם ולא פה..*/
     color: white;
     padding: 10px;
     text-align: center;

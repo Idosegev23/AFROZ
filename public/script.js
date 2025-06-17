@@ -152,13 +152,14 @@ function initPopups() {
                 // גלילה חלקה לחלק העליון של סקשן הצור קשר עם אופסט קטן
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {
-                    // חישוב מיקום עם אופסט עבור הheader
-                    const headerHeight = document.getElementById('header').offsetHeight || 80;
+                    // חישוב מיקום עם אופסט עבור הheader - מותאם טוב יותר למובייל
+                    const headerHeight = document.getElementById('header')?.offsetHeight || 80;
                     const elementPosition = contactSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+                    // הגדלת האופסט כדי לוודא שמגיעים לתחילת הסקשן
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 50;
 
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: Math.max(0, offsetPosition), // וידוא שלא נגיע למיקום שלילי
                         behavior: 'smooth'
                     });
                     

@@ -67,9 +67,10 @@
 .logo-text {
     font-size: 1.5rem;
     font-weight: 600; 
-    color: rgba(196, 155, 100); /* white; */
+    color: #2C3E50; /* שינוי מלבן לכחול כהה לקריאות טובה יותר */
     margin-bottom: 1rem;
     font-family: 'Sour Gummy', cursive;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* הוספת צל לבן לקריאות טובה יותר */
 }
 
 /* רשתות חברתיות */
@@ -85,7 +86,7 @@
     justify-content: center;
     width: 45px;
     height: 45px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* רקע בהיר יותר */
     color: white;
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -94,10 +95,26 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* צבעים ספציפיים לכל פלטפורמה */
+.footer-social a[href*="instagram"] {
+    background: linear-gradient(45deg, #E4405F, #C13584, #833AB4);
+    color: white;
+}
+
+.footer-social a[href*="facebook"] {
+    background: #1877F2;
+    color: white;
+}
+
+.footer-social a[href*="whatsapp"], 
+.footer-social a[href*="wa.me"] {
+    background: #25D366;
+    color: white;
+}
+
 .footer-social a:hover {
-    background: #3CAEA3;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(60, 174, 163, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* פרטי יצירת קשר */
@@ -109,7 +126,8 @@
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: rgba(255, 255, 255, 0.95);
+    color: #2C3E50; /* שינוי מלבן לכחול כהה */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .contact-item {
@@ -119,7 +137,7 @@
     gap: 0.5rem;
     font-size: 1.1rem;
     padding: 0.8rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* רקע בהיר יותר */
     border-radius: 25px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -127,7 +145,7 @@
 }
 
 .contact-item:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.95);
     transform: translateY(-2px);
 }
 
@@ -137,7 +155,7 @@
 }
 
 .contact-item a {
-    color: white;
+    color: #2C3E50; /* שינוי מלבן לכחול כהה */
     text-decoration: none;
     font-weight: 500;
 }
@@ -182,14 +200,16 @@
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
-    color: white;
+    color: #2C3E50; /* שינוי מלבן לכחול כהה */
     line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* הוספת צל לבן */
 }
 
 .form-header p {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #34495E; /* שינוי מלבן בהיר לכחול כהה יותר */
     margin: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 /* עיצוב הטופס */
@@ -213,10 +233,10 @@
 .form-group textarea {
     width: 100%;
     padding: 1rem 1rem 1rem 3rem;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(44, 62, 80, 0.3); /* שינוי לגבול כהה יותר */
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 255, 255, 0.95); /* רקע בהיר יותר */
+    color: #2C3E50; /* טקסט כהה */
     font-family: 'Heebo', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -225,7 +245,7 @@
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: #7F8C8D; /* צבע placeholder כהה יותר */
     font-weight: 400;
 }
 
@@ -233,7 +253,7 @@
 .form-group textarea:focus {
     outline: none;
     border-color: #3CAEA3;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 1); /* רקע לבן מלא בפוקוס */
     box-shadow: 0 0 0 3px rgba(60, 174, 163, 0.3);
     transform: translateY(-2px);
 }
@@ -243,7 +263,7 @@
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.6);
+    color: #7F8C8D; /* צבע אייקון כהה יותר */
     font-size: 1.1rem;
     pointer-events: none;
     transition: color 0.3s ease;
@@ -296,8 +316,8 @@
 /* הודעת הצלחה */
 .contact-success-message {
     display: none;
-    background: rgba(46, 204, 113, 0.2);
-    color: white;
+    background: rgba(46, 204, 113, 0.9); /* רקע בהיר יותר */
+    color: #2C3E50; /* טקסט כהה */
     border: 2px solid #2ecc71;
     padding: 1.2rem;
     margin-top: 1.5rem;
@@ -309,7 +329,7 @@
 }
 
 .contact-success-message i {
-    color: #2ecc71;
+    color: #27AE60; /* צבע ירוק כהה יותר */
     margin-left: 0.5rem;
     font-size: 1.2rem;
 }
@@ -336,7 +356,8 @@
 .footer-bottom p {
     margin: 0;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #34495E; /* שינוי מלבן לכחול כהה */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 /* כפתור חזרה למעלה */

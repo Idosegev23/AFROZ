@@ -74,6 +74,8 @@
     max-width: 900px; /* רוחב מקסימלי אחיד */
     margin-left: auto;
     margin-right: auto;
+    /* הוספת שוליים אחידים לשני סוגי האקורדיונים */
+    padding: 0 1rem;
 }
 
 /* וידוא שהתוכן של האקורדיון מעוצב באופן אחיד */
@@ -102,5 +104,11 @@
     
     .accordion-item.active .accordion-content {
         padding: 1rem 1.5rem 1.5rem;
+    }
+    
+    /* הגדלת השוליים במובייל */
+    .program-accordion, 
+    .faq-accordion {
+        padding: 0 1.5rem;
     }
 } 

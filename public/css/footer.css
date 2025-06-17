@@ -26,18 +26,20 @@
 /* חלק עליון של הפוטר */
 .footer-main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 3rem;
+    align-items: flex-start;
 }
 
 .footer-top {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 1;
+    min-width: 300px;
 }
 
 /* לוגו וחברתיות */
@@ -46,6 +48,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .footer-logo {
@@ -78,6 +81,7 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .footer-social a {
@@ -120,6 +124,7 @@
 /* פרטי יצירת קשר */
 .footer-contact-info {
     text-align: center;
+    width: 100%;
 }
 
 .footer-contact-info h3 {
@@ -162,20 +167,21 @@
 
 /* סקציית הטופס */
 .footer-form-section {
-    width: 100%;
+    flex: 2;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .contact-form-container {
     background: rgba(255, 255, 255, 0.05);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 20px;
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     transition: transform 0.3s ease;
 }
 
@@ -395,19 +401,41 @@
         padding: 0 1rem;
     }
     
-    .footer-top {
+    /* חזרה לפריסה vertical במובייל */
+    .footer-main {
         flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .footer-top {
+        flex-direction: row; /* חזרה לפריסה horizontal של הרשתות ופרטי איריס */
+        justify-content: space-between;
         text-align: center;
         gap: 2rem;
+        width: 100%;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .footer-contact-info,
     .footer-logo-section {
+        width: auto; /* חזרה לרוחב אוטומטי */
+        flex: 1;
+    }
+    
+    /* תיקון הרשתות החברתיות במובייל */
+    .footer-social {
+        margin-bottom: 0; /* הסרת המרווח התחתון במובייל */
+    }
+    
+    .footer-form-section {
         width: 100%;
+        flex: none;
     }
     
     .contact-form-container {
         padding: 2rem 1.5rem;
+        max-width: 100%;
     }
     
     .form-header h3 {

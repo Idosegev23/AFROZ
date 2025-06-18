@@ -30,7 +30,7 @@
 .logo-text {
     font-size: 1.3rem;
     font-weight: 500;
-    color: #2c3e50;
+     color: #D9A443     /*  2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
     font-family: 'Sour Gummy', cursive;
     order: -1; /* שימוש ב-order כדי לשים את הטקסט לפני הלוגו בכיוון LTR */
 }

@@ -67,10 +67,10 @@
     transform: scale(1.05);
 }
 
-.logo-text {
+.footer-logo-text {
     font-size: 1.5rem;
     font-weight: 600; 
-         /* לא ברור למה הצבע כאן לא תופס אלא זה שקובץ header   */
+         /* לא ברור למה הצבע כאן לא תופס אלא זה שקובץ header או הפוך  */
     color: #2C3E50;     /* D9A443 2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
     margin-bottom: 1rem;
     font-family: 'Sour Gummy', cursive;

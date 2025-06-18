@@ -67,7 +67,7 @@
     transform: scale(1.05);
 }
 
-.footer-logo-text {
+.logo-text {
     font-size: 1.5rem;
     font-weight: 600; 
          /* לא ברור למה הצבע כאן לא תופס אלא זה שקובץ header או הפוך  */

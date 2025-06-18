@@ -71,7 +71,7 @@
     font-size: 1.5rem;
     font-weight: 600; 
          /* לא ברור למה הצבע כאן לא תופס אלא זה שקובץ header   */
-    color: #D9A443     /*  2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
+    color: #D9A443;     /*  2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
     margin-bottom: 1rem;
     font-family: 'Sour Gummy', cursive;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* הוספת צל לבן לקריאות טובה יותר */

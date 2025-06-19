@@ -67,23 +67,24 @@
     transform: scale(1.05);
 }
 
- /* מחלקה שהייתה קודם לפני ההפרדה לפוטר והדר וגרמה לזה שהפוטר דרס את הגרות הטקסט לוגו של ההדר... */ 
+ /* מחלקה שהייתה קודם לפני ההפרדה לפוטר והדר וגרמה לזה שהפוטר דרס את הגרות הטקסט לוגו של ההדר...  
 .logo-text {
     font-size: 1.5rem;
     font-weight: 600; 
-         /* לא ברור למה הצבע כאן לא תופס אלא זה שקובץ header או הפוך  */
-    color: #2C3E50;     /* D9A443 2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
+    color: #2C3E50;    
     margin-bottom: 1rem;
     font-family: 'Sour Gummy', cursive;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* הוספת צל לבן לקריאות טובה יותר */
-}
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* הוספת צל לבן לקריאות טובה יותר 
+} */
+
 /* מחלקה חדשה כדי ליצור הפרדה בין הפוטר להדר */ 
 .footer-logo-text {
-  color: #2C3E50; /* כחול כהה */
-  font-family: 'Sour Gummy', cursive;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2C3E50;   /* D9A443 2C3E50;  שינוי מלבן לכחול כהה לקריאות טובה יותר */ 
+    font-family: 'Sour Gummy', cursive;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* רשתות חברתיות */

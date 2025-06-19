@@ -67,6 +67,7 @@
     transform: scale(1.05);
 }
 
+ /* מחלקה שהייתה קודם לפני ההפרדה לפוטר והדר וגרמה לזה שהפוטר דרס את הגרות הטקסט לוגו של ההדר... */ 
 .logo-text {
     font-size: 1.5rem;
     font-weight: 600; 
@@ -75,6 +76,14 @@
     margin-bottom: 1rem;
     font-family: 'Sour Gummy', cursive;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* הוספת צל לבן לקריאות טובה יותר */
+}
+/* מחלקה חדשה כדי ליצור הפרדה בין הפוטר להדר */ 
+.footer-logo-text {
+  color: #2C3E50; /* כחול כהה */
+  font-family: 'Sour Gummy', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* רשתות חברתיות */

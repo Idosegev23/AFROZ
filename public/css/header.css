@@ -26,7 +26,7 @@
     align-items: center;
     gap: 10px;
 }
-
+ /* מחלקה שהייתה קודם לפני ההפרדה לפוטר והדר וגרמה לזה שהפוטר דרס את הגרות הטקסט לוגו של ההדר... */ 
 .logo-text {
     font-size: 1.3rem;
     font-weight: 500;
@@ -34,7 +34,13 @@
     font-family: 'Sour Gummy', cursive;
     order: -1; /* שימוש ב-order כדי לשים את הטקסט לפני הלוגו בכיוון LTR */
 }
-
+/* מחלקה חדשה כדי ליצור הפרדה בין הפוטר להדר */ 
+.header-logo-text {
+  color: #D9A443; /* צבע זהוב-חם */
+  font-family: 'Sour Gummy', cursive;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
 #logo {
     max-height: 60px; /* הקטנת הלוגו מ-70px ל-60px */
     max-width: 60px; /* הקטנת הלוגו מ-70px ל-60px */

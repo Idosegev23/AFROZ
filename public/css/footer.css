@@ -408,34 +408,36 @@
     }
     
     /* סדר ההופעה במובייל: 1.וואטסאפ 2.טופס 3.לוגו+רשתות */
-    
-    /* פרטי יצירת קשר - וואטסאפ בלבד */
-    .footer-contact-info {
-        order: 1; /* וואטסאפ ראשון */
-        width: 100%;
+    .footer-top {
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
-        margin-bottom: 2rem;
+        gap: 0;
+        width: 100%;
+        padding-bottom: 0;
+        border-bottom: none;
+        order: 1; /* החלק הראשון - יכיל את הוואטסאפ */
     }
     
-    /* טופס יצירת קשר */
     .footer-form-section {
-        order: 2; /* טופס שני */
+        order: 2; /* הטופס במקום השני */
         width: 100%;
         flex: none;
     }
     
-    /* לוגו ורשתות חברתיות */
+    /* בתוך footer-top: קודם וואטסאפ, אחר כך לוגו */
+    .footer-contact-info {
+        order: 1; /* וואטסאפ ראשון */
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
     .footer-logo-section {
-        order: 3; /* לוגו ורשתות אחרונים */
+        order: 2; /* לוגו ורשתות אחרונים */
         width: 100%;
         margin-top: 2rem;
         padding-top: 2rem;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* הסתרת footer-top כי אנחנו מציגים את התוכן שלו בנפרד */
-    .footer-top {
-        display: none;
     }
     
     /* תיקון הרשתות החברתיות במובייל */

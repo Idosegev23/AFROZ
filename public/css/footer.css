@@ -407,33 +407,40 @@
         gap: 2rem;
     }
     
-    /* שינוי סדר ההופעה במובייל - קודם טופס ואז לוגו ורשתות */
-    .footer-top {
-        flex-direction: row; /* חזרה לפריסה horizontal של הרשתות ופרטי איריס */
-        justify-content: space-between;
-        text-align: center;
-        gap: 2rem;
+    /* סדר ההופעה במובייל: 1.וואטסאפ 2.טופס 3.לוגו+רשתות */
+    
+    /* פרטי יצירת קשר - וואטסאפ בלבד */
+    .footer-contact-info {
+        order: 1; /* וואטסאפ ראשון */
         width: 100%;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        order: 2; /* הלוגו ורשתות יופיעו שני במובייל */
+        text-align: center;
+        margin-bottom: 2rem;
     }
     
+    /* טופס יצירת קשר */
     .footer-form-section {
+        order: 2; /* טופס שני */
         width: 100%;
         flex: none;
-        order: 1; /* הטופס יופיע ראשון במובייל */
     }
     
-    .footer-contact-info,
+    /* לוגו ורשתות חברתיות */
     .footer-logo-section {
-        width: auto; /* חזרה לרוחב אוטומטי */
-        flex: 1;
+        order: 3; /* לוגו ורשתות אחרונים */
+        width: 100%;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* הסתרת footer-top כי אנחנו מציגים את התוכן שלו בנפרד */
+    .footer-top {
+        display: none;
     }
     
     /* תיקון הרשתות החברתיות במובייל */
     .footer-social {
-        margin-bottom: 0; /* הסרת המרווח התחתון במובייל */
+        margin-bottom: 0;
     }
     
     .contact-form-container {

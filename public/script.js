@@ -646,4 +646,56 @@ function setupFacilitatorImages() {
             img.style.opacity = '1';
         }
     });
+}
+
+// פונקציה לספירה לאחור
+function setupCountdown() {
+    console.log('Setting up countdown');
+    const countdownElement = document.getElementById('countdown');
+    if (!countdownElement) {
+        console.log('Countdown element not found');
+        return;
+    }
+    
+    // תאריך הריטריט
+    const retreatDate = new Date('2025-08-25T00:00:00');
+    
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = retreatDate - now;
+        
+        if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            countdownElement.innerHTML = `
+                <div class="countdown-item">
+                    <span class="countdown-number">${days}</span>
+                    <span class="countdown-label">ימים</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${hours}</span>
+                    <span class="countdown-label">שעות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${minutes}</span>
+                    <span class="countdown-label">דקות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${seconds}</span>
+                    <span class="countdown-label">שניות</span>
+                </div>
+            `;
+        } else {
+            countdownElement.innerHTML = '<div class="countdown-ended">הריטריט החל!</div>';
+        }
+    }
+    
+    // עדכון ראשוני
+    updateCountdown();
+    
+    // עדכון כל שנייה
+    setInterval(updateCountdown, 1000);
 } 

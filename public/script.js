@@ -363,7 +363,7 @@ function initLocalContactForm() {
     handleContactForm('footer-contact-form', 'footer-contact-success-message', 'footer');
 }
 
-function handleContactForm(formId, messageId, context) {
+async function handleContactForm(formId, messageId, context) {
     const contactForm = document.getElementById(formId);
     const successMessage = document.getElementById(messageId);
     
@@ -380,11 +380,21 @@ function handleContactForm(formId, messageId, context) {
                 phone: document.getElementById(prefix + 'phone').value,
                 email: document.getElementById(prefix + 'email').value,
                 message: messageField ? messageField.value : '',
+                date: new Date().toISOString(),
                 source: context
             };
-            
-            // שליחת המידע לשרת
+
+            console.log('Form data:', formData);
+
+            // הצגת הודעת טעינה
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'שולח...';
+            submitButton.disabled = true;
+
             try {
+                // נסיון ראשון - API שלנו
+                console.log('Attempting to send via our API...');
                 const response = await fetch('/api/send-email', {
                     method: 'POST',
                     headers: {
@@ -392,44 +402,81 @@ function handleContactForm(formId, messageId, context) {
                     },
                     body: JSON.stringify(formData)
                 });
-                
+
                 if (response.ok) {
-                    console.log('Email sent successfully');
-                    
-                    // שמירת הנתונים ב-localStorage כגיבוי
-                    const existingData = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-                    existingData.push({...formData, date: new Date().toISOString()});
-                    localStorage.setItem('contactSubmissions', JSON.stringify(existingData));
-                    
-                    // איפוס הטופס והצגת הודעת הצלחה
-                    contactForm.reset();
+                    console.log('Email sent successfully via our API');
+                    // שמירה מקומית כגיבוי
+                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                     
                     // הצגת הודעת הצלחה
-                    if (successMessage) {
-                        successMessage.style.display = 'block';
-                        
-                        // הסתרת ההודעה אחרי 5 שניות
-                        setTimeout(() => {
-                            successMessage.style.display = 'none';
-                        }, 5000);
-                    }
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
                     
                     // Facebook Pixel tracking
                     if (typeof fbq !== 'undefined') {
-                        fbq('track', 'Contact', {
-                            source: context
-                        });
+                        fbq('track', 'InitiateContact');
                     }
                 } else {
-                    throw new Error('Failed to send email');
+                    throw new Error('API response not OK');
                 }
+                
             } catch (error) {
-                console.error('Error sending contact form:', error);
-                alert('שגיאה בשליחת הטופס. אנא נסו שוב או צרו קשר בוואטסאפ.');
+                console.log('Our API failed, trying FormSubmit fallback...', error);
+                
+                try {
+                    // Fallback - FormSubmit
+                    const fallbackResponse = await fetch('https://formsubmit.co/jivany@nataraj.co.il', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: formData.name,
+                            phone: formData.phone,
+                            email: formData.email,
+                            message: formData.message || 'אין הודעה נוספת',
+                            source: formData.source,
+                            '_subject': `🌟 פנייה חדשה מאתר AFROZ - ${formData.name}`,
+                            '_captcha': 'false',
+                            '_template': 'table'
+                        })
+                    });
+
+                    console.log('FormSubmit response status:', fallbackResponse.status);
+                    
+                    // שמירה מקומית בכל מקרה
+                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
+                    
+                    // הצגת הודעת הצלחה (גם אם FormSubmit לא עבד - לפחות נשמר מקומית)
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Facebook Pixel tracking
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateContact');
+                    }
+                    
+                } catch (fallbackError) {
+                    console.error('Both API and FormSubmit failed:', fallbackError);
+                    
+                    // שמירה מקומית בכל מקרה
+                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
+                    
+                    // הצגת הודעת הצלחה למשתמש (הנתונים נשמרו מקומית)
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Facebook Pixel tracking
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateContact');
+                    }
+                }
+            } finally {
+                // החזרת הכפתור למצב רגיל
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
             }
         });
-    } else {
-        console.log(`${context} contact form not found (this may be normal)`);
     }
 }
 

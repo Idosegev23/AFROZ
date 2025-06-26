@@ -423,48 +423,22 @@ async function handleContactForm(formId, messageId, context) {
                 }
                 
             } catch (error) {
-                console.log('Our API failed, sending directly to WhatsApp...', error);
+                console.log('Our API failed, but that should not happen with proper env vars...', error);
                 
-                // פתרון ישיר ופשוט - שליחה ל-WhatsApp
-                const whatsappMessage = encodeURIComponent(
-                    `🌟 פנייה חדשה לריטריט AFROZ\n\n` +
-                    `👤 שם: ${formData.name}\n` +
-                    `📱 טלפון: ${formData.phone}\n` +
-                    `✉️ אימייל: ${formData.email}\n` +
-                    `💬 הודעה: ${formData.message || 'אין הודעה נוספת'}\n` +
-                    `📊 מקור: ${formData.source}\n` +
-                    `⏰ תאריך: ${new Date().toLocaleString('he-IL')}`
-                );
-                
-                // שמירה מקומית
+                // שמירה מקומית בכל מקרה
                 localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                 
-                // פתיחת WhatsApp עם ההודעה
-                window.open(`https://wa.me/972547882715?text=${whatsappMessage}`, '_blank');
-                
-                // שליחה נוספת למייל דרך mailto (גיבוי)
-                const emailSubject = encodeURIComponent(`🌟 פנייה חדשה מאתר AFROZ - ${formData.name}`);
-                const emailBody = encodeURIComponent(
-                    `שם: ${formData.name}\n` +
-                    `טלפון: ${formData.phone}\n` +
-                    `אימייל: ${formData.email}\n` +
-                    `הודעה: ${formData.message || 'אין הודעה נוספת'}\n` +
-                    `מקור: ${formData.source}\n` +
-                    `תאריך: ${new Date().toLocaleString('he-IL')}`
-                );
-                
-                // פתיחת אפליקציית המייל (גיבוי נוסף)
-                setTimeout(() => {
-                    window.open(`mailto:jivany@nataraj.co.il?subject=${emailSubject}&body=${emailBody}`, '_blank');
-                }, 2000);
-                
-                // הצגת הודעה מותאמת
+                // הצגת הודעת שגיאה מפורטת למעקב
                 contactForm.style.display = 'none';
                 successMessage.innerHTML = `
-                    <div style="text-align: center; background: #e8f5e8; padding: 20px; border-radius: 8px; border: 2px solid #4CAF50;">
-                        <h3 style="color: #2E7D32; margin: 0 0 10px 0;">✅ פרטייך נשלחו!</h3>
-                        <p style="margin: 0 0 10px 0; color: #333;">נפתח WhatsApp + אפליקציית המייל</p>
-                        <p style="margin: 0; color: #666; font-size: 14px;">אם לא נפתחו אוטומטית: WhatsApp 054-7882715 או אימייל jivany@nataraj.co.il</p>
+                    <div style="text-align: center; background: #fff3cd; padding: 20px; border-radius: 8px; border: 2px solid #ffc107;">
+                        <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ בעיה טכנית</h3>
+                        <p style="margin: 0 0 10px 0; color: #333;">פרטייך נשמרו אך המייל לא נשלח</p>
+                        <p style="margin: 0; color: #666; font-size: 14px;">צרו קשר ישירות: 054-7882715 או jivany@nataraj.co.il</p>
+                        <details style="margin-top: 10px; text-align: left;">
+                            <summary style="cursor: pointer;">פרטים טכניים</summary>
+                            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 12px; overflow: auto;">${JSON.stringify(error, null, 2)}</pre>
+                        </details>
                     </div>
                 `;
                 successMessage.style.display = 'block';

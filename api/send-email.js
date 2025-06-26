@@ -29,20 +29,48 @@ export default async function handler(req, res) {
 
         console.log('API: Creating transporter...');
         
+        // בדיקת משתני סביבה
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+            console.log('API: Missing environment variables');
+            return res.status(500).json({ 
+                error: 'Server configuration error - missing environment variables',
+                env_check: {
+                    has_email_user: !!process.env.EMAIL_USER,
+                    has_email_pass: !!process.env.EMAIL_PASS
+                }
+            });
+        }
+
         // יצירת transporter
         const transporter = nodemailer.createTransporter({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL_USER || 'your-email@gmail.com',
-                pass: process.env.EMAIL_PASS || 'your-app-password'
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
             }
         });
+
+        // בדיקת חיבור
+        try {
+            await transporter.verify();
+            console.log('API: SMTP connection verified successfully');
+        } catch (verifyError) {
+            console.log('API: SMTP verification failed:', verifyError);
+            return res.status(500).json({ 
+                error: 'SMTP connection failed',
+                details: verifyError.message,
+                env_check: {
+                    has_email_user: !!process.env.EMAIL_USER,
+                    has_email_pass: !!process.env.EMAIL_PASS
+                }
+            });
+        }
 
         console.log('API: Sending email...');
 
         // שליחת המייל
         const mailOptions = {
-            from: process.env.EMAIL_USER || 'your-email@gmail.com',
+            from: process.env.EMAIL_USER,
             to: 'jivany@nataraj.co.il',
             subject: `🌟 פנייה חדשה מאתר AFROZ - ${name}`,
             html: `

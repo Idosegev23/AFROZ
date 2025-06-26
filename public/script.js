@@ -404,7 +404,8 @@ async function handleContactForm(formId, messageId, context) {
                 });
 
                 if (response.ok) {
-                    console.log('Email sent successfully via our API');
+                    const result = await response.json();
+                    console.log('Email sent successfully via our API:', result);
                     // שמירה מקומית כגיבוי
                     localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                     
@@ -416,60 +417,61 @@ async function handleContactForm(formId, messageId, context) {
                     if (typeof fbq !== 'undefined') {
                         fbq('track', 'InitiateContact');
                     }
+                    return; // סיום מוצלח
                 } else {
-                    throw new Error('API response not OK');
+                    throw new Error(`API response not OK: ${response.status}`);
                 }
                 
             } catch (error) {
-                console.log('Our API failed, trying FormSubmit fallback...', error);
+                console.log('Our API failed, sending directly to WhatsApp...', error);
                 
-                try {
-                    // Fallback - FormSubmit
-                    const fallbackResponse = await fetch('https://formsubmit.co/jivany@nataraj.co.il', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: formData.name,
-                            phone: formData.phone,
-                            email: formData.email,
-                            message: formData.message || 'אין הודעה נוספת',
-                            source: formData.source,
-                            '_subject': `🌟 פנייה חדשה מאתר AFROZ - ${formData.name}`,
-                            '_captcha': 'false',
-                            '_template': 'table'
-                        })
-                    });
-
-                    console.log('FormSubmit response status:', fallbackResponse.status);
-                    
-                    // שמירה מקומית בכל מקרה
-                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
-                    
-                    // הצגת הודעת הצלחה (גם אם FormSubmit לא עבד - לפחות נשמר מקומית)
-                    contactForm.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Facebook Pixel tracking
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateContact');
-                    }
-                    
-                } catch (fallbackError) {
-                    console.error('Both API and FormSubmit failed:', fallbackError);
-                    
-                    // שמירה מקומית בכל מקרה
-                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
-                    
-                    // הצגת הודעת הצלחה למשתמש (הנתונים נשמרו מקומית)
-                    contactForm.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Facebook Pixel tracking
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateContact');
-                    }
+                // פתרון ישיר ופשוט - שליחה ל-WhatsApp
+                const whatsappMessage = encodeURIComponent(
+                    `🌟 פנייה חדשה לריטריט AFROZ\n\n` +
+                    `👤 שם: ${formData.name}\n` +
+                    `📱 טלפון: ${formData.phone}\n` +
+                    `✉️ אימייל: ${formData.email}\n` +
+                    `💬 הודעה: ${formData.message || 'אין הודעה נוספת'}\n` +
+                    `📊 מקור: ${formData.source}\n` +
+                    `⏰ תאריך: ${new Date().toLocaleString('he-IL')}`
+                );
+                
+                // שמירה מקומית
+                localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
+                
+                // פתיחת WhatsApp עם ההודעה
+                window.open(`https://wa.me/972547882715?text=${whatsappMessage}`, '_blank');
+                
+                // שליחה נוספת למייל דרך mailto (גיבוי)
+                const emailSubject = encodeURIComponent(`🌟 פנייה חדשה מאתר AFROZ - ${formData.name}`);
+                const emailBody = encodeURIComponent(
+                    `שם: ${formData.name}\n` +
+                    `טלפון: ${formData.phone}\n` +
+                    `אימייל: ${formData.email}\n` +
+                    `הודעה: ${formData.message || 'אין הודעה נוספת'}\n` +
+                    `מקור: ${formData.source}\n` +
+                    `תאריך: ${new Date().toLocaleString('he-IL')}`
+                );
+                
+                // פתיחת אפליקציית המייל (גיבוי נוסף)
+                setTimeout(() => {
+                    window.open(`mailto:jivany@nataraj.co.il?subject=${emailSubject}&body=${emailBody}`, '_blank');
+                }, 2000);
+                
+                // הצגת הודעה מותאמת
+                contactForm.style.display = 'none';
+                successMessage.innerHTML = `
+                    <div style="text-align: center; background: #e8f5e8; padding: 20px; border-radius: 8px; border: 2px solid #4CAF50;">
+                        <h3 style="color: #2E7D32; margin: 0 0 10px 0;">✅ פרטייך נשלחו!</h3>
+                        <p style="margin: 0 0 10px 0; color: #333;">נפתח WhatsApp + אפליקציית המייל</p>
+                        <p style="margin: 0; color: #666; font-size: 14px;">אם לא נפתחו אוטומטית: WhatsApp 054-7882715 או אימייל jivany@nataraj.co.il</p>
+                    </div>
+                `;
+                successMessage.style.display = 'block';
+                
+                // Facebook Pixel tracking
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateContact');
                 }
             } finally {
                 // החזרת הכפתור למצב רגיל

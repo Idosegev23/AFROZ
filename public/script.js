@@ -432,19 +432,32 @@ async function handleContactForm(formId, messageId, context) {
                 }
                 
             } catch (error) {
-                console.error('Failed to send email:', error);
+                console.error('Failed to send email via API, trying mailto fallback:', error);
+                
+                // פתרון גיבוי - פתיחת אפליקציית המייל
+                const emailSubject = encodeURIComponent(`🌟 פנייה חדשה מאתר AFROZ - ${formData.name}`);
+                const emailBody = encodeURIComponent(
+                    `שם: ${formData.name}\n` +
+                    `טלפון: ${formData.phone}\n` +
+                    `אימייל: ${formData.email}\n` +
+                    `הודעה: ${formData.message || 'אין הודעה נוספת'}\n` +
+                    `מקור: ${formData.source}\n` +
+                    `תאריך: ${new Date().toLocaleString('he-IL')}`
+                );
                 
                 // שמירה מקומית
                 localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                 
-                // הצגת הודעת שגיאה
+                // פתיחת אפליקציית המייל
+                window.open(`mailto:jivany@nataraj.co.il?subject=${emailSubject}&body=${emailBody}`, '_blank');
+                
+                // הצגת הודעה
                 contactForm.style.display = 'none';
                 successMessage.innerHTML = `
-                    <div style="text-align: center; background: #fff3cd; padding: 20px; border-radius: 8px; border: 2px solid #ffc107;">
-                        <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ שגיאה בשליחה</h3>
-                        <p style="margin: 0 0 10px 0; color: #333;">לא ניתן לשלוח את המייל כרגע</p>
-                        <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">צרו קשר ישירות:</p>
-                        <p style="margin: 0; color: #333; font-weight: bold;">📱 054-7882715 | ✉️ jivany@nataraj.co.il</p>
+                    <div style="text-align: center; background: #e8f5e8; padding: 20px; border-radius: 8px; border: 2px solid #4CAF50;">
+                        <h3 style="color: #2E7D32; margin: 0 0 10px 0;">✅ נפתחה אפליקציית המייל!</h3>
+                        <p style="margin: 0 0 10px 0; color: #333;">פרטייך הועברו לאפליקציית המייל</p>
+                        <p style="margin: 0; color: #666; font-size: 14px;">אם לא נפתחה אוטומטית, שלחי מייל ל: jivany@nataraj.co.il</p>
                     </div>
                 `;
                 successMessage.style.display = 'block';

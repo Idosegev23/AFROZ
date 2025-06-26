@@ -368,7 +368,7 @@ function handleContactForm(formId, messageId, context) {
     const successMessage = document.getElementById(messageId);
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
+        contactForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             console.log(`${context} contact form submitted`);
             
@@ -380,35 +380,52 @@ function handleContactForm(formId, messageId, context) {
                 phone: document.getElementById(prefix + 'phone').value,
                 email: document.getElementById(prefix + 'email').value,
                 message: messageField ? messageField.value : '',
-                date: new Date().toISOString(),
                 source: context
             };
             
-            // שמירת הנתונים ב-localStorage
-            const existingData = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-            existingData.push(formData);
-            localStorage.setItem('contactSubmissions', JSON.stringify(existingData));
-            
-            console.log('Contact data saved:', formData);
-            
-            // איפוס הטופס והצגת הודעת הצלחה
-            contactForm.reset();
-            
-            // הצגת הודעת הצלחה
-            if (successMessage) {
-                successMessage.style.display = 'block';
-                
-                // הסתרת ההודעה אחרי 5 שניות
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-            }
-            
-            // Facebook Pixel tracking
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Contact', {
-                    source: context
+            // שליחת המידע לשרת
+            try {
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
                 });
+                
+                if (response.ok) {
+                    console.log('Email sent successfully');
+                    
+                    // שמירת הנתונים ב-localStorage כגיבוי
+                    const existingData = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                    existingData.push({...formData, date: new Date().toISOString()});
+                    localStorage.setItem('contactSubmissions', JSON.stringify(existingData));
+                    
+                    // איפוס הטופס והצגת הודעת הצלחה
+                    contactForm.reset();
+                    
+                    // הצגת הודעת הצלחה
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                        
+                        // הסתרת ההודעה אחרי 5 שניות
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                    
+                    // Facebook Pixel tracking
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Contact', {
+                            source: context
+                        });
+                    }
+                } else {
+                    throw new Error('Failed to send email');
+                }
+            } catch (error) {
+                console.error('Error sending contact form:', error);
+                alert('שגיאה בשליחת הטופס. אנא נסו שוב או צרו קשר בוואטסאפ.');
             }
         });
     } else {

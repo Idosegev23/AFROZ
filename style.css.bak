@@ -1,0 +1,49 @@
+@import url('/public/css/base.css');
+@import url('/public/css/header.css');
+@import url('/public/css/hero.css');
+@import url('/public/css/content_sections.css');
+@import url('/public/css/testimonials.css');
+@import url('/public/css/faq.css');
+@import url('/public/css/program.css');
+@import url('/public/css/gallery.css');
+@import url('/public/css/popups.css');
+@import url('/public/css/components.css');
+@import url('/public/css/footer.css');
+@import url('/public/css/animations.css');
+@import url('/public/css/buttons.css');
+@import url('/public/css/lists.css');
+@import url('/public/css/accordion.css');
+body {
+    background: #000;
+}
+.dunes-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/dunes-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1; /* Adjust opacity as needed */
+}
+
+/* Base styles for the page */
+body {
+    background-color: #0c0c0c; /* Very dark grey, almost black */
+    color: #e0e0e0; /* Light grey text for readability */
+    font-family: 'Heebo', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+.logo-text{
+    font-family: 'Sour Gummy', cursive !important;
+    font-weight: normal;
+    color: #E0B445; /* Gold color for the logo text */
+    font-size: 24px;
+    margin-right: 10px;
+} 

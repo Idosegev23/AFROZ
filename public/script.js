@@ -631,4 +631,19 @@ function initializeAccordions() {
     closeAllAccordions();
     initFaqAccordion();
     initProgramAccordion();
+}
+
+// פונקציה לעיצוב תמונות המדריכים
+function setupFacilitatorImages() {
+    console.log('Setting up facilitator images');
+    const facilitatorImages = document.querySelectorAll('.facilitator-image img');
+    facilitatorImages.forEach(img => {
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        // אם התמונה כבר נטענה
+        if (img.complete) {
+            img.style.opacity = '1';
+        }
+    });
 } 

@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+const nodemailer = require('nodemailer');
+
+module.exports = async function handler(req, res) {
     // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -29,11 +31,8 @@ export default async function handler(req, res) {
             });
         }
 
-        // Import nodemailer dynamically
-        const nodemailer = await import('nodemailer');
-
         // יצירת transporter
-        const transporter = nodemailer.default.createTransporter({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL_USER,

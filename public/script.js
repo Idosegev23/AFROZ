@@ -393,8 +393,8 @@ async function handleContactForm(formId, messageId, context) {
             submitButton.disabled = true;
 
             try {
-                // נסיון ראשון - API שלנו
-                console.log('Attempting to send via our API...');
+                // שליחה דרך nodemailer API
+                console.log('Sending email via nodemailer...');
                 const response = await fetch('/api/send-email', {
                     method: 'POST',
                     headers: {
@@ -403,14 +403,22 @@ async function handleContactForm(formId, messageId, context) {
                     body: JSON.stringify(formData)
                 });
 
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('Email sent successfully via our API:', result);
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    console.log('Email sent successfully:', result.message);
+                    
                     // שמירה מקומית כגיבוי
                     localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                     
                     // הצגת הודעת הצלחה
                     contactForm.style.display = 'none';
+                    successMessage.innerHTML = `
+                        <div style="text-align: center; background: #e8f5e8; padding: 20px; border-radius: 8px; border: 2px solid #4CAF50;">
+                            <h3 style="color: #2E7D32; margin: 0 0 10px 0;">✅ הודעתך נשלחה בהצלחה!</h3>
+                            <p style="margin: 0; color: #333;">פרטייך נשלחו ישירות לאיריס במייל</p>
+                        </div>
+                    `;
                     successMessage.style.display = 'block';
                     
                     // Facebook Pixel tracking
@@ -418,27 +426,25 @@ async function handleContactForm(formId, messageId, context) {
                         fbq('track', 'InitiateContact');
                     }
                     return; // סיום מוצלח
+                    
                 } else {
-                    throw new Error(`API response not OK: ${response.status}`);
+                    throw new Error(result.error || `API response error: ${response.status}`);
                 }
                 
             } catch (error) {
-                console.log('Our API failed, but that should not happen with proper env vars...', error);
+                console.error('Failed to send email:', error);
                 
-                // שמירה מקומית בכל מקרה
+                // שמירה מקומית
                 localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                 
-                // הצגת הודעת שגיאה מפורטת למעקב
+                // הצגת הודעת שגיאה
                 contactForm.style.display = 'none';
                 successMessage.innerHTML = `
                     <div style="text-align: center; background: #fff3cd; padding: 20px; border-radius: 8px; border: 2px solid #ffc107;">
-                        <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ בעיה טכנית</h3>
-                        <p style="margin: 0 0 10px 0; color: #333;">פרטייך נשמרו אך המייל לא נשלח</p>
-                        <p style="margin: 0; color: #666; font-size: 14px;">צרו קשר ישירות: 054-7882715 או jivany@nataraj.co.il</p>
-                        <details style="margin-top: 10px; text-align: left;">
-                            <summary style="cursor: pointer;">פרטים טכניים</summary>
-                            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 12px; overflow: auto;">${JSON.stringify(error, null, 2)}</pre>
-                        </details>
+                        <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ שגיאה בשליחה</h3>
+                        <p style="margin: 0 0 10px 0; color: #333;">לא ניתן לשלוח את המייל כרגע</p>
+                        <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">צרו קשר ישירות:</p>
+                        <p style="margin: 0; color: #333; font-weight: bold;">📱 054-7882715 | ✉️ jivany@nataraj.co.il</p>
                     </div>
                 `;
                 successMessage.style.display = 'block';

@@ -15,29 +15,19 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        console.log('API: Email request received');
         const { name, phone, email, message, source } = req.body;
 
         // בדיקות בסיסיות
         if (!name || !phone || !email) {
-            console.log('API: Missing required fields');
             return res.status(400).json({ 
-                error: 'Missing required fields',
-                received: { name, phone, email, message, source }
+                error: 'Missing required fields: name, phone, email'
             });
         }
 
-        console.log('API: Creating transporter...');
-        
         // בדיקת משתני סביבה
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-            console.log('API: Missing environment variables');
             return res.status(500).json({ 
-                error: 'Server configuration error - missing environment variables',
-                env_check: {
-                    has_email_user: !!process.env.EMAIL_USER,
-                    has_email_pass: !!process.env.EMAIL_PASS
-                }
+                error: 'Server configuration error - missing email credentials'
             });
         }
 
@@ -49,24 +39,6 @@ module.exports = async function handler(req, res) {
                 pass: process.env.EMAIL_PASS
             }
         });
-
-        // בדיקת חיבור
-        try {
-            await transporter.verify();
-            console.log('API: SMTP connection verified successfully');
-        } catch (verifyError) {
-            console.log('API: SMTP verification failed:', verifyError);
-            return res.status(500).json({ 
-                error: 'SMTP connection failed',
-                details: verifyError.message,
-                env_check: {
-                    has_email_user: !!process.env.EMAIL_USER,
-                    has_email_pass: !!process.env.EMAIL_PASS
-                }
-            });
-        }
-
-        console.log('API: Sending email...');
 
         // שליחת המייל
         const mailOptions = {
@@ -102,38 +74,23 @@ module.exports = async function handler(req, res) {
                                 <a href="https://wa.me/972${phone.replace(/[^0-9]/g, '').substring(1)}" style="display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; margin: 5px;">💬 WhatsApp</a>
                             </div>
                         </div>
-
-                        <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin-top: 20px; border: 1px solid #ffeaa7;">
-                            <h4 style="color: #8b6914; margin-top: 0;">🎯 המלצות למעקב:</h4>
-                            <ul style="color: #8b6914; margin: 0;">
-                                <li>הזמן שיחת היכרות ראשונית תוך 24 שעות</li>
-                                <li>שלח מידע נוסף על הריטריט</li>
-                                <li>הוסף ליומן המעקב</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             `
         };
 
         await transporter.sendMail(mailOptions);
-        console.log('API: Email sent successfully!');
 
         return res.status(200).json({ 
             success: true, 
-            message: 'Email sent successfully',
-            to: 'jivany@nataraj.co.il'
+            message: 'Email sent successfully to jivany@nataraj.co.il'
         });
 
     } catch (error) {
-        console.error('API: Error sending email:', error);
+        console.error('Email sending error:', error);
         return res.status(500).json({ 
             error: 'Failed to send email', 
-            details: error.message,
-            env_check: {
-                has_email_user: !!process.env.EMAIL_USER,
-                has_email_pass: !!process.env.EMAIL_PASS
-            }
+            details: error.message
         });
     }
-} 
+}; 

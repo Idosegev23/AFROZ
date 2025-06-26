@@ -2,7 +2,7 @@
   "name": "afroz-landing-page",
   "version": "1.0.0",
   "description": "Afroz Retreat Landing Page",
-  "type": "module",
+
   "main": "index.js",
   "scripts": {
     "dev": "vercel dev",

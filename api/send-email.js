@@ -15,32 +15,68 @@ module.exports = async function handler(req, res) {
     }
 
     try {
+        console.log('=== Email API Called ===');
+        console.log('Request body:', JSON.stringify(req.body, null, 2));
+        
         const { name, phone, email, message, source } = req.body;
 
         // בדיקות בסיסיות
         if (!name || !phone || !email) {
+            console.log('Missing required fields:', { name: !!name, phone: !!phone, email: !!email });
             return res.status(400).json({ 
-                error: 'Missing required fields: name, phone, email'
+                error: 'Missing required fields: name, phone, email',
+                received: { name: !!name, phone: !!phone, email: !!email }
             });
         }
 
         // בדיקת משתני סביבה
+        console.log('Checking environment variables...');
+        console.log('EMAIL_USER exists:', !!process.env.EMAIL_USER);
+        console.log('EMAIL_PASS exists:', !!process.env.EMAIL_PASS);
+        console.log('EMAIL_USER value:', process.env.EMAIL_USER ? `${process.env.EMAIL_USER.substring(0, 5)}...` : 'undefined');
+        
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+            console.error('Missing environment variables');
             return res.status(500).json({ 
-                error: 'Server configuration error - missing email credentials'
+                error: 'Server configuration error - missing email credentials',
+                details: 'נדרשים משתני סביבה EMAIL_USER ו-EMAIL_PASS'
             });
         }
 
-        // יצירת transporter
-        const transporter = nodemailer.createTransport({
+        console.log('Creating nodemailer transporter...');
+        
+        // יצירת transporter עם הגדרות מפורטות ל-Gmail
+        const transporter = nodemailer.createTransporter({
             service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
+                pass: process.env.EMAIL_PASS // זה חייב להיות App Password מ-Gmail!
+            },
+            tls: {
+                rejectUnauthorized: false
             }
         });
 
-        // שליחת המייל
+        // בדיקת חיבור
+        console.log('Verifying transporter connection...');
+        try {
+            await transporter.verify();
+            console.log('✅ SMTP connection verified successfully');
+        } catch (verifyError) {
+            console.error('❌ SMTP connection verification failed:', verifyError);
+            return res.status(500).json({ 
+                error: 'Failed to connect to email server',
+                details: verifyError.message,
+                solution: 'ודא שהמשתנה EMAIL_PASS הוא App Password מ-Gmail (לא סיסמה רגילה)'
+            });
+        }
+
+        console.log('Preparing email content...');
+        
+        // הכנת תוכן המייל
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: 'jivany@nataraj.co.il',
@@ -76,21 +112,70 @@ module.exports = async function handler(req, res) {
                         </div>
                     </div>
                 </div>
+            `,
+            // הוספת גרסת טקסט פשוטה למקרה שה-HTML לא נתמך
+            text: `
+פנייה חדשה לריטריט AFROZ
+
+פרטי הלקוח:
+שם: ${name}
+טלפון: ${phone}
+אימייל: ${email}
+מקור: ${source || 'לא צוין'}
+תאריך: ${new Date().toLocaleString('he-IL')}
+
+${message ? `הודעה נוספת: ${message}` : ''}
             `
         };
 
-        await transporter.sendMail(mailOptions);
+        console.log('Sending email...');
+        console.log('Email recipient:', mailOptions.to);
+        console.log('Email subject:', mailOptions.subject);
+        
+        // שליחת המייל
+        const info = await transporter.sendMail(mailOptions);
+        
+        console.log('✅ Email sent successfully!');
+        console.log('Message ID:', info.messageId);
+        console.log('Response:', info.response);
 
         return res.status(200).json({ 
             success: true, 
-            message: 'Email sent successfully to jivany@nataraj.co.il'
+            message: 'Email sent successfully to jivany@nataraj.co.il',
+            messageId: info.messageId,
+            timestamp: new Date().toISOString()
         });
 
     } catch (error) {
-        console.error('Email sending error:', error);
+        console.error('❌ Email sending error:', error);
+        console.error('Error details:', {
+            code: error.code,
+            command: error.command,
+            response: error.response,
+            responseCode: error.responseCode
+        });
+        
+        // זיהוי שגיאות נפוצות של Gmail
+        let userFriendlyError = 'Failed to send email';
+        let solution = '';
+        
+        if (error.code === 'EAUTH') {
+            userFriendlyError = 'שגיאת אימות Gmail';
+            solution = 'ודא שמשתנה EMAIL_PASS הוא App Password מ-Gmail, לא סיסמה רגילה';
+        } else if (error.response && error.response.includes('Username and Password not accepted')) {
+            userFriendlyError = 'פרטי התחברות שגויים';
+            solution = 'יש ליצור App Password ב-Gmail ולהשתמש בו במקום בסיסמה הרגילה';
+        } else if (error.code === 'ECONNECTION') {
+            userFriendlyError = 'בעיית חיבור לשרת Gmail';
+            solution = 'בדוק חיבור לאינטרנט והגדרות Firewall';
+        }
+        
         return res.status(500).json({ 
-            error: 'Failed to send email', 
-            details: error.message
+            error: userFriendlyError,
+            details: error.message,
+            solution: solution,
+            code: error.code,
+            timestamp: new Date().toISOString()
         });
     }
 }; 

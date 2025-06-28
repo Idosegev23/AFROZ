@@ -223,47 +223,42 @@
                     </div>
                 </div>
                 
-                <!-- טופס יצירת קשר - מרכז הפוטר -->
+                <!-- יצירת קשר ישיר - מרכז הפוטר -->
                 <div class="footer-form-section">
                     <div class="contact-form-container">
                         <div class="form-header">
-                            <i class="fas fa-envelope"></i>
-                            <h3>השאירו פרטים ונחזור אליכם בהקדם</h3>
-                            <p>מעוניינים בפרטים נוספים? מלאו את הטופס ונהיה בקשר</p>
+                            <i class="fas fa-phone"></i>
+                            <h3>יצירת קשר ישיר</h3>
+                            <p>לפרטים נוספים והזמנות - צרו קשר ישירות</p>
                         </div>
                         
-                        <form id="footer-contact-form" class="footer-contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <input type="text" id="footer-name" name="name" placeholder="שם מלא *" required>
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" id="footer-phone" name="phone" placeholder="טלפון *" required>
-                                    <i class="fas fa-phone"></i>
-                                </div>
+                        <div class="direct-contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-user-circle"></i>
+                                <strong>איריס גרינברג</strong>
                             </div>
                             
-                            <div class="form-group">
-                                <input type="email" id="footer-email" name="email" placeholder="כתובת אימייל *" required>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+972547882715" class="contact-link">054-7882715</a>
+                                <span class="contact-note">(לחצו להתקשרות)</span>
+                            </div>
+                            
+                            <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
+                                <a href="mailto:jivany@nataraj.co.il" class="contact-link">jivany@nataraj.co.il</a>
                             </div>
                             
-                            <div class="form-group">
-                                <textarea id="footer-message" name="message" placeholder="איך נוכל לעזור לכם? (אופציונלי)" rows="4"></textarea>
-                                <i class="fas fa-comment"></i>
+                            <div class="contact-item">
+                                <i class="fab fa-whatsapp"></i>
+                                <a href="https://wa.me/972547882715" target="_blank" class="contact-link whatsapp-link">שליחת הודעה בוואטסאפ</a>
                             </div>
                             
-                            <button type="submit" class="submit-form">
-                                <i class="fas fa-paper-plane"></i>
-                                שליחה
-                            </button>
-                            
-                            <div id="footer-contact-success-message" class="contact-success-message">
-                                <i class="fas fa-check-circle"></i>
-                                תודה רבה! פרטיכם נשמרו בהצלחה. ניצור איתכם קשר בהקדם.
+                            <div class="availability-note">
+                                <i class="fas fa-clock"></i>
+                                <p>זמינות: ימים א'-ה' 9:00-18:00 | ימי ו' 9:00-14:00</p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -315,31 +310,30 @@
                 <a href="https://wa.me/972547882715" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: #25D366;"><i class="fab fa-whatsapp"></i> שליחת הודעה בוואטסאפ</a>
             </p>
             
-            <!-- טופס יצירת קשר בפופאפ -->
+            <!-- קישורים מהירים לפעולות -->
             <div class="contact-form-container">
-                <h3>השאירו פרטים ונחזור אליכם</h3>
-                <form id="local-contact-form" class="local-contact-form">
-                    <div class="form-group">
-                        <label for="name">שם מלא</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">טלפון</label>
-                        <input type="text" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">אימייל</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">הודעה</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-form">שליחה</button>
-                    <div id="contact-success-message" class="contact-success-message">
-                        תודה! פרטיך נשמרו בהצלחה. ניצור איתך קשר בהקדם.
-                    </div>
-                </form>
+                <h3>פעולות מהירות</h3>
+                <div class="quick-actions">
+                    <a href="tel:+972547882715" class="action-button call-button">
+                        <i class="fas fa-phone"></i>
+                        התקשר עכשיו
+                    </a>
+                    
+                    <a href="https://wa.me/972547882715" target="_blank" class="action-button whatsapp-button">
+                        <i class="fab fa-whatsapp"></i>
+                        שלח הודעה
+                    </a>
+                    
+                    <a href="mailto:jivany@nataraj.co.il" class="action-button email-button">
+                        <i class="fas fa-envelope"></i>
+                        שלח אימייל
+                    </a>
+                    
+                    <a href="https://nataraj.co.il/afroz-retreat" target="_blank" class="action-button booking-button">
+                        <i class="fas fa-calendar-check"></i>
+                        הזמנה מקוונת
+                    </a>
+                </div>
             </div>
         </div>
     </div>

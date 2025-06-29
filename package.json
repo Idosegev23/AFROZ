@@ -2,17 +2,23 @@
   "name": "afroz-lp",
   "version": "1.0.0",
   "description": "Afroz Retreat Landing Page",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'No build step needed for static site'",
-    "start": "vercel dev"
+    "build": "echo 'Building for Vercel...'",
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
-    "dotenv": "^17.0.0",
     "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.0"
   },
   "engines": {
     "node": "18.x"
-  }
+  },
+  "keywords": ["afroz", "retreat", "landing-page", "contact-form"],
+  "author": "AFROZ Team",
+  "license": "ISC"
 }

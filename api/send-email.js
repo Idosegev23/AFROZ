@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
         console.log('⚙️ Creating Gmail nodemailer transporter...');
         
         // יצירת transporter עם הגדרות מעודכנות עבור Gmail 2024
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
             service: 'gmail', // שימוש בשירות Gmail המובנה
             // הגדרות גיבוי במקרה שה-service לא עובד
             host: 'smtp.gmail.com',

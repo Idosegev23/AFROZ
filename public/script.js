@@ -414,12 +414,14 @@ async function handleContactForm(formId, messageId, context) {
                     // הצגת הודעת הצלחה
                     contactForm.style.display = 'none';
                     successMessage.innerHTML = `
-                        <div style="text-align: center; background: #e8f5e8; padding: 20px; border-radius: 8px; border: 2px solid #4CAF50;">
-                            <h3 style="color: #2E7D32; margin: 0 0 10px 0;">✅ הודעתך נשלחה בהצלחה!</h3>
-                            <p style="margin: 0; color: #333;">פרטייך נשלחו ישירות לאיריס במייל</p>
+                        <div style="text-align: center; background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 25px; border-radius: 15px; border: 2px solid #c3e6cb; box-shadow: 0 8px 25px rgba(21, 87, 36, 0.2);">
+                            <div style="font-size: 48px; color: #28a745; margin-bottom: 15px;">✅</div>
+                            <h3 style="color: #155724; margin: 0 0 15px 0; font-size: 22px; font-weight: 600;">הודעתך נשלחה בהצלחה!</h3>
+                            <p style="margin: 0; color: #155724; font-size: 16px; line-height: 1.5;">פרטייך נשלחו ישירות לאיריס במייל.<br>ניצור איתך קשר בהקדם האפשרי!</p>
                         </div>
                     `;
                     successMessage.style.display = 'block';
+                    successMessage.classList.add('show');
                     
                     // Facebook Pixel tracking
                     if (typeof fbq !== 'undefined') {
@@ -440,14 +442,18 @@ async function handleContactForm(formId, messageId, context) {
                 // הצגת הודעת שגיאה
                 contactForm.style.display = 'none';
                 successMessage.innerHTML = `
-                    <div style="text-align: center; background: #fff3cd; padding: 20px; border-radius: 8px; border: 2px solid #ffc107;">
-                        <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ שגיאה בשליחה</h3>
-                        <p style="margin: 0 0 10px 0; color: #333;">לא ניתן לשלוח את המייל כרגע. ודאו שהפרטים נכונים ונסו שוב.</p>
-                        <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">אם הבעיה נמשכת, צרו קשר ישירות:</p>
-                        <p style="margin: 5px 0 0 0; color: #333; font-weight: bold;">📱 054-7882715 | ✉️ jivany@nataraj.co.il</p>
+                    <div style="text-align: center; background: linear-gradient(135deg, #fff3cd 0%, #fcf4d6 100%); padding: 25px; border-radius: 15px; border: 2px solid #ffc107; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);">
+                        <div style="font-size: 48px; color: #ff6b35; margin-bottom: 15px;">⚠️</div>
+                        <h3 style="color: #856404; margin: 0 0 15px 0; font-size: 20px; font-weight: 600;">בעיה בשליחת המייל</h3>
+                        <p style="margin: 0 0 15px 0; color: #856404; font-size: 16px;">לא ניתן לשלוח את המייל כרגע. ודאו שהפרטים נכונים ונסו שוב.</p>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                            <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">יצירת קשר ישירה:</p>
+                            <p style="margin: 0; color: #333; font-weight: bold; font-size: 16px;">📱 054-7882715<br>✉️ jivany@nataraj.co.il</p>
+                        </div>
                     </div>
                 `;
                 successMessage.style.display = 'block';
+                successMessage.classList.add('show');
                 
                 // Facebook Pixel tracking
                 if (typeof fbq !== 'undefined') {

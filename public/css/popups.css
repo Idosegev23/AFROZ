@@ -108,7 +108,7 @@
     border: 2px solid #e9ecef;
     border-radius: 15px;
     background: #ffffff;
-    color: #000000; /* צבע טקסט שחור */
+    color: #000000 !important; /* צבע טקסט שחור - חזק */
     font-size: 16px;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -117,7 +117,7 @@
 
 .local-contact-form .form-group input::placeholder,
 .local-contact-form .form-group textarea::placeholder {
-    color: #666;
+    color: #666 !important; /* צבע placeholder כהה יותר */
 }
 
 .local-contact-form .form-group input:focus,
@@ -125,6 +125,7 @@
     outline: none;
     border-color: #D4AF37;
     background: #ffffff;
+    color: #000000 !important; /* צבע טקסט שחור גם בפוקוס */
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
     transform: translateY(-2px);
 }
@@ -271,6 +272,17 @@ button.submit-form:hover {
     text-align: center;
     font-weight: 500;
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+/* חיזוק נוסף לשדות בפופאפ */
+#local-contact-form input,
+#local-contact-form textarea {
+    color: #000000 !important;
+}
+
+#local-contact-form input::placeholder,
+#local-contact-form textarea::placeholder {
+    color: #666 !important;
 }
 
 /* Responsive Styles for Popups */

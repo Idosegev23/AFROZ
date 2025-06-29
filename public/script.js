@@ -354,118 +354,160 @@ function createRandomDunes() {
 
 // פונקציה לטיפול בטופס יצירת הקשר המקומי
 function initLocalContactForm() {
-    console.log('Initializing local contact form');
+    console.log('🔧 Initializing local contact form - START');
     
     // טיפול בטופס הפופ-אפ (אם עדיין קיים)
+    console.log('🔍 Looking for popup form: local-contact-form');
     handleContactForm('local-contact-form', 'contact-success-message', 'popup');
     
     // טיפול בטופס הפוטר
+    console.log('🔍 Looking for footer form: footer-contact-form');
     handleContactForm('footer-contact-form', 'footer-contact-success-message', 'footer');
+    
+    console.log('✅ Contact form initialization complete');
 }
 
 async function handleContactForm(formId, messageId, context) {
+    console.log(`🔧 handleContactForm called for: ${formId}, message: ${messageId}, context: ${context}`);
+    
     const contactForm = document.getElementById(formId);
     const successMessage = document.getElementById(messageId);
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            console.log(`${context} contact form submitted`);
+    console.log(`📋 Form found: ${!!contactForm}, Success message found: ${!!successMessage}`);
+    
+    if (!contactForm) {
+        console.error(`❌ Contact form not found: ${formId}`);
+        return;
+    }
+    
+    if (!successMessage) {
+        console.error(`❌ Success message element not found: ${messageId}`);
+        return;
+    }
+    
+    console.log(`✅ Setting up form listener for: ${formId}`);
+    
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        console.log(`🚀 ${context} contact form submitted!`);
+        
+        // איסוף הנתונים מהטופס - שימוש בקונטקסט לזיהוי השדות
+        const prefix = context === 'footer' ? 'footer-' : '';
+        console.log(`🔍 Using prefix: "${prefix}"`);
+        
+        const nameField = document.getElementById(prefix + 'name');
+        const phoneField = document.getElementById(prefix + 'phone');
+        const emailField = document.getElementById(prefix + 'email');
+        const messageField = document.getElementById(prefix + 'message');
+        
+        console.log(`📋 Fields found - Name: ${!!nameField}, Phone: ${!!phoneField}, Email: ${!!emailField}, Message: ${!!messageField}`);
+        
+        if (!nameField || !phoneField || !emailField) {
+            console.error('❌ Required fields not found!');
+            return;
+        }
+        
+        const formData = {
+            name: nameField.value,
+            phone: phoneField.value,
+            email: emailField.value,
+            message: messageField ? messageField.value : '',
+            date: new Date().toISOString(),
+            source: context
+        };
+
+        console.log('📋 Form data collected:', formData);
+
+        // הצגת הודעת טעינה
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        console.log(`🔄 Changing button text from "${originalText}" to "שולח..."`);
+        submitButton.textContent = 'שולח...';
+        submitButton.disabled = true;
+
+        try {
+            // שליחה דרך nodemailer API
+            console.log('📤 Sending email via nodemailer API...');
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            console.log('📡 API Response received:', response.status, response.statusText);
             
-            // איסוף הנתונים מהטופס - שימוש בקונטקסט לזיהוי השדות
-            const prefix = context === 'footer' ? 'footer-' : '';
-            const messageField = document.getElementById(prefix + 'message');
-            const formData = {
-                name: document.getElementById(prefix + 'name').value,
-                phone: document.getElementById(prefix + 'phone').value,
-                email: document.getElementById(prefix + 'email').value,
-                message: messageField ? messageField.value : '',
-                date: new Date().toISOString(),
-                source: context
-            };
+            const result = await response.json();
+            console.log('📋 API Result:', result);
 
-            console.log('Form data:', formData);
-
-            // הצגת הודעת טעינה
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'שולח...';
-            submitButton.disabled = true;
-
-            try {
-                // שליחה דרך nodemailer API
-                console.log('Sending email via nodemailer...');
-                const response = await fetch('/api/send-email', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    console.log('Email sent successfully:', result.message);
-                    
-                    // שמירה מקומית כגיבוי
-                    localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
-                    
-                    // הצגת הודעת הצלחה
-                    contactForm.style.display = 'none';
-                    successMessage.innerHTML = `
-                        <div style="text-align: center; background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 25px; border-radius: 15px; border: 2px solid #c3e6cb; box-shadow: 0 8px 25px rgba(21, 87, 36, 0.2);">
-                            <div style="font-size: 48px; color: #28a745; margin-bottom: 15px;">✅</div>
-                            <h3 style="color: #155724; margin: 0 0 15px 0; font-size: 22px; font-weight: 600;">הודעתך נשלחה בהצלחה!</h3>
-                            <p style="margin: 0; color: #155724; font-size: 16px; line-height: 1.5;">פרטייך נשלחו ישירות לאיריס במייל.<br>ניצור איתך קשר בהקדם האפשרי!</p>
-                        </div>
-                    `;
-                    successMessage.style.display = 'block';
-                    successMessage.classList.add('show');
-                    
-                    // Facebook Pixel tracking
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateContact');
-                    }
-                    return; // סיום מוצלח
-                    
-                } else {
-                    throw new Error(result.error || `API response error: ${response.status}`);
-                }
+            if (response.ok && result.success) {
+                console.log('✅ Email sent successfully:', result.message);
                 
-            } catch (error) {
-                console.error('Failed to send email:', error);
-                
-                // שמירה מקומית
+                // שמירה מקומית כגיבוי
                 localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
                 
-                // הצגת הודעת שגיאה
+                // הצגת הודעת הצלחה
+                console.log('🎉 Hiding form and showing success message...');
                 contactForm.style.display = 'none';
                 successMessage.innerHTML = `
-                    <div style="text-align: center; background: linear-gradient(135deg, #fff3cd 0%, #fcf4d6 100%); padding: 25px; border-radius: 15px; border: 2px solid #ffc107; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);">
-                        <div style="font-size: 48px; color: #ff6b35; margin-bottom: 15px;">⚠️</div>
-                        <h3 style="color: #856404; margin: 0 0 15px 0; font-size: 20px; font-weight: 600;">בעיה בשליחת המייל</h3>
-                        <p style="margin: 0 0 15px 0; color: #856404; font-size: 16px;">לא ניתן לשלוח את המייל כרגע. ודאו שהפרטים נכונים ונסו שוב.</p>
-                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; margin-top: 15px;">
-                            <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">יצירת קשר ישירה:</p>
-                            <p style="margin: 0; color: #333; font-weight: bold; font-size: 16px;">📱 054-7882715<br>✉️ jivany@nataraj.co.il</p>
-                        </div>
+                    <div style="text-align: center; background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 25px; border-radius: 15px; border: 2px solid #c3e6cb; box-shadow: 0 8px 25px rgba(21, 87, 36, 0.2);">
+                        <div style="font-size: 48px; color: #28a745; margin-bottom: 15px;">✅</div>
+                        <h3 style="color: #155724; margin: 0 0 15px 0; font-size: 22px; font-weight: 600;">הודעתך נשלחה בהצלחה!</h3>
+                        <p style="margin: 0; color: #155724; font-size: 16px; line-height: 1.5;">פרטייך נשלחו ישירות לאיריס במייל.<br>ניצור איתך קשר בהקדם האפשרי!</p>
                     </div>
                 `;
                 successMessage.style.display = 'block';
                 successMessage.classList.add('show');
+                console.log('✅ Success message displayed!');
                 
                 // Facebook Pixel tracking
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'InitiateContact');
                 }
-            } finally {
-                // החזרת הכפתור למצב רגיל
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
+                return; // סיום מוצלח
+                
+            } else {
+                throw new Error(result.error || `API response error: ${response.status}`);
             }
-        });
-    }
+            
+        } catch (error) {
+            console.error('❌ Failed to send email:', error);
+            
+            // שמירה מקומית
+            localStorage.setItem('contactFormSubmission', JSON.stringify(formData));
+            
+            // הצגת הודעת שגיאה
+            console.log('⚠️ Showing error message...');
+            contactForm.style.display = 'none';
+            successMessage.innerHTML = `
+                <div style="text-align: center; background: linear-gradient(135deg, #fff3cd 0%, #fcf4d6 100%); padding: 25px; border-radius: 15px; border: 2px solid #ffc107; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);">
+                    <div style="font-size: 48px; color: #ff6b35; margin-bottom: 15px;">⚠️</div>
+                    <h3 style="color: #856404; margin: 0 0 15px 0; font-size: 20px; font-weight: 600;">בעיה בשליחת המייל</h3>
+                    <p style="margin: 0 0 15px 0; color: #856404; font-size: 16px;">לא ניתן לשלוח את המייל כרגע. ודאו שהפרטים נכונים ונסו שוב.</p>
+                    <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">יצירת קשר ישירה:</p>
+                        <p style="margin: 0; color: #333; font-weight: bold; font-size: 16px;">📱 054-7882715<br>✉️ jivany@nataraj.co.il</p>
+                    </div>
+                </div>
+            `;
+            successMessage.style.display = 'block';
+            successMessage.classList.add('show');
+            console.log('⚠️ Error message displayed!');
+            
+            // Facebook Pixel tracking
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateContact');
+            }
+        } finally {
+            // החזרת הכפתור למצב רגיל
+            console.log(`🔄 Restoring button text to "${originalText}"`);
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
+    });
+    
+    console.log(`✅ Event listener added successfully for: ${formId}`);
 }
 
 // Gallery Lightbox functionality

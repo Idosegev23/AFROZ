@@ -108,7 +108,7 @@
     border: 2px solid #e9ecef;
     border-radius: 15px;
     background: #ffffff;
-    color: #2c3e50;
+    color: #000000; /* צבע טקסט שחור */
     font-size: 16px;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -117,7 +117,7 @@
 
 .local-contact-form .form-group input::placeholder,
 .local-contact-form .form-group textarea::placeholder {
-    color: #95a5a6;
+    color: #666;
 }
 
 .local-contact-form .form-group input:focus,

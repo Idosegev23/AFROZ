@@ -369,102 +369,7 @@
 
     <script src="/public/script.js"></script>
     <script>
-        // פונקציה מתקדמת לולידציה של הטופס עם הודעות שגיאה בזמן אמת
-        function validateForm(showMessages = false) {
-            const errors = [];
-            
-            // הסרת הודעות שגיאה קודמות
-            clearFieldErrors();
-            
-            // בדיקת שם מלא
-            const name = document.getElementById('name').value.trim();
-            if (!name) {
-                errors.push('שם מלא הוא שדה חובה');
-                setFieldError('name', 'שם מלא הוא שדה חובה', showMessages);
-            } else if (name.length < 2) {
-                errors.push('שם מלא חייב להכיל לפחות 2 תווים');
-                setFieldError('name', 'שם מלא חייב להכיל לפחות 2 תווים', showMessages);
-            } else {
-                setFieldSuccess('name');
-            }
-            
-            // בדיקת טלפון
-            const phone = document.getElementById('phone').value.trim();
-            if (!phone) {
-                errors.push('מספר טלפון הוא שדה חובה');
-                setFieldError('phone', 'מספר טלפון הוא שדה חובה', showMessages);
-            } else if (!/^[\d\-\+\(\)\s]+$/.test(phone)) {
-                errors.push('מספר טלפון לא תקין - רק ספרות ותווים מיוחדים');
-                setFieldError('phone', 'מספר טלפון לא תקין - רק ספרות ותווים מיוחדים', showMessages);
-            } else if (phone.replace(/[\-\+\(\)\s]/g, '').length < 9) {
-                errors.push('מספר טלפון חייב להכיל לפחות 9 ספרות');
-                setFieldError('phone', 'מספר טלפון חייב להכיל לפחות 9 ספרות', showMessages);
-            } else {
-                setFieldSuccess('phone');
-            }
-            
-            // בדיקת אימייל (לא חובה אבל אם יש צריך להיות תקין)
-            const email = document.getElementById('email').value.trim();
-            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                errors.push('כתובת אימייל לא תקינה');
-                setFieldError('email', 'כתובת אימייל לא תקינה', showMessages);
-            } else {
-                setFieldSuccess('email');
-            }
-            
-            return errors;
-        }
-
-        // פונקציות עזר להצגת שגיאות ושדות
-        function setFieldError(fieldId, message, showMessage = true) {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.style.borderColor = '#dc3545';
-                field.style.borderWidth = '2px';
-                
-                if (showMessage) {
-                    let errorDiv = document.getElementById(fieldId + '-error');
-                    if (!errorDiv) {
-                        errorDiv = document.createElement('div');
-                        errorDiv.id = fieldId + '-error';
-                        errorDiv.style.cssText = 'color: #dc3545; font-size: 14px; margin-top: 5px; font-weight: 500;';
-                        field.parentNode.appendChild(errorDiv);
-                    }
-                    errorDiv.textContent = message;
-                }
-            }
-        }
-
-        function setFieldSuccess(fieldId) {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.style.borderColor = '#28a745';
-                field.style.borderWidth = '2px';
-                
-                // הסרת הודעת שגיאה אם קיימת
-                const errorDiv = document.getElementById(fieldId + '-error');
-                if (errorDiv) {
-                    errorDiv.remove();
-                }
-            }
-        }
-
-        function clearFieldErrors() {
-            ['name', 'phone', 'email'].forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    field.style.borderColor = '';
-                    field.style.borderWidth = '';
-                }
-                
-                const errorDiv = document.getElementById(fieldId + '-error');
-                if (errorDiv) {
-                    errorDiv.remove();
-                }
-            });
-        }
-
-        // פונקציה מתקדמת לשליחת הטופס עם ולידציה מלאה
+        // פונקציה לשליחת הטופס לוובהוק
         async function submitForm(event) {
             event.preventDefault();
             
@@ -477,32 +382,18 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            // *** ולידציה מחמירה עם הודעות - הטופס לא יישלח אם יש שגיאות ***
-            const validationErrors = validateForm(true);
-            if (validationErrors.length > 0) {
-                errorMessage.innerHTML = `
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h4>יש לתקן את השגיאות הבאות:</h4>
-                    <ul style="text-align: right; margin: 10px 0;">
-                        ${validationErrors.map(error => `<li>${error}</li>`).join('')}
-                    </ul>
-                `;
-                errorMessage.style.display = 'block';
-                return; // *** עצירה מלאה - הטופס לא יישלח ***
-            }
-            
-            // שינוי מצב הכפתור רק אחרי שהולידציה עברה
+            // שינוי מצב הכפתור
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
             
             try {
-                // איסוף נתוני הטופס רק אחרי ולידציה מוצלחת
+                // איסוף נתוני הטופס
                 const formData = new FormData(form);
                 const data = {
-                    name: formData.get('name').trim(),
-                    phone: formData.get('phone').trim(),
-                    email: formData.get('email').trim() || '',
-                    message: formData.get('message').trim() || '',
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email') || '',
+                    message: formData.get('message') || '',
                     timestamp: new Date().toISOString(),
                     source: 'אתר אפרוז ריטריט'
                 };
@@ -542,49 +433,6 @@
             }
         }
         
-        // פונקציה להוספת ולידציה בזמן אמת לשדות הטופס
-        function initRealTimeValidation() {
-            const nameField = document.getElementById('name');
-            const phoneField = document.getElementById('phone');
-            const emailField = document.getElementById('email');
-            const submitBtn = document.getElementById('submit-btn');
-
-            // פונקציה לבדיקה אם הטופס מוכן לשליחה עם הודעות בזמן אמת
-            function updateSubmitButton() {
-                const errors = validateForm(true);
-                const isValid = errors.length === 0;
-                
-                if (isValid) {
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = '1';
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> שלח פרטים';
-                } else {
-                    submitBtn.disabled = true;
-                    submitBtn.style.opacity = '0.6';
-                    submitBtn.innerHTML = `<i class="fas fa-exclamation-circle"></i> יש למלא את כל השדות החובה (${errors.length} שגיאות)`;
-                }
-            }
-
-            // הוספת event listeners לולידציה בזמן אמת
-            if (nameField) {
-                nameField.addEventListener('input', updateSubmitButton);
-                nameField.addEventListener('blur', updateSubmitButton);
-            }
-            
-            if (phoneField) {
-                phoneField.addEventListener('input', updateSubmitButton);
-                phoneField.addEventListener('blur', updateSubmitButton);
-            }
-            
-            if (emailField) {
-                emailField.addEventListener('input', updateSubmitButton);
-                emailField.addEventListener('blur', updateSubmitButton);
-            }
-
-            // קריאה ראשונית לעדכון מצב הכפתור
-            setTimeout(updateSubmitButton, 100);
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             const sections = [
                 { id: 'hero', placeholder: 'hero-placeholder', path: 'sections/hero.html' },
@@ -675,9 +523,6 @@
                 
                 // אתחול לספירה לאחור
                 setupCountdown();
-                
-                // אתחול ולידציה בזמן אמת לטופס יצירת הקשר
-                initRealTimeValidation();
             }
         });
     </script>
